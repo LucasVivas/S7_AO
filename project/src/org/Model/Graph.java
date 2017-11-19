@@ -9,10 +9,11 @@ import org.jgrapht.graph.DirectedAcyclicGraph;
  */
 public class Graph {
     private static Graph graph = null;
-    private DirectedAcyclicGraph<int[],DefaultEdge> DAGraph = null;
+    private DirectedAcyclicGraph<int[],DefaultEdge> da_graph = null;
 
     private Graph(Coordinates coordinates) {
         super();
+        //da_graph = new;
         graph = buildLabyrinthGraph(coordinates);
     }
 
