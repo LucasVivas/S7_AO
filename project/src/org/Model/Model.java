@@ -1,4 +1,4 @@
-package Model;
+package org.Model;
 
 /**
  * Created by lulu on 19/11/17.

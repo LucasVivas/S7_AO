@@ -1,7 +1,7 @@
 /**
  * Created by lulu on 19/11/17.
  */
-import Controller.Controller;
+import org.Controller.Controller;
 
 import javafx.application.Application;
 import javafx.stage.Stage;

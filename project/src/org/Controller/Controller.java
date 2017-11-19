@@ -1,7 +1,7 @@
-package Controller;
+package org.Controller;
 
-import Model.Model;
-import View.View;
+import org.Model.Model;
+import org.View.View;
 
 import javafx.stage.Stage;
 

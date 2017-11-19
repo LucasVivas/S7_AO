@@ -1,4 +1,4 @@
-package View;
+package org.View;
 
 import javafx.stage.Stage;
 
