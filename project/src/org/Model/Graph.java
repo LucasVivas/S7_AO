@@ -9,24 +9,24 @@ import org.jgrapht.graph.DirectedAcyclicGraph;
  */
 public class Graph {
     private static Graph graph = null;
-    private DirectedAcyclicGraph<String,DefaultEdge> DAGraph = null;
+    private DirectedAcyclicGraph<int[],DefaultEdge> DAGraph = null;
 
-    private Graph() {
+    private Graph(Coordinates coordinates) {
         super();
-
+        graph = buildLabyrinthGraph(coordinates);
     }
 
-    private void buildLabyrinthGraph(String v){
-
+    private Graph buildLabyrinthGraph(Coordinates coordinates){
+        return null;
     }
     /**
      * Return the unique instance of Graph.
      * @return null if the instance is not already created else
      * return the instance.
      */
-    public static Graph getInstance(){
+    public static Graph getInstance(Coordinates coordinates){
         if (Graph.graph == null){
-            graph = new Graph();
+            graph = new Graph(coordinates);
             return graph;
         }
         return null;
