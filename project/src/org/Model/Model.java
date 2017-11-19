@@ -6,7 +6,6 @@ package org.Model;
 public class Model {
     private static Model model = null;
 
-
     private Model() {
         super();
     }
