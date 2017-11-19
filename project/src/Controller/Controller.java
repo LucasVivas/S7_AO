@@ -2,6 +2,9 @@ package Controller;
 
 import Model.Model;
 import View.View;
+
+import javafx.stage.Stage;
+
 /**
  * Created by lulu on 19/11/17.
  */
@@ -17,7 +20,9 @@ public class Controller {
         view = View.getInstance();
     }
 
-
+    public void start(Stage primaryStage){
+        view.start(primaryStage);
+    }
 
     public static Controller getInstance(){
         if (Controller.controller == null){
