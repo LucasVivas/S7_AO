@@ -33,7 +33,7 @@ public class CardinalsPoints {
     public void shuffle(){
         int i = 0;
         boolean bool = true;
-        while (i < 4){
+        while (i < size){
             array[i] = randomCardinalsPoints();
             for (int j = 0; j < i; j++) {
                 if (array[i].compareTo(array[j]) == 0)
