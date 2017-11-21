@@ -1,6 +1,5 @@
 package org.Model;
 
-import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.SimpleGraph;
 
 /**
@@ -13,41 +12,52 @@ public class Graph {
     public static final int LEFT_BORDER = 0; //to move
     public static final int RIGHT_BORDER = 4; //to move
 
-    private SimpleGraph<Vertex,DefaultEdge> graph = null;
+    private SimpleGraph<Vertex,Edge> graph = null;
 
     private Graph(Vertex origin) {
-        graph = new SimpleGraph<>(DefaultEdge.class);
+        graph = new SimpleGraph<>(Edge.class);
         buildLabyrinthGraph(origin);
     }
 
-    private Graph buildLabyrinthGraph(Vertex v){
+    private void buildLabyrinthGraph(Vertex v){
         CardinalsPoints c = new CardinalsPoints(4);
-        Vertex tmp;
+        Vertex u;
         for (int i = 0; i < c.getSize(); i++) {
             switch (c.getArrayInd(i)){
                 case NORTH:
-                    tmp = new Vertex(v.getX(),v.getY()+1);
-                    if (!graph.containsVertex(tmp) && tmp.getY() > TOP_BORDER)
-                        graph.addVertex(tmp);
+                    u = new Vertex(v.getX(),v.getY()+1);
+                    if (!graph.containsVertex(u) && u.getY() > TOP_BORDER) {
+                        graph.addVertex(u);
+                        graph.addEdge(v, u);
+                        buildLabyrinthGraph(u);
+                    }
                     break;
                 case EAST:
-                    tmp = new Vertex(v.getX()+1,v.getY());
-                    if (!graph.containsVertex(tmp) && tmp.getX() > RIGHT_BORDER)
-                        graph.addVertex(tmp);
+                    u = new Vertex(v.getX()+1,v.getY());
+                    if (!graph.containsVertex(u) && u.getX() > RIGHT_BORDER) {
+                        graph.addVertex(u);
+                        graph.addEdge(v, u);
+                        buildLabyrinthGraph(u);
+                    }
                     break;
                 case SOUTH:
-                    tmp = new Vertex(v.getX(),v.getY()-1);
-                    if (!graph.containsVertex(tmp) && tmp.getY() > BOTTOM_BORDER)
-                        graph.addVertex(tmp);
+                    u = new Vertex(v.getX(),v.getY()-1);
+                    if (!graph.containsVertex(u) && u.getY() > BOTTOM_BORDER) {
+                        graph.addVertex(u);
+                        graph.addEdge(v,u);
+                        buildLabyrinthGraph(u);
+                    }
                     break;
                 case WEST:
-                    tmp = new Vertex(v.getX()-1,v.getY());
-                    if (!graph.containsVertex(tmp) && tmp.getX() > LEFT_BORDER)
-                        graph.addVertex(tmp);
+                    u = new Vertex(v.getX()-1,v.getY());
+                    if (!graph.containsVertex(u) && u.getX() > LEFT_BORDER) {
+                        graph.addVertex(u);
+                        graph.addEdge(v,u);
+                        buildLabyrinthGraph(u);
+                    }
                     break;
             }
         }
-        return null;
     }
 
 }
