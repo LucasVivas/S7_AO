@@ -27,14 +27,23 @@ public class Graph {
             switch (c.getArrayInd(i)){
                 case NORTH:
                     tmp = new Vertex(v.getX(),v.getY()+1);
-                    if (!graph.containsVertex(tmp))
-                    //graph.addVertex();
+                    if (!graph.containsVertex(tmp) && tmp.getY() > TOP_BORDER)
+                        graph.addVertex(tmp);
                     break;
                 case EAST:
+                    tmp = new Vertex(v.getX()+1,v.getY());
+                    if (!graph.containsVertex(tmp) && tmp.getX() > RIGHT_BORDER)
+                        graph.addVertex(tmp);
                     break;
                 case SOUTH:
+                    tmp = new Vertex(v.getX(),v.getY()-1);
+                    if (!graph.containsVertex(tmp) && tmp.getY() > BOTTOM_BORDER)
+                        graph.addVertex(tmp);
                     break;
                 case WEST:
+                    tmp = new Vertex(v.getX()-1,v.getY());
+                    if (!graph.containsVertex(tmp) && tmp.getX() > LEFT_BORDER)
+                        graph.addVertex(tmp);
                     break;
             }
         }
