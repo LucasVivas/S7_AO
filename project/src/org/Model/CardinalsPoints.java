@@ -1,5 +1,6 @@
 package org.Model;
 
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -31,16 +32,14 @@ public class CardinalsPoints {
     }
 
     public void shuffle(){
+        CARDINALS_POINTS card;
         int i = 0;
-        boolean bool = true;
         while (i < size){
-            array[i] = randomCardinalsPoints();
-            for (int j = 0; j < i; j++) {
-                if (array[i].compareTo(array[j]) == 0)
-                    bool = false;
-            }
-            if (bool)
+             card = randomCardinalsPoints();
+            if (Arrays.asList(array).contains(card)) {
+                array[i] = card;
                 i++;
+            }
         }
     }
 

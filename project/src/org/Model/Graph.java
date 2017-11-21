@@ -16,11 +16,13 @@ public class Graph {
         buildLabyrinthGraph(origin);
     }
 
-    private Graph buildLabyrinthGraph(Vertex origin){
+    private Graph buildLabyrinthGraph(Vertex v){
         CardinalsPoints c = new CardinalsPoints(4);
         for (int i = 0; i < c.getSize(); i++) {
             switch (c.getArrayInd(i)){
                 case NORTH:
+                    //if ()
+                    //graph.addVertex();
                     break;
                 case EAST:
                     break;
