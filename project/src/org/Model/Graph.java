@@ -2,6 +2,7 @@ package org.Model;
 
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.SimpleGraph;
+import org.Model.CardinalsPoints;
 
 /**
  * Created by lulu (project's boss) on 19/11/17.
@@ -16,6 +17,7 @@ public class Graph {
     }
 
     private Graph buildLabyrinthGraph(Vertex origin){
+        CardinalsPoints c = new CardinalsPoints();
         return null;
     }
 
