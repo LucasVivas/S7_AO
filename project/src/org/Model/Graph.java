@@ -1,35 +1,22 @@
 package org.Model;
 
 import org.jgrapht.graph.DefaultEdge;
-import org.jgrapht.graph.DirectedAcyclicGraph;
+import org.jgrapht.graph.SimpleGraph;
 
 /**
  * Created by lulu (project's boss) on 19/11/17.
  * Graph class represents the labyrinth graph.
  */
 public class Graph {
-    private static Graph graph = null;
-    private DirectedAcyclicGraph<int[],DefaultEdge> da_graph = null;
+    private SimpleGraph<Vertex,DefaultEdge> graph = null;
 
-    private Graph(Coordinates coordinates) {
-        super();
-        //da_graph = new;
-        graph = buildLabyrinthGraph(coordinates);
+    private Graph(Vertex origin) {
+        graph = new SimpleGraph<>(DefaultEdge.class);
+        buildLabyrinthGraph(origin);
     }
 
-    private Graph buildLabyrinthGraph(Coordinates coordinates){
+    private Graph buildLabyrinthGraph(Vertex origin){
         return null;
     }
-    /**
-     * Return the unique instance of Graph.
-     * @return null if the instance is not already created else
-     * return the instance.
-     */
-    public static Graph getInstance(Coordinates coordinates){
-        if (Graph.graph == null){
-            graph = new Graph(coordinates);
-            return graph;
-        }
-        return null;
-    }
+
 }
