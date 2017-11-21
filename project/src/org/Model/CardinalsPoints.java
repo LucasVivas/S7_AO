@@ -14,14 +14,20 @@ public class CardinalsPoints {
         WEST
     }
     private CARDINALS_POINTS[] array;
+    private int size;
 
-    public CardinalsPoints() {
-        array = new CARDINALS_POINTS[4];
+    public CardinalsPoints(int size) {
+        this.size = size;
+        array = new CARDINALS_POINTS[size];
         this.shuffle();
     }
 
-    public CARDINALS_POINTS[] getArray() {
-        return array;
+    public CARDINALS_POINTS getArrayInd(int i) {
+        return array[i];
+    }
+
+    public int getSize() {
+        return size;
     }
 
     public void shuffle(){

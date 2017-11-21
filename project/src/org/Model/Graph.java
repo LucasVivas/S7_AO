@@ -17,7 +17,19 @@ public class Graph {
     }
 
     private Graph buildLabyrinthGraph(Vertex origin){
-        CardinalsPoints c = new CardinalsPoints();
+        CardinalsPoints c = new CardinalsPoints(4);
+        for (int i = 0; i < c.getSize(); i++) {
+            switch (c.getArrayInd(i)){
+                case NORTH:
+                    break;
+                case EAST:
+                    break;
+                case SOUTH:
+                    break;
+                case WEST:
+                    break;
+            }
+        }
         return null;
     }
 
