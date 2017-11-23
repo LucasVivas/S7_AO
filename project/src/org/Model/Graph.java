@@ -12,12 +12,14 @@ import java.util.Vector;
 public class Graph extends SimpleGraph<Vertex,Edge>{
     private int nbVertices;
     private int nbEdges;
+    private Vertex[][] VerticiesMatrix;
     private static Graph graph = null;
     private Random random = new Random();
 
     private Graph(Class<? extends Edge> edgeClass) {
         super(edgeClass);
         this.nbVertices = 0;
+        this.VerticiesMatrix = new Vertex[Vertex.BOTTOM_BORDER][Vertex.RIGHT_BORDER];
     }
 
     public static Graph getInstance(){
@@ -48,6 +50,8 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
             directions[i]=v.get(index);
             v.remove(index);
         }
+
+        graph.addVertex(vertex);
         //pour chacune de ces directions,on avance en profondeur d’abord
         for(int i=0;i<4;++i){
             Directions dir=directions[i];
@@ -81,6 +85,18 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
                 buildRandomPath(next);
             }
         }
+    }
+
+    public boolean addVertex(Vertex v){
+        if(graph.VerticiesMatrix[v.getX()][v.getY()] == null){
+            graph.VerticiesMatrix[v.getX()][v.getY()] = v;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean containsVertex(Vertex v){
+        return graph.VerticiesMatrix[v.getX()][v.getY()] != null;
     }
 
     public boolean doesntExist(Vertex vertex, Directions dir){

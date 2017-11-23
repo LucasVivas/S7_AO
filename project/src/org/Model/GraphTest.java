@@ -25,11 +25,6 @@ public class GraphTest {
     }
 
     @Test
-    public void testAddVertex() throws Exception {
-
-    }
-
-    @Test
     public void testDoesntExist() throws Exception{
         Graph graphExist = Graph.getInstance();
 
@@ -60,6 +55,7 @@ public class GraphTest {
         }
     }
 
+    @Test
     public void testInBorders() throws Exception{
         Vertex v1 = new Vertex( 0,4,0);
         Directions dir1 = Directions.EAST;
@@ -68,6 +64,7 @@ public class GraphTest {
         assertFalse("v1 can't move to WEST", v1.inBorders(dir2));
     }
 
+    @Test
     public void testAreNeighbors() throws Exception{
         Vertex v1 = new Vertex( 3,3,0);
         Vertex v2 = new Vertex( 3,4,0);
@@ -77,6 +74,7 @@ public class GraphTest {
         assertTrue("v2 and v3 are neighbors", v2.areNeighbors(v3));
     }
 
+    @Test
     public void testCompareTo() throws Exception{
         Vertex v1 = new Vertex( 1,4,0);
         Vertex v2 = new Vertex( 1,4,0);
@@ -86,11 +84,12 @@ public class GraphTest {
         assertFalse("v2 and v3 aren't comparable", v2.compareTo(v3)==0);
     }
 
+    @Test
     public void testClone() throws Exception{
         Vertex v1 = new Vertex( 2,5,0);
-        Vertex v2 = new Vertex( 2,5,0);
+        Vertex v2 = new Vertex( 3,5,0);
         Vertex vClone = v1.clone();
-        assertTrue("vClone is the clone of v1",v1==vClone);
-        assertFalse("vClone isn't the clone of v2",v2==vClone);
+        assertTrue("vClone is the clone of v1",v1.equals(vClone));
+        assertFalse("vClone isn't the clone of v2",v2.equals(vClone));
     }
 }
