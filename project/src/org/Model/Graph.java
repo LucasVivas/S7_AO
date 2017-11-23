@@ -13,13 +13,13 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
     private static Graph graph = null;
     private Random random = new Random();
 
-    private Graph(Vertex origin) {
-//       graph = super(Class<Edge>);
+    private Graph(Class<? extends Edge> edgeClass) {
+        super(edgeClass);
     }
 
-    public static Graph getInstance(Vertex origin){
+    public static Graph getInstance(){
         if (Graph.graph == null){
-            graph = new Graph(origin);
+            graph = new Graph(Edge.class);
             return graph;
         }
         return null;
