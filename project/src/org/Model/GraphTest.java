@@ -34,7 +34,7 @@ public class GraphTest {
         Graph graphExist = Graph.getInstance();
 
         Vertex v1 = new Vertex( 1,1,0);
-        Vertex v2 = new Vertex( 1,2,1);
+        Vertex v2 = new Vertex( 1,2,0);
         Vertex v3 = null;
 
         Directions dir1 = Directions.NORTH;
@@ -44,18 +44,18 @@ public class GraphTest {
         graphExist.addVertex(v1);
         graphExist.addVertex(v2);
 
-        assertFalse("vertex (1,0) doesn't exist in this graph", graphExist.doesntExist(v1, dir1));
-        assertTrue("vertex (1,2) exists in this graph", graphExist.doesntExist(v1, dir2));
+        assertTrue("vertex (1,0) doesn't exist in this graph", graphExist.doesntExist(v1, dir1));
+        assertFalse("vertex (1,2) exists in this graph", graphExist.doesntExist(v1, dir2));
 
         try{
             graphExist.doesntExist(v3,dir1);
-            fail("NullPointerException must be throw");
+            fail("NullPointerException must be thrown");
         }catch (NullPointerException npe){
         }
 
         try{
             graphExist.doesntExist(v1,dir3);
-            fail("NullPointerException must be throw");
+            fail("NullPointerException must be thrown");
         }catch (NullPointerException npe){
         }
     }

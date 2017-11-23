@@ -86,7 +86,6 @@ public class Vertex implements Comparable<Vertex>{
         return false;
     }
 
-
     public Vertex clone(){
         Vertex v;
         try
@@ -102,6 +101,10 @@ public class Vertex implements Comparable<Vertex>{
 
     public String toString(){
         return super.toString();
+    }
+
+    public boolean equals(Vertex v){
+        return this.getX()==v.getX() && this.getY()==v.getY();
     }
 
 }
