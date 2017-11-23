@@ -13,6 +13,13 @@ public class Vertex implements Comparable<Vertex>{
     private int y;
     private int nbr;
 
+    public enum Directions {
+        NORTH,
+        EAST,
+        SOUTH,
+        WEST
+    }
+
     public Vertex(int x, int y, int nbr){
         this.x = x;
         this.y = y;
@@ -62,12 +69,13 @@ public class Vertex implements Comparable<Vertex>{
         return 0;
     }
 
-    public boolean inBorders(Directions dir){
-        return false;
-    }
-
     protected Vertex clone(){
         return new Vertex(this.getX(), this.getY(), this.getNbr());
+    }
+
+    public String toString(){
+        /* TODO */
+        return "";
     }
 
 }
