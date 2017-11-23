@@ -94,10 +94,10 @@ public class View {
         primaryStage.setTitle("Labyrinthe");
         View.drawFrame(primaryStage,nbrX,nbrY);
         View.drawWall(0,0,0,1,WALLCOLOR);
-        for(int i = 0; i<Vertex.BOTTOM_BORDER ; i++){
+/*        for(int i = 0; i<Vertex.BOTTOM_BORDER ; i++){
             for(int j = 0 ; j<Vertex.RIGHT_BORDER ; j++){
-                VerticiesMatrix[i][j]
-            }
+                VerticiesMatrix[i][j];
+            } */
         primaryStage.show();
     }
 
