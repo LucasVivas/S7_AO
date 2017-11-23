@@ -103,7 +103,11 @@ public class Vertex implements Comparable<Vertex>{
         return super.toString();
     }
 
-    public boolean equals(Vertex v){
+    @Override
+    public boolean equals(Object obj) {
+        if (obj.getClass() != Vertex.class)
+            return false;
+        Vertex v = (Vertex)obj;
         return this.getX()==v.getX() && this.getY()==v.getY();
     }
 
