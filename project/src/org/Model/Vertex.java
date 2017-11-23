@@ -25,9 +25,9 @@ public class Vertex implements Comparable<Vertex>{
 
     public Vertex(){
         rnX = new Random();
-        this.x = rnX.nextInt(RIGHT_BORDER);
+        this.x = rnX.nextInt(RIGHT_BORDER-1);
         rnY = new Random();
-        this.y = rnY.nextInt(BOTTOM_BORDER);
+        this.y = rnY.nextInt(BOTTOM_BORDER-1);
         this.nbr = 0;
     }
 
@@ -51,7 +51,7 @@ public class Vertex implements Comparable<Vertex>{
         return nbr;
     }
 
-    public boolean areNeighbor(Vertex v){
+    public boolean areNeighbors(Vertex v){
         int dx = Math.abs(this.getX() - v.getX());
         int dy = Math.abs(this.getY() - v.getY());
         return (dx == 0 && dy == 1) || (dx == 1 && dy == 0);
@@ -88,12 +88,10 @@ public class Vertex implements Comparable<Vertex>{
 
     public Vertex clone(){
         Vertex v;
-        try
-        {
+        try{
             v = (Vertex) super.clone();
         }
-        catch (CloneNotSupportedException e)
-        {
+        catch (CloneNotSupportedException e){
             throw new Error();
         }
         return v;
@@ -104,7 +102,7 @@ public class Vertex implements Comparable<Vertex>{
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(Object obj){
         if (obj.getClass() != Vertex.class)
             return false;
         Vertex v = (Vertex)obj;

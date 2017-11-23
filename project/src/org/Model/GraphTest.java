@@ -59,4 +59,38 @@ public class GraphTest {
         }catch (NullPointerException npe){
         }
     }
+
+    public void testInBorders() throws Exception{
+        Vertex v1 = new Vertex( 0,4,0);
+        Directions dir1 = Directions.EAST;
+        Directions dir2 = Directions.WEST;
+        assertTrue("v1 can move to EAST", v1.inBorders(dir1));
+        assertFalse("v1 can't move to WEST", v1.inBorders(dir2));
+    }
+
+    public void testAreNeighbors() throws Exception{
+        Vertex v1 = new Vertex( 3,3,0);
+        Vertex v2 = new Vertex( 3,4,0);
+        Vertex v3 = new Vertex( 3,5,0);
+        assertTrue("v1 and v2 are neighbors", v1.areNeighbors(v2));
+        assertFalse("v1 and v3 aren't neighbors", v1.areNeighbors(v3));
+        assertTrue("v2 and v3 are neighbors", v2.areNeighbors(v3));
+    }
+
+    public void testCompareTo() throws Exception{
+        Vertex v1 = new Vertex( 1,4,0);
+        Vertex v2 = new Vertex( 1,4,0);
+        Vertex v3 = new Vertex( 3,5,0);
+        assertTrue("v1 and v2 are comparable", v1.compareTo(v2)==0);
+        assertFalse("v1 and v3 aren't comparable", v1.compareTo(v3)==0);
+        assertFalse("v2 and v3 aren't comparable", v2.compareTo(v3)==0);
+    }
+
+    public void testClone() throws Exception{
+        Vertex v1 = new Vertex( 2,5,0);
+        Vertex v2 = new Vertex( 2,5,0);
+        Vertex vClone = v1.clone();
+        assertTrue("vClone is the clone of v1",v1==vClone);
+        assertFalse("vClone isn't the clone of v2",v2==vClone);
+    }
 }
