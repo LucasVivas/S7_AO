@@ -50,7 +50,7 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
                     case EAST:xt=x+1;yt=y;break;
                     case WEST:xt=x-1;yt=y;break;
                 }
-                Vertex next=new Vertex(xt,yt,vertex.getNbr()+1);
+                Vertex next = new Vertex(xt,yt,vertex.getNbr()+1);
                 graph.addVertex(next);
                 graph.addEdge(vertex,next);
                 buildRandomPath(next);

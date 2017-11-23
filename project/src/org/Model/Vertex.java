@@ -48,14 +48,7 @@ public class Vertex implements Comparable<Vertex>{
 
     @Override
     public int compareTo(Vertex v) {
-        int dif = this.pos.compareTo(v.getPos());
-        if (dif != 0)
-            return dif;
-        if (this.getNbr() > v.getNbr())
-            return 1;
-        else if (this.getNbr() < v.getNbr())
-            return -1;
-        return 0;
+        return this.pos.compareTo(v.getPos());
 
     }
 
