@@ -69,6 +69,10 @@ public class Vertex implements Comparable<Vertex>{
         return 0;
     }
 
+    public boolean inBorders(Directions dir){
+        return false;
+    }
+
     protected Vertex clone(){
         return new Vertex(this.getX(), this.getY(), this.getNbr());
     }
