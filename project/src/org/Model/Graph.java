@@ -30,6 +30,12 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         return null;
     }
 
+/*    edgesOf(VerticiesMatrix[i][j])
+
+    public Vertex[][] getVerticiesMatrix(){
+        return VerticiesMatrix;
+    } */
+
     public int getNbVertices(){
         return nbVertices;
     }
