@@ -10,11 +10,14 @@ import java.util.Vector;
  * Graphgh class represents the labyrinth graph.
  */
 public class Graph extends SimpleGraph<Vertex,Edge>{
+    private int nbVertices = 0;
+    private int nbEdges = 0;
     private static Graph graph = null;
     private Random random = new Random();
 
     private Graph(Class<? extends Edge> edgeClass) {
         super(edgeClass);
+        this.nbVertices = 0;
     }
 
     public static Graph getInstance(){
@@ -23,6 +26,14 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
             return graph;
         }
         return null;
+    }
+
+    public int getNbVertices(){
+        return nbVertices;
+    }
+
+    public int getNbEdges(){
+        return nbEdges;
     }
 
     public void buildRandomPath(Vertex vertex){
@@ -64,36 +75,38 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
                 }
                 Vertex next = new Vertex(xt,yt,vertex.getNbr()+1);
                 graph.addVertex(next);
+                nbVertices++;
                 graph.addEdge(vertex,next);
+                nbEdges++;
                 buildRandomPath(next);
             }
         }
     }
 
-    private boolean doesntExist(Vertex vertex, Directions dir){
+    public boolean doesntExist(Vertex vertex, Directions dir){
         Vertex tmp;
         switch(dir){
             case NORTH:
                 tmp = new Vertex(vertex.getX(),vertex.getY()-1,vertex.getNbr());
-                if (tmp.compareTo(vertex) == 0){
+                if (graph.containsVertex(tmp)){
                     return false;
                 }
                 break;
             case SOUTH:
                 tmp = new Vertex(vertex.getX(),vertex.getY()+1,vertex.getNbr());
-                if (tmp.compareTo(vertex) == 0){
+                if (graph.containsVertex(tmp)){
                     return false;
                 }
                 break;
             case EAST:
                 tmp = new Vertex(vertex.getX()+1,vertex.getY(),vertex.getNbr());
-                if (tmp.compareTo(vertex) == 0){
+                if (graph.containsVertex(tmp)){
                     return false;
                 }
                 break;
             case WEST:
                 tmp = new Vertex(vertex.getX()-1,vertex.getY(),vertex.getNbr());
-                if (tmp.compareTo(vertex) == 0){
+                if (graph.containsVertex(tmp)){
                     return false;
                 }
                 break;

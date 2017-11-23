@@ -1,5 +1,7 @@
 package org.Model;
 
+import java.util.Random;
+
 /**
  * Created by lulu on 21/11/17.
  */
@@ -12,11 +14,21 @@ public class Vertex implements Comparable<Vertex>{
     private int x;
     private int y;
     private int nbr;
+    private Random rnX;
+    private Random rnY;
 
     public Vertex(int x, int y, int nbr){
         this.x = x;
         this.y = y;
         this.nbr = nbr;
+    }
+
+    public Vertex(){
+        rnX = new Random();
+        this.x = rnX.nextInt(RIGHT_BORDER);
+        rnY = new Random();
+        this.y = rnY.nextInt(BOTTOM_BORDER);
+        this.nbr = 0;
     }
 
     public void setX(int x){
