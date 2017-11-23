@@ -61,7 +61,8 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
     private boolean doesntExist(Vertex vertex, Directions dir){
         switch(dir){
             case NORTH:
-                if(containsVertex(vertex.getX(),  vertex.getY()-1) {
+                vertex tmp = new Vertex(vertex.getX(),vertex.getY()-1, );
+                if(containsVertex() {
                     return false;
                 }
             break
