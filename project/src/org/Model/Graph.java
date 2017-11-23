@@ -9,13 +9,12 @@ import java.util.Vector;
 *Created by lulu (project's boss) on 19/11/17.
  * Graphgh class represents the labyrinth graph.
  */
-public class Graph {
+public class Graph extends SimpleGraph<Vertex,Edge>{
     private static Graph graph = null;
-    private SimpleGraph<Vertex,Edge> graphAC = null;
     private Random random = new Random();
 
     private Graph(Vertex origin) {
-        graphAC = new SimpleGraph<>(Edge.class);
+//       graph = super(Class<Edge>);
     }
 
     public static Graph getInstance(Vertex origin){
@@ -57,14 +56,6 @@ public class Graph {
                 buildRandomPath(next);
             }
         }
-    }
-
-    private static void addVertex(Vertex vertex){
-        SimpleGraph.addVertex(vertex);
-    }
-
-    private static void addEdge(Vertex from, Vertex to){
-        SimpleGraph.addEdge(from, to);
     }
 
     private boolean doesntExist(Vertex vertex, Directions dir){
