@@ -60,11 +60,10 @@ public class Vertex implements Comparable<Vertex>{
             return -1;
         else if (dx > 0)
             return 1;
-        else {
-            if (dy < 0)
-                return -1;
-            else if (dy > 0)
-                return 1;
+        else if (dy < 0)
+            return -2;
+        else if (dy > 0)
+            return 2;
         }
         return 0;
     }

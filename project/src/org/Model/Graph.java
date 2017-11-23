@@ -25,11 +25,11 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         return null;
     }
 
-    public void buildRandomPath ( Vertex vertex ) {
+    public void buildRandomPath(Vertex vertex){
         // une liste aleatoire des 4 directions
-    Vector<Directions> v = new Vector<Directions>();
+        Vector<Directions> v = new Vector<Directions>();
         for(int i=0;i<4;++i) {
-        v.add(Directions.values()[i]);
+            v.add(Directions.values()[i]);
         }
         Directions directions[]=new Directions[4];
         for(int i=0;i<directions.length;++i){
@@ -37,7 +37,7 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
             directions[i]=v.get(index);
             v.remove(index);
         }
-//pour chacune de ces directions,on avance en profondeur d’abord
+        //pour chacune de ces directions,on avance en profondeur d’abord
         for(int i=0;i<4;++i){
             Directions dir=directions[i];
             if(vertex.inBorders(dir) && graph.doesntExist(vertex,dir)){
@@ -45,10 +45,22 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
                 int y=vertex.getY();
                 int xt=0,yt=0;
                 switch(dir){
-                    case NORTH:xt=x;yt=y-1;break;
-                    case SOUTH:xt=x;yt=y+1;break;
-                    case EAST:xt=x+1;yt=y;break;
-                    case WEST:xt=x-1;yt=y;break;
+                    case NORTH:
+                        xt=x;
+                        yt=y-1;
+                        break;
+                    case SOUTH:
+                        xt=x;
+                        yt=y+1;
+                        break;
+                    case EAST:
+                        xt=x+1;
+                        yt=y;
+                        break;
+                    case WEST:
+                        xt=x-1;
+                        yt=y;
+                        break;
                 }
                 Vertex next = new Vertex(xt,yt,vertex.getNbr()+1);
                 graph.addVertex(next);
@@ -61,26 +73,29 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
     private boolean doesntExist(Vertex vertex, Directions dir){
         switch(dir){
             case NORTH:
-                vertex tmp = new Vertex(vertex.getX(),vertex.getY()-1, );
-                if(containsVertex() {
+                vertex tmp = new Vertex(vertex.getX(),vertex.getY()-1,vertex.getNbr());
+                if (tmp.compareTo(vertex) == 0){
                     return false;
                 }
             break
             case SOUTH:
-                if(containsVertex(vertex.getX(),  vertex.getY()+1){
+                vertex tmp = new Vertex(vertex.getX(),vertex.getY()+1,vertex.getNbr());
+                if (tmp.compareTo(vertex) == 0){
                     return false;
                 }
-            break;
+                break
             case EAST:
-                if(containsVertex(vertex.getX()+1,  vertex.getY()){
+                vertex tmp = new Vertex(vertex.getX()+1,vertex.getY(),vertex.getNbr());
+                if (tmp.compareTo(vertex) == 0){
                     return false;
                 }
-            break;
+                break
             case WEST:
-                if(containsVertex(vertex.getX()-1,  vertex.getY()){
+                vertex tmp = new Vertex(vertex.getX()-1,vertex.getY(),vertex.getNbr());
+                if (tmp.compareTo(vertex) == 0){
                     return false;
                 }
-            break;
+                break
         }
         return true;
     }
