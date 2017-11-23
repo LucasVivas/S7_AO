@@ -13,13 +13,6 @@ public class Vertex implements Comparable<Vertex>{
     private int y;
     private int nbr;
 
-    public enum Directions {
-        NORTH,
-        EAST,
-        SOUTH,
-        WEST
-    }
-
     public Vertex(int x, int y, int nbr){
         this.x = x;
         this.y = y;
@@ -69,6 +62,16 @@ public class Vertex implements Comparable<Vertex>{
     }
 
     public boolean inBorders(Directions dir){
+        switch (dir){
+            case NORTH:
+                return getY()-1>TOP_BORDER;
+            case SOUTH:
+                return getY()+1<BOTTOM_BORDER;
+            case EAST:
+                return getX()+1<RIGHT_BORDER;
+            case WEST:
+                return getX()-1>LEFT_BORDER;
+        }
         return false;
     }
 

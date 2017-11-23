@@ -9,8 +9,14 @@ import static org.junit.Assert.*;
  */
 public class GraphTest {
     @Test
-    public void getInstance() throws Exception {
+    public void testGetInstance() throws Exception {
+        Graph graph1 = Graph.getInstance();
+        Graph graph2 = Graph.getInstance();
+        assertNotNull(graph1);
+        assertNull(graph2);
+    }
+    @Test
+    public void testBuildRandomGraph() throws Exception {
 
     }
-
 }
