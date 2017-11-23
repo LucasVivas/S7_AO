@@ -75,17 +75,17 @@ public class Graph {
                 }
             break
             case SOUTH:
-                if(containsVertex(vertex.getX(),  vertex.getY()-1){
+                if(containsVertex(vertex.getX(),  vertex.getY()+1){
                     return false;
                 }
             break;
             case EAST:
-                if(containsVertex(vertex.getX(),  vertex.getY()-1){
+                if(containsVertex(vertex.getX()+1,  vertex.getY()){
                     return false;
                 }
             break;
             case WEST:
-                if(containsVertex(vertex.getX(),  vertex.getY()-1){
+                if(containsVertex(vertex.getX()-1,  vertex.getY()){
                     return false;
                 }
             break;
