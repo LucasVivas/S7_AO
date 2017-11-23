@@ -7,9 +7,9 @@ import java.util.Random;
  */
 public class Vertex implements Comparable<Vertex>, Cloneable{
     public static final int TOP_BORDER = 0;
-    public static final int BOTTOM_BORDER = 4;
+    public static final int BOTTOM_BORDER = 8;
     public static final int LEFT_BORDER = 0;
-    public static final int RIGHT_BORDER = 4;
+    public static final int RIGHT_BORDER = 8;
 
     private int x;
     private int y;
@@ -31,14 +31,14 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
         this.nbr = 0;
     }
 
-    public void setX(int x){
+/*  private void setX(int x){
         this.x = x;
     }
 
-    public void setY(int y){
+    private void setY(int y){
         this.y = y;
     }
-
+*/
     public int getX(){
         return x;
     }

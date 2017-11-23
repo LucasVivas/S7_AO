@@ -6,6 +6,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import org.Model.Vertex;
 
 /**
  * Created by lulu on 19/11/17.
@@ -59,18 +60,40 @@ public class View {
         }
     }
 
+    public static void drawWall(int xs, int ys, int xt, int yt, Paint color){
+        int x = 0, y = 0, xspan = 0, yspan = 0;
+        if(ys==yt){
+            x = ((WALL+CELL) + (WALL+CELL) * ((int)(xs+xt)/2)) * SPAN;
+            y = (WALL + ys * (WALL+CELL)) * SPAN;
+            xspan = WALL * SPAN;
+            yspan = CELL * SPAN;
+            Rectangle square = new Rectangle(x,y,xspan,yspan);
+            square.setFill(color);
+            pane.getChildren().add(square);
+        }
+        else if(xs==xt){
+            x = (WALL + xs * (WALL+CELL)) * SPAN;
+            y = ((WALL+CELL) + (WALL+CELL) * ((int)(ys+yt)/2)) * SPAN;
+            xspan = CELL * SPAN;
+            yspan = WALL * SPAN;
+            Rectangle square = new Rectangle(x,y,xspan,yspan);
+            square.setFill(color);
+            pane.getChildren().add(square) ;
+        }
+    }
 
     private View() {
         super();
     }
 
     public void start(Stage primaryStage){
-        int nbrX = 16;
-        int nbrY = 16;
+        int nbrX = Vertex.RIGHT_BORDER;
+        int nbrY = Vertex.BOTTOM_BORDER;
         primaryStage.setWidth(((WALL + CELL) * nbrX + WALL) * SPAN);
         primaryStage.setHeight(((WALL + CELL) * nbrY + WALL) * SPAN);
         primaryStage.setTitle("Labyrinthe");
-        View.drawFrame(primaryStage,16,16);
+        View.drawFrame(primaryStage,nbrX,nbrY);
+        View.drawWall(0,0,0,1,WALLCOLOR);
         primaryStage.show();
     }
 
