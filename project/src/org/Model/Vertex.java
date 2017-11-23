@@ -37,6 +37,9 @@ public class Vertex implements Comparable<Vertex>{
     }
 
     public int getNbr() { return nbr; }
+
+    public Position getPos() { return pos.clone(); }
+
     public boolean areNeighbor(Vertex coordinates){
         int dx = Math.abs(this.getX() - coordinates.getX());
         int dy = Math.abs(this.getY() - coordinates.getY());
@@ -45,19 +48,15 @@ public class Vertex implements Comparable<Vertex>{
 
     @Override
     public int compareTo(Vertex v) {
-        int dx = this.getX() - v.getX();
-        int dy = this.getY() - v.getY();
-        if (dx < 0)
-            return -1;
-        else if (dx > 0)
+        int dif = this.pos.compareTo(v.getPos());
+        if (dif != 0)
+            return dif;
+        if (this.getNbr() > v.getNbr())
             return 1;
-        else {
-            if (dy < 0)
-                return -1;
-            else if (dy > 0)
-                return 1;
-        }
+        else if (this.getNbr() < v.getNbr())
+            return -1;
         return 0;
+
     }
 
     public boolean inBorders(Directions dir){

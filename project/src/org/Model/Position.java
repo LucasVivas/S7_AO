@@ -1,6 +1,6 @@
 package org.Model;
 
-public class Position {
+public class Position implements Comparable<Position> {
     private int x;
     private int y;
 
@@ -23,5 +23,27 @@ public class Position {
 
     public int getY() {
         return y;
+    }
+
+    @Override
+    public int compareTo(Position position) {
+        int dx = this.getX() - position.getX();
+        int dy = this.getY() - position.getY();
+        if (dx < 0)
+            return -1;
+        else if (dx > 0)
+            return 1;
+        else {
+            if (dy < 0)
+                return -1;
+            else if (dy > 0)
+                return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    protected Position clone(){
+        return new Position(this.getX(), this.getY());
     }
 }
