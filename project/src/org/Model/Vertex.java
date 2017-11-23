@@ -9,33 +9,37 @@ public class Vertex implements Comparable<Vertex>{
     public static final int LEFT_BORDER = 0;
     public static final int RIGHT_BORDER = 4;
 
-    private int x;
-    private int y;
+    private Position pos;
+    private int nbr;
 
-    public Vertex(int x, int y){
-        this.x = x;
-        this.y = y;
+    public Vertex(int x, int y, int nbr){
+        pos = new Position(x,y);
+        this.nbr = nbr;
+    }
+
+    public Vertex(Position position, int nbr){
+        pos = new Position(position.getX(),position.getY());
+        this.nbr = nbr;
     }
 
     public void setX(int x) {
-        this.x = x;
+        pos.setX(x);
     }
 
-    public void setY(int y) {
-        this.y = y;
-    }
+    public void setY(int y) { pos.setY(y); }
 
     public int getX() {
-        return x;
+        return pos.getX();
     }
 
     public int getY() {
-        return y;
+        return pos.getY();
     }
 
+    public int getNbr() { return nbr; }
     public boolean areNeighbor(Vertex coordinates){
-        int dx = Math.abs(this.x - coordinates.x);
-        int dy = Math.abs(this.y - coordinates.y);
+        int dx = Math.abs(this.getX() - coordinates.getX());
+        int dy = Math.abs(this.getY() - coordinates.getY());
         return (dx == 0 && dy == 1) || (dx == 1 && dy == 0);
     }
 
@@ -59,4 +63,5 @@ public class Vertex implements Comparable<Vertex>{
     public boolean inBorders(Directions dir){
         return false;
     }
+
 }
