@@ -88,25 +88,25 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         switch(dir){
             case NORTH:
                 tmp = new Vertex(vertex.getX(),vertex.getY()-1,vertex.getNbr());
-                if (tmp.equals(vertex)){
+                if (graph.containsVertex(tmp)){
                     return false;
                 }
                 break;
             case SOUTH:
                 tmp = new Vertex(vertex.getX(),vertex.getY()+1,vertex.getNbr());
-                if (tmp.equals(vertex)){
+                if (graph.containsVertex(tmp)){
                     return false;
                 }
                 break;
             case EAST:
                 tmp = new Vertex(vertex.getX()+1,vertex.getY(),vertex.getNbr());
-                if (tmp.equals(vertex)){
+                if (graph.containsVertex(tmp)){
                     return false;
                 }
                 break;
             case WEST:
                 tmp = new Vertex(vertex.getX()-1,vertex.getY(),vertex.getNbr());
-                if (tmp.equals(vertex)){
+                if (graph.containsVertex(tmp)){
                     return false;
                 }
                 break;
