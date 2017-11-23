@@ -44,8 +44,8 @@ public class GraphTest {
         graphExist.addVertex(v1);
         graphExist.addVertex(v2);
 
-        assertFalse("vertex (1,0) doesn't exist in this graph", graphExist.doesntExist(v1, dir1));
-        assertTrue("vertex (1,2) exists in this graph", graphExist.doesntExist(v1, dir2));
+        assertTrue("vertex (1,0) doesn't exist in this graph", graphExist.doesntExist(v1, dir1));
+        assertFalse("vertex (1,2) exists in this graph", graphExist.doesntExist(v1, dir2));
 
         try{
             graphExist.doesntExist(v3,dir1);
