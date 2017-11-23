@@ -10,8 +10,8 @@ import java.util.Vector;
  * Graphgh class represents the labyrinth graph.
  */
 public class Graph extends SimpleGraph<Vertex,Edge>{
-    private int nbVertices = 0;
-    private int nbEdges = 0;
+    private int nbVertices;
+    private int nbEdges;
     private static Graph graph = null;
     private Random random = new Random();
 
@@ -38,7 +38,7 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
 
     public void buildRandomPath(Vertex vertex){
         // une liste aleatoire des 4 directions
-        Vector<Directions> v = new Vector<Directions>();
+        Vector<Directions> v = new Vector<>();
         for(int i=0;i<4;++i) {
             v.add(Directions.values()[i]);
         }
