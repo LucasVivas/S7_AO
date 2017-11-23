@@ -10,17 +10,20 @@ import java.util.Vector;
  * Graphgh class represents the labyrinth graph.
  */
 public class Graph {
-    public static final int TOP_BORDER = 0;
-    public static final int BOTTOM_BORDER = 4;
-    public static final int LEFT_BORDER = 0;
-    public static final int RIGHT_BORDER = 4;
-
-    public Random random = new Random();
-    private SimpleGraph<Vertex,Edge> graph = null;
+    private static Graph graph = null;
+    private SimpleGraph<Vertex,Edge> graphAC = null;
+    private Random random = new Random();
 
     private Graph(Vertex origin) {
-        graph = new SimpleGraph<>(Edge.class);
-        buildRandomPath(origin);
+        graphAC = new SimpleGraph<>(Edge.class);
+    }
+
+    public static Graph getInstance(Vertex origin){
+        if (Graph.graph == null){
+            graph = new Graph(origin);
+            return graph;
+        }
+        return null;
     }
 
     public void buildRandomPath ( Vertex vertex ) {
@@ -54,6 +57,18 @@ public class Graph {
                 buildRandomPath(next);
             }
         }
+    }
+
+    public static void addVertex(Vertex vertex){
+
+    }
+
+    public static void addEdge(Vertex from, Vertex to){
+
+    }
+
+    public boolean doesntExist(Vertex vertex, Directions dir){
+        return false;
     }
 
 }

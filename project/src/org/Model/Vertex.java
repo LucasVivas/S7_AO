@@ -4,6 +4,11 @@ package org.Model;
  * Created by lulu on 21/11/17.
  */
 public class Vertex implements Comparable<Vertex>{
+    public static final int TOP_BORDER = 0;
+    public static final int BOTTOM_BORDER = 4;
+    public static final int LEFT_BORDER = 0;
+    public static final int RIGHT_BORDER = 4;
+
     private int x;
     private int y;
 
@@ -49,5 +54,9 @@ public class Vertex implements Comparable<Vertex>{
                 return 1;
         }
         return 0;
+    }
+
+    public boolean inBorders(Directions dir){
+        return false;
     }
 }
