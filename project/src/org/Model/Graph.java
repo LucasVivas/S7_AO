@@ -59,16 +59,38 @@ public class Graph {
         }
     }
 
-    public static void addVertex(Vertex vertex){
-
+    private static void addVertex(Vertex vertex){
+        SimpleGraph.addVertex(vertex);
     }
 
-    public static void addEdge(Vertex from, Vertex to){
-
+    private static void addEdge(Vertex from, Vertex to){
+        SimpleGraph.addEdge(from, to);
     }
 
-    public boolean doesntExist(Vertex vertex, Directions dir){
-        return false;
+    private boolean doesntExist(Vertex vertex, Directions dir){
+        switch(dir){
+            case NORTH:
+                if(containsVertex(vertex.getX(),  vertex.getY()-1) {
+                    return false;
+                }
+            break
+            case SOUTH:
+                if(containsVertex(vertex.getX(),  vertex.getY()-1){
+                    return false;
+                }
+            break;
+            case EAST:
+                if(containsVertex(vertex.getX(),  vertex.getY()-1){
+                    return false;
+                }
+            break;
+            case WEST:
+                if(containsVertex(vertex.getX(),  vertex.getY()-1){
+                    return false;
+                }
+            break;
+        }
+        return true;
     }
 
 }
