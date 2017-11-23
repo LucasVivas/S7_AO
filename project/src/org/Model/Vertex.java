@@ -86,13 +86,22 @@ public class Vertex implements Comparable<Vertex>{
         return false;
     }
 
-    protected Vertex clone(){
-        return new Vertex(this.getX(), this.getY(), this.getNbr());
+
+    public Vertex clone(){
+        Vertex v;
+        try
+        {
+            v = (Vertex) super.clone();
+        }
+        catch (CloneNotSupportedException e)
+        {
+            throw new Error();
+        }
+        return v;
     }
 
     public String toString(){
-        /* TODO */
-        return "";
+        return super.toString();
     }
 
 }
