@@ -12,8 +12,8 @@ public class GraphTest {
     public void testGetInstance() throws Exception {
         Graph graph1 = Graph.getInstance();
         Graph graph2 = Graph.getInstance();
-        assertNotNull(graph1);
-        assertNull(graph2);
+        assertNotNull("First object need to get the instance",graph1);
+        assertNull("Second object need to be null",graph2);
     }
     @Test
     public void testBuildRandomGraph() throws Exception {
