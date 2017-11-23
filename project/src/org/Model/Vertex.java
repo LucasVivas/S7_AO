@@ -106,7 +106,7 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
         if (obj.getClass() != Vertex.class)
             return false;
         Vertex v = (Vertex)obj;
-        return this.getX()==v.getX() && this.getY()==v.getY();
+        return this.getX() == v.getX() && this.getY() == v.getY();
     }
 
 }

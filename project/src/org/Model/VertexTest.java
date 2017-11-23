@@ -65,4 +65,16 @@ public class VertexTest {
     public void inBorders() throws Exception {
     }
 
+    @Test
+    public void testEquals() throws Exception {
+        Vertex v1 = new Vertex(1,1,0);
+        Vertex v2 = new Vertex(1,1,1);
+        Vertex v3 = new Vertex(0,1,1);
+        Object o = new Object();
+
+        assertTrue("v1 equals v2", v1.equals(v2));
+        assertFalse("v2 not equals to v3, nbr doesn't affect the test", v1.equals(v3));
+        assertFalse("o is not a vertex", v1.equals(o));
+    }
+
 }
