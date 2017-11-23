@@ -71,31 +71,32 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
     }
 
     private boolean doesntExist(Vertex vertex, Directions dir){
+        Vertex tmp;
         switch(dir){
             case NORTH:
-                vertex tmp = new Vertex(vertex.getX(),vertex.getY()-1,vertex.getNbr());
+                tmp = new Vertex(vertex.getX(),vertex.getY()-1,vertex.getNbr());
                 if (tmp.compareTo(vertex) == 0){
                     return false;
                 }
-            break
+                break;
             case SOUTH:
-                vertex tmp = new Vertex(vertex.getX(),vertex.getY()+1,vertex.getNbr());
+                tmp = new Vertex(vertex.getX(),vertex.getY()+1,vertex.getNbr());
                 if (tmp.compareTo(vertex) == 0){
                     return false;
                 }
-                break
+                break;
             case EAST:
-                vertex tmp = new Vertex(vertex.getX()+1,vertex.getY(),vertex.getNbr());
+                tmp = new Vertex(vertex.getX()+1,vertex.getY(),vertex.getNbr());
                 if (tmp.compareTo(vertex) == 0){
                     return false;
                 }
-                break
+                break;
             case WEST:
-                vertex tmp = new Vertex(vertex.getX()-1,vertex.getY(),vertex.getNbr());
+                tmp = new Vertex(vertex.getX()-1,vertex.getY(),vertex.getNbr());
                 if (tmp.compareTo(vertex) == 0){
                     return false;
                 }
-                break
+                break;
         }
         return true;
     }

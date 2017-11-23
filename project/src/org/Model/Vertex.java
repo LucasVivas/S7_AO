@@ -57,7 +57,6 @@ public class Vertex implements Comparable<Vertex>{
             return -2;
         else if (dy > 0)
             return 2;
-        }
         return 0;
     }
 
