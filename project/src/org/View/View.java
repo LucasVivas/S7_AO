@@ -7,6 +7,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import org.Model.Model;
 import org.Model.Vertex;
 
 /**
@@ -89,8 +90,8 @@ public class View {
     }
 
     public void start(Stage primaryStage){
-        int nbrX = Vertex.RIGHT_BORDER;
-        int nbrY = Vertex.BOTTOM_BORDER;
+        int nbrX = Model.getWIDTH();
+        int nbrY = Model.getHEIGHT();
         primaryStage.setWidth(((WALL + CELL) * nbrX + WALL) * SPAN);
         primaryStage.setHeight(((WALL + CELL) * nbrY + WALL) * SPAN);
         primaryStage.setTitle("Labyrinthe");
