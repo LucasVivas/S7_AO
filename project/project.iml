@@ -10,15 +10,6 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/src/org/jgrapht-core-1.1.0.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/junit-4.12.jar!/" />
         </CLASSES>
         <JAVADOC />
@@ -47,6 +38,15 @@
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/testng.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/jgrapht-core-1.1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

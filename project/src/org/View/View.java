@@ -1,5 +1,6 @@
 package org.View;
 
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -19,11 +20,12 @@ public class View {
     static final int CELL = 9;//size of the cells(in units)
     public static final Paint WALLCOLOR = Color.BURLYWOOD;
     public static final Paint SCENECOLOR = Color.ALICEBLUE;
-    public static final Pane pane = new Pane(); //pas sur
+    //public static final Pane pane = new Pane(); //pas sur
+    public static final Group root = new Group();
 
     public static void drawFrame(Stage stage, int nbrX, int nbrY) {
-        Scene scene = new Scene(pane,
-                ((WALL + CELL) * nbrX + WALL) / SPAN,
+        Scene scene = new Scene(root,
+                ((WALL + CELL) * nbrX + WALL) * SPAN,
                 ((WALL + CELL) * nbrY + WALL) * SPAN);
         scene.setFill(SCENECOLOR);
 
@@ -33,21 +35,21 @@ public class View {
         square = new Rectangle(0, 0,
                 SPAN * (nbrX * (CELL + WALL) + WALL), WALL * SPAN);
         square.setFill(WALLCOLOR);
-        pane.getChildren().add(square);
+        root.getChildren().add(square);
 
         square = new Rectangle(0, SPAN * (nbrY * (CELL + WALL)),
                 SPAN * (nbrX * (CELL + WALL) + WALL), WALL * SPAN);
         square.setFill(WALLCOLOR);
-        pane.getChildren().add(square);
+        root.getChildren().add(square);
 
         square = new Rectangle(0, 0,
                 WALL * SPAN, SPAN * (nbrY * (CELL + WALL) + WALL));
         square.setFill(WALLCOLOR);
-        pane.getChildren().add(square);
+        root.getChildren().add(square);
         square = new Rectangle(SPAN * (nbrX * (CELL + WALL)), 0,
                 WALL * SPAN, SPAN * (nbrY * (CELL + WALL) + WALL));
         square.setFill(WALLCOLOR);
-        pane.getChildren().add(square);
+        root.getChildren().add(square);
         for (int x = 0; x < nbrX - 1; ++x) {
             int offsetX = ((WALL + CELL) + (WALL + CELL) * x) * SPAN;
             for (int y = 0; y < nbrY - 1; ++y) {
@@ -55,7 +57,7 @@ public class View {
                 square = new Rectangle(offsetX, offsetY,
                         WALL * SPAN, WALL * SPAN);
                 square.setFill(WALLCOLOR);
-                pane.getChildren().add(square);
+                root.getChildren().add(square);
             }
         }
     }
@@ -69,7 +71,7 @@ public class View {
             yspan = CELL * SPAN;
             Rectangle square = new Rectangle(x,y,xspan,yspan);
             square.setFill(color);
-            pane.getChildren().add(square);
+            root.getChildren().add(square);
         }
         else if(xs==xt){
             x = (WALL + xs * (WALL+CELL)) * SPAN;
@@ -78,7 +80,7 @@ public class View {
             yspan = WALL * SPAN;
             Rectangle square = new Rectangle(x,y,xspan,yspan);
             square.setFill(color);
-            pane.getChildren().add(square) ;
+            root.getChildren().add(square) ;
         }
     }
 

@@ -7,19 +7,19 @@ import java.util.Vector;
 
 /**
 *Created by lulu (project's boss) on 19/11/17.
- * Graphgh class represents the labyrinth graph.
+ * Graph class represents the labyrinth graph.
  */
 public class Graph extends SimpleGraph<Vertex,Edge>{
     private int nbVertices;
     private int nbEdges;
-    private Vertex[][] VerticiesMatrix;
+    private Vertex[][] VerticesMatrix;
     private static Graph graph = null;
     private Random random = new Random();
 
     private Graph(Class<? extends Edge> edgeClass) {
         super(edgeClass);
         this.nbVertices = 0;
-        this.VerticiesMatrix = new Vertex[Vertex.BOTTOM_BORDER][Vertex.RIGHT_BORDER];
+        this.VerticesMatrix = new Vertex[Vertex.BOTTOM_BORDER][Vertex.RIGHT_BORDER];
     }
 
     public static Graph getInstance(){
@@ -30,10 +30,10 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         return null;
     }
 
-/*    edgesOf(VerticiesMatrix[i][j])
+/*    edgesOf(VerticesMatrix[i][j])
 
     public Vertex[][] getVerticiesMatrix(){
-        return VerticiesMatrix;
+        return VerticesMatrix;
     } */
 
     public int getNbVertices(){
@@ -94,15 +94,15 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
     }
 
     public boolean addVertex(Vertex v){
-        if(graph.VerticiesMatrix[v.getX()][v.getY()] == null){
-            graph.VerticiesMatrix[v.getX()][v.getY()] = v;
+        if(graph.VerticesMatrix[v.getX()][v.getY()] == null){
+            graph.VerticesMatrix[v.getX()][v.getY()] = v;
             return true;
         }
         return false;
     }
 
     public boolean containsVertex(Vertex v){
-        return graph.VerticiesMatrix[v.getX()][v.getY()] != null;
+        return graph.VerticesMatrix[v.getX()][v.getY()] != null;
     }
 
     public boolean doesntExist(Vertex vertex, Directions dir){
