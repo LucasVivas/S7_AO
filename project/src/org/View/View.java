@@ -7,8 +7,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import org.Model.Edge;
+import org.Model.Graph;
 import org.Model.Model;
 import org.Model.Vertex;
+
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * Created by lulu on 19/11/17.
@@ -89,18 +95,43 @@ public class View {
         super();
     }
 
-    public void start(Stage primaryStage){
+    public void start(Stage primaryStage) {
         int nbrX = Model.getWIDTH();
         int nbrY = Model.getHEIGHT();
+        Graph graph = Graph.getInstance();
+        Vertex v = new Vertex();
+        assert graph != null;
+        graph.addVertex(v);
+        graph.buildRandomPath(v);
+        Set<Edge> wallTab = graph.notContainedEdges();
+        Iterator<Edge> wallTabIterator = wallTab.iterator();
         primaryStage.setWidth(((WALL + CELL) * nbrX + WALL) * SPAN);
         primaryStage.setHeight(((WALL + CELL) * nbrY + WALL) * SPAN);
         primaryStage.setTitle("Labyrinthe");
-        View.drawFrame(primaryStage,nbrX,nbrY);
-        View.drawWall(0,0,0,1,WALLCOLOR);
-/*        for(int i = 0; i<Vertex.BOTTOM_BORDER ; i++){
-            for(int j = 0 ; j<Vertex.RIGHT_BORDER ; j++){
-                VerticiesMatrix[i][j];
-            } */
+        View.drawFrame(primaryStage, nbrX, nbrY);
+        while (wallTabIterator.hasNext()) {
+            Edge E = wallTabIterator.next();
+            int xs = (E.getSource().getX());
+            int ys = (E.getSource().getY());
+            int xt = (E.getTarget().getX());
+            int yt = (E.getTarget().getY());
+            View.drawWall(xs, ys, xt, yt, WALLCOLOR);
+        }
+//        for(int i = 0 ; i < wallTab.size() ; i++){
+//            if(wallTab[i] != null){
+//                int xs = (wallTab[i].getSource().getX());
+//                int ys = (wallTab[i].getSource().getY());
+//                int xt = (wallTab[i].getTarget().getX());
+//                int yt = (wallTab[i].getTarget().getY());
+//                View.drawWall(xs,ys,xt,yt,WALLCOLOR);
+//            }
+//        }
+/*        for(int y = 0; y< Model.getHEIGHT() ; y++){
+            for(int x = 0 ; y< Model.getHEIGHT() ; x++){
+                if (inBorders()
+            }
+                View.drawWall(x,y,0,1,WALLCOLOR);
+            }*/
         primaryStage.show();
     }
 

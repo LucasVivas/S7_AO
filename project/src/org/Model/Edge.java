@@ -2,17 +2,23 @@ package org.Model;
 
 import org.jgrapht.graph.DefaultEdge;
 
-public class Edge extends DefaultEdge implements Comparable<Edge> {
-	int num;
+public class Edge extends DefaultEdge implements Comparable<Edge>,Cloneable {
+	private int nbr;
+	private Vertex source;
+	private Vertex target;
 
 	public Edge() {
 		super();
 	}
 	
-	public Edge(int num) {
+	public Edge(Vertex source, Vertex target, int nbr) {
 		super();
-		this.num = num;
+		this.source = source;
+		this.target = target;
+		this.nbr = nbr;
 	}
+
+
 	
 	@Override
 	public int compareTo(Edge o) {
@@ -22,5 +28,36 @@ public class Edge extends DefaultEdge implements Comparable<Edge> {
 		else 
 		 return ((Vertex) this.getTarget()).compareTo((Vertex) o.getTarget());
 	}
-	
+
+	@Override
+	public Vertex getTarget() {
+		return target;
+	}
+
+	@Override
+	public Vertex getSource() {
+		return source;
+	}
+
+	public int getNbr() {
+		return nbr;
+	}
+
+	public Edge clone(){
+		Edge E = (Edge) super.clone();
+		return E;
+	}
+
+	public String toString(){
+		return super.toString();
+	}
+
+	@Override
+	public boolean equals(Object obj){
+		if (obj.getClass() != Edge.class)
+			return false;
+		Edge E = (Edge)obj;
+		return this.getSource() == E.getSource() && this.getTarget() == E.getTarget();
+	}
+
 }
