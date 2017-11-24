@@ -6,10 +6,6 @@ import java.util.Random;
  * Created by lulu on 21/11/17.
  */
 public class Vertex implements Comparable<Vertex>, Cloneable{
-    public static final int TOP_BORDER = 0;
-    public static final int BOTTOM_BORDER = 8;
-    public static final int LEFT_BORDER = 0;
-    public static final int RIGHT_BORDER = 8;
 
     private int x;
     private int y;
@@ -25,9 +21,9 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
 
     public Vertex(){
         rnX = new Random();
-        this.x = rnX.nextInt(RIGHT_BORDER-1);
+        this.x = rnX.nextInt(Model.getWIDTH()-1);
         rnY = new Random();
-        this.y = rnY.nextInt(BOTTOM_BORDER-1);
+        this.y = rnY.nextInt(Model.getHEIGHT()-1);
         this.nbr = 0;
     }
 
@@ -75,13 +71,13 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
     public boolean inBorders(Directions dir){
         switch (dir){
             case NORTH:
-                return getY()-1>TOP_BORDER;
+                return getY()-1>0;
             case SOUTH:
-                return getY()+1<BOTTOM_BORDER;
+                return getY()+1<Model.getHEIGHT();
             case EAST:
-                return getX()+1<RIGHT_BORDER;
+                return getX()+1<Model.getWIDTH();
             case WEST:
-                return getX()-1>LEFT_BORDER;
+                return getX()-1>0;
         }
         return false;
     }
