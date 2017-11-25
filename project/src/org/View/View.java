@@ -98,25 +98,34 @@ public class View {
     public void start(Stage primaryStage) {
         int nbrX = Model.getWIDTH();
         int nbrY = Model.getHEIGHT();
-        Graph graph = Graph.getInstance();
-        Vertex v = new Vertex(0,0,0);
-        assert graph != null;
-        graph.addVertex(v);
-        graph.setVerticesMatrix(v);
-        graph.buildRandomPath(v);
-        Set<Edge> wallSet = graph.notContainedEdges();
-        Iterator<Edge> wallSetIterator = wallSet.iterator();
         primaryStage.setWidth(((WALL + CELL) * nbrX + WALL) * SPAN);
         primaryStage.setHeight(((WALL + CELL) * nbrY + WALL) * SPAN);
         primaryStage.setTitle("Labyrinthe");
         View.drawFrame(primaryStage, nbrX, nbrY);
-        while (wallSetIterator.hasNext()) {
-            Edge E = wallSetIterator.next();
+        Graph graph = Graph.getInstance();
+        Vertex v = new Vertex(0,0,0);
+        graph.addVertex(v);
+        graph.setVerticesMatrix(v);
+        graph.buildRandomPath(v);
+        Set<Edge> graphEdgesSet = graph.getAllEdges();
+        Set<Edge> pathSet = graph.getGraphEdges();
+        Iterator<Edge> pathSetIterator = pathSet.iterator();
+        Iterator<Edge> graphEdgesIterator = graphEdgesSet.iterator();
+        while (graphEdgesIterator.hasNext()) {
+            Edge E = graphEdgesIterator.next();
             int xs = (E.getSource().getX());
             int ys = (E.getSource().getY());
             int xt = (E.getTarget().getX());
             int yt = (E.getTarget().getY());
             View.drawWall(xs, ys, xt, yt, WALLCOLOR);
+        }
+        while (pathSetIterator.hasNext()) {
+            Edge E = pathSetIterator.next();
+            int xs = (E.getSource().getX());
+            int ys = (E.getSource().getY());
+            int xt = (E.getTarget().getX());
+            int yt = (E.getTarget().getY());
+            View.drawWall(xs, ys, xt, yt, SCENECOLOR);
         }
         primaryStage.show();
     }

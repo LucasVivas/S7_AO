@@ -5,15 +5,16 @@ import org.jgrapht.graph.DefaultEdge;
 public class Edge extends DefaultEdge implements Comparable<Edge>,Cloneable {
 	private Vertex source;
 	private Vertex target;
-
+	private int weight;
 	public Edge() {
 		super();
 	}
 	
-	public Edge(Vertex source, Vertex target) {
+	public Edge(Vertex source, Vertex target, int weight) {
 		super();
 		this.source = source;
 		this.target = target;
+		this.weight = weight;
 	}
 
 	@Override
@@ -44,12 +45,11 @@ public class Edge extends DefaultEdge implements Comparable<Edge>,Cloneable {
 		return super.toString();
 	}
 
-/*	@Override
+	@Override
 	public boolean equals(Object obj){
 		if (obj.getClass() != Edge.class)
 			return false;
 		Edge E = (Edge)obj;
-		return this.getSource() == E.getSource() && this.getTarget() == E.getTarget();
+		return this.getSource() == E.getSource() && this.getTarget() == E.getTarget() && this.weight == E.weight;
 	}
-	*/
 }
