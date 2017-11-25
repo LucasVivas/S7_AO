@@ -31,7 +31,14 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         return graphEdges;
     }
 
-    public void buildRandomPath(Vertex vertex){
+    public void buildRandomPath(){
+        Vertex v = new Vertex(0,0,0);
+        graph.addVertex(v);
+        graph.setVerticesMatrix(v);
+        buildRandomPathRec(v);
+    }
+
+    private void buildRandomPathRec(Vertex vertex){
         // une liste aleatoire des 4 directions
         Vector<Directions> v = new Vector<>();
         for(int i=0;i<4;++i) {
@@ -74,7 +81,7 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
                 setVerticesMatrix(next);
                 addEdge(vertex,next);
                 setNewEdge(vertex,next,1);
-                buildRandomPath(next);
+                buildRandomPathRec(next);
             }
         }
     }

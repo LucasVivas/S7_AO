@@ -19,9 +19,7 @@ public class GraphTest {
     public void testBuildRandomGraph() throws Exception {
         Graph graphBuild = Graph.getInstance();
         assertNotNull("graphBuild is not null", graphBuild);
-        Vertex source = new Vertex(0,0,0);
-        graphBuild.setVerticesMatrix(source);
-        graphBuild.buildRandomPath(source);
+        graphBuild.buildRandomPath();
         for(int y = 0; y<1 ; y++){
             for(int x = 0; x<1 ; x++) {
                 assertNotNull("VerticesMatrix should be full of vertices", graphBuild.getVerticesMatrix(y,x));

@@ -103,10 +103,7 @@ public class View {
         primaryStage.setTitle("Labyrinthe");
         View.drawFrame(primaryStage, nbrX, nbrY);
         Graph graph = Graph.getInstance();
-        Vertex v = new Vertex(0,0,0);
-        graph.addVertex(v);
-        graph.setVerticesMatrix(v);
-        graph.buildRandomPath(v);
+        graph.buildRandomPath();
         Set<Edge> graphEdgesSet = graph.getAllEdges();
         Set<Edge> pathSet = graph.getGraphEdges();
         Iterator<Edge> pathSetIterator = pathSet.iterator();
