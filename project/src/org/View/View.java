@@ -104,27 +104,23 @@ public class View {
         View.drawFrame(primaryStage, nbrX, nbrY);
         Graph graph = Graph.getInstance();
         graph.buildRandomPath();
-        Set<Edge> graphEdgesSet = graph.getAllEdges();
-        Set<Edge> pathSet = graph.getGraphEdges();
-        Iterator<Edge> pathSetIterator = pathSet.iterator();
-        Iterator<Edge> graphEdgesIterator = graphEdgesSet.iterator();
-        while (graphEdgesIterator.hasNext()) {
-            Edge E = graphEdgesIterator.next();
-            int xs = (E.getSource().getX());
-            int ys = (E.getSource().getY());
-            int xt = (E.getTarget().getX());
-            int yt = (E.getTarget().getY());
-            View.drawWall(xs, ys, xt, yt, WALLCOLOR);
-        }
-        while (pathSetIterator.hasNext()) {
-            Edge E = pathSetIterator.next();
-            int xs = (E.getSource().getX());
-            int ys = (E.getSource().getY());
-            int xt = (E.getTarget().getX());
-            int yt = (E.getTarget().getY());
-            View.drawWall(xs, ys, xt, yt, SCENECOLOR);
-        }
+        drawWalls(graph.getAllEdges(),WALLCOLOR);
+        drawWalls(graph.getGraphEdges(),SCENECOLOR);
         primaryStage.show();
+    }
+
+    private void drawWalls(Set<Edge> set, Paint color){
+        Iterator<Edge> graphEdgesIterator = set.iterator();
+        Edge E;
+        int xs, ys, xt, yt;
+        while (graphEdgesIterator.hasNext()) {
+            E = graphEdgesIterator.next();
+            xs = (E.getSource().getX());
+            ys = (E.getSource().getY());
+            xt = (E.getTarget().getX());
+            yt = (E.getTarget().getY());
+            View.drawWall(xs, ys, xt, yt, color);
+        }
     }
 
     public static View getInstance(){
