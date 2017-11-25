@@ -16,8 +16,6 @@ public class Edge extends DefaultEdge implements Comparable<Edge>,Cloneable {
 		this.target = target;
 	}
 
-
-	
 	@Override
 	public int compareTo(Edge o) {
 		int source = ((Vertex) this.getSource()).compareTo((Vertex) o.getSource());
