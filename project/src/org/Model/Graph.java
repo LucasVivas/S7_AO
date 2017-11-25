@@ -10,14 +10,13 @@ import java.util.*;
  */
 public class Graph extends SimpleGraph<Vertex,Edge>{
     private Vertex[][] VerticesMatrix;
-    private Set<Edge> graphEdges;
+    private HashSet<Edge> graphEdges = new HashSet<>();
     private static Graph graph = null;
     private Random random = new Random();
 
     private Graph(Class<? extends Edge> edgeClass) {
         super(edgeClass);
         this.VerticesMatrix = new Vertex[Model.getHEIGHT()][Model.getWIDTH()];
-        this.graphEdges = new HashSet<>();
     }
 
     public static Graph getInstance(){
@@ -93,8 +92,8 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
     }
 
 
-    public Set<Edge> getAllEdges(){
-        Set<Edge> allEdges = new HashSet<>();
+    public HashSet<Edge> getAllEdges(){
+       HashSet<Edge> allEdges = new HashSet<>();
         for (int y = 0; y < Model.getHEIGHT(); y++){
             for (int x = 0; x < Model.getWIDTH(); x++){
                 if (VerticesMatrix[y][x].inBorders(Directions.NORTH)){
@@ -125,15 +124,19 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
     }
 
     public Set<Edge> notContainedEdges() {
-        Set<Edge> wallSet = getAllEdges();
-        wallSet.removeAll(graphEdges);
+        HashSet<Edge> wallSet = getAllEdges();
+        if (wallSet.removeAll(graphEdges)){
+            System.out.println("wallSet");
+            return wallSet;
+        }
+        System.out.println("graphEdges");
+        return graphEdges;
 /*        while (edgeIterator.hasNext()){
             Edge E = edgeIterator.next();
             if (!graphEdges.contains(E)){
                 wallTab.add(E);
             }
         }*/
-        return wallSet;
     }
 
     public boolean doesntExist(Vertex vertex, Directions dir){
