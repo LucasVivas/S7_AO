@@ -18,11 +18,17 @@ public class GraphTest {
     @Test
     public void testBuildRandomGraph() throws Exception {
         Graph graphBuild = Graph.getInstance();
-        Vertex source = new Vertex();
+        assertNotNull("graphBuild is not null", graphBuild);
+        Vertex source = new Vertex(0,0,0);
+        graphBuild.setVerticesMatrix(source);
         graphBuild.buildRandomPath(source);
-        assertTrue("This graph need to have more than one vertex", graphBuild.getNbVertices() > 1);
-        assertTrue("This graph need to have at least one edge", graphBuild.getNbEdges() > 0);
+        for(int y = 0; y<1 ; y++){
+            for(int x = 0; x<1 ; x++) {
+                assertNotNull("VerticesMatrix should be full of vertices", graphBuild.getVerticesMatrix(y,x));
+            }
+        }
     }
+
 
     @Test
     public void testDoesntExist() throws Exception{

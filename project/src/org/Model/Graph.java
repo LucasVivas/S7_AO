@@ -81,7 +81,8 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
                 }
                 Vertex next = new Vertex(xt,yt,vertex.getNbr()+1);
                 addVertex(next);
-                nbVertices++;
+                setVerticesMatrix(next);
+//                VerticesMatrix[yt][xt] = next;
                 addEdge(vertex,next);
                 nbEdges++;
                 buildRandomPath(next);
@@ -89,16 +90,21 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         }
     }
 
-    public boolean addVertex(Vertex v){
-        if(VerticesMatrix[v.getX()][v.getY()] == null){
-            VerticesMatrix[v.getX()][v.getY()] = v;
-            return true;
-        }
-        return false;
+    public Vertex getVerticesMatrix(int y, int x){
+        return VerticesMatrix[y][x];
+    }
+
+    public void setVerticesMatrix(Vertex v){
+//        if(VerticesMatrix[v.getX()][v.getY()] == null){
+            VerticesMatrix[v.getY()][v.getX()] = v;
+//            nbVertices++;
+//          return true;
+//        }
+//        return false;
     }
 
     public boolean containsVertex(Vertex v){
-        return VerticesMatrix[v.getX()][v.getY()] != null;
+        return VerticesMatrix[v.getY()][v.getX()] != null;
     }
 
 
@@ -106,30 +112,30 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         Set<Edge> allEdges = new HashSet<>();
         int num = 0;
         for (int y = 0; y < Model.getHEIGHT(); y++){
-            for (int x = 0; y < Model.getHEIGHT(); x++){
-                if (VerticesMatrix[x][y].inBorders(Directions.NORTH)){
-                    if(!allEdges.contains((graph.getEdge(graph.VerticesMatrix[x][y],graph.VerticesMatrix[x][y-1])))){
-                        allEdges.add(new Edge(graph.VerticesMatrix[x][y],graph.VerticesMatrix[x][y-1], num));
+            for (int x = 0; x < Model.getWIDTH(); x++){
+                if (VerticesMatrix[y][x].inBorders(Directions.NORTH)){
+                    if(!allEdges.contains((graph.getEdge(graph.VerticesMatrix[y][x],graph.VerticesMatrix[y-1][x])))){
+                        allEdges.add(new Edge(graph.VerticesMatrix[y][x],graph.VerticesMatrix[y-1][x], num));
                         num++;
                     }
                 }
-                if (VerticesMatrix[x][y].inBorders(Directions.SOUTH)){
-                    if(!allEdges.contains((graph.getEdge(graph.VerticesMatrix[x][y],graph.VerticesMatrix[x][y+1])))){
-                        allEdges.add(new Edge(graph.VerticesMatrix[x][y],graph.VerticesMatrix[x][y+1], num));
-                        num++;
-                    }
-                }
-
-                if (VerticesMatrix[x][y].inBorders(Directions.EAST)){
-                    if(!allEdges.contains((graph.getEdge(graph.VerticesMatrix[x][y],graph.VerticesMatrix[x+1][y])))){
-                        allEdges.add(new Edge(graph.VerticesMatrix[x][y],graph.VerticesMatrix[x+1][y], num));
+                if (VerticesMatrix[y][x].inBorders(Directions.SOUTH)){
+                    if(!allEdges.contains((graph.getEdge(graph.VerticesMatrix[y][x],graph.VerticesMatrix[y+1][x])))){
+                        allEdges.add(new Edge(graph.VerticesMatrix[y][x],graph.VerticesMatrix[y+1][x], num));
                         num++;
                     }
                 }
 
-                if (VerticesMatrix[x][y].inBorders(Directions.WEST)){
-                    if(!allEdges.contains((graph.getEdge(graph.VerticesMatrix[x][y],graph.VerticesMatrix[x-1][y])))){
-                        allEdges.add(new Edge(graph.VerticesMatrix[x][y],graph.VerticesMatrix[x-1][y], num));
+                if (VerticesMatrix[y][x].inBorders(Directions.EAST)){
+                    if(!allEdges.contains((graph.getEdge(graph.VerticesMatrix[y][x],graph.VerticesMatrix[y][x+1])))){
+                        allEdges.add(new Edge(graph.VerticesMatrix[y][x],graph.VerticesMatrix[y][x+1], num));
+                        num++;
+                    }
+                }
+
+                if (VerticesMatrix[y][x].inBorders(Directions.WEST)){
+                    if(!allEdges.contains((graph.getEdge(graph.VerticesMatrix[y][x],graph.VerticesMatrix[y][x-1])))){
+                        allEdges.add(new Edge(graph.VerticesMatrix[y][x],graph.VerticesMatrix[y][x-1], num));
                         num++;
                     }
                 }
@@ -140,7 +146,7 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
 
     public Set<Edge> notContainedEdges() {
         Set<Edge> graphEdges = edgeSet();
-        Set<Edge> graphAllEdges = getAllEdges();
+        /*Set<Edge> graphAllEdges = getAllEdges();
         Iterator<Edge> edgeIterator = graphAllEdges.iterator();
         Set<Edge> wallTab = new HashSet<>();
         while (edgeIterator.hasNext()){
@@ -148,8 +154,8 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
             if (!graphEdges.contains(E)){
                 wallTab.add(E);
             }
-        }
-        return wallTab;
+        }*/
+        return graphEdges;
     }
 
     public boolean doesntExist(Vertex vertex, Directions dir){

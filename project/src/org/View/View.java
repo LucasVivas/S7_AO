@@ -99,9 +99,10 @@ public class View {
         int nbrX = Model.getWIDTH();
         int nbrY = Model.getHEIGHT();
         Graph graph = Graph.getInstance();
-        Vertex v = new Vertex();
+        Vertex v = new Vertex(0,0,0);
         assert graph != null;
         graph.addVertex(v);
+        graph.setVerticesMatrix(v);
         graph.setNbVertices(1);
         graph.buildRandomPath(v);
         Set<Edge> wallTab = graph.notContainedEdges();
