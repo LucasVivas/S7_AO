@@ -103,16 +103,15 @@ public class View {
         assert graph != null;
         graph.addVertex(v);
         graph.setVerticesMatrix(v);
-        graph.setNbVertices(1);
         graph.buildRandomPath(v);
-        Set<Edge> wallTab = graph.notContainedEdges();
-        Iterator<Edge> wallTabIterator = wallTab.iterator();
+        Set<Edge> wallSet = graph.notContainedEdges();
+        Iterator<Edge> wallSetIterator = wallSet.iterator();
         primaryStage.setWidth(((WALL + CELL) * nbrX + WALL) * SPAN);
         primaryStage.setHeight(((WALL + CELL) * nbrY + WALL) * SPAN);
         primaryStage.setTitle("Labyrinthe");
         View.drawFrame(primaryStage, nbrX, nbrY);
-        while (wallTabIterator.hasNext()) {
-            Edge E = wallTabIterator.next();
+        while (wallSetIterator.hasNext()) {
+            Edge E = wallSetIterator.next();
             int xs = (E.getSource().getX());
             int ys = (E.getSource().getY());
             int xt = (E.getTarget().getX());

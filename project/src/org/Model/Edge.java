@@ -3,7 +3,6 @@ package org.Model;
 import org.jgrapht.graph.DefaultEdge;
 
 public class Edge extends DefaultEdge implements Comparable<Edge>,Cloneable {
-	private int nbr;
 	private Vertex source;
 	private Vertex target;
 
@@ -11,11 +10,10 @@ public class Edge extends DefaultEdge implements Comparable<Edge>,Cloneable {
 		super();
 	}
 	
-	public Edge(Vertex source, Vertex target, int nbr) {
+	public Edge(Vertex source, Vertex target) {
 		super();
 		this.source = source;
 		this.target = target;
-		this.nbr = nbr;
 	}
 
 
@@ -39,10 +37,6 @@ public class Edge extends DefaultEdge implements Comparable<Edge>,Cloneable {
 		return source;
 	}
 
-	public int getNbr() {
-		return nbr;
-	}
-
 	public Edge clone(){
 		Edge E = (Edge) super.clone();
 		return E;
@@ -52,12 +46,12 @@ public class Edge extends DefaultEdge implements Comparable<Edge>,Cloneable {
 		return super.toString();
 	}
 
-	@Override
+/*	@Override
 	public boolean equals(Object obj){
 		if (obj.getClass() != Edge.class)
 			return false;
 		Edge E = (Edge)obj;
 		return this.getSource() == E.getSource() && this.getTarget() == E.getTarget();
 	}
-
+	*/
 }
