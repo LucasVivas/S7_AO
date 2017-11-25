@@ -10,8 +10,6 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
     private int x;
     private int y;
     private int nbr;
-    private Random rnX;
-    private Random rnY;
 
     public Vertex(int x, int y, int nbr){
         this.x = x;
@@ -20,9 +18,9 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
     }
 
     public Vertex(){
-        rnX = new Random();
+        Random rnX = new Random();
         this.x = rnX.nextInt(Model.getWIDTH());
-        rnY = new Random();
+        Random rnY = new Random();
         this.y = rnY.nextInt(Model.getHEIGHT());
         this.nbr = 0;
     }
@@ -93,8 +91,9 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
         return v;
     }
 
+    @Override
     public String toString(){
-        return super.toString();
+        return "("+getX()+","+getY()+")";
     }
 
     @Override
