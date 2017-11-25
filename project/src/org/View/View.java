@@ -102,6 +102,7 @@ public class View {
         Vertex v = new Vertex();
         assert graph != null;
         graph.addVertex(v);
+        graph.setNbVertices(1);
         graph.buildRandomPath(v);
         Set<Edge> wallTab = graph.notContainedEdges();
         Iterator<Edge> wallTabIterator = wallTab.iterator();
@@ -117,21 +118,6 @@ public class View {
             int yt = (E.getTarget().getY());
             View.drawWall(xs, ys, xt, yt, WALLCOLOR);
         }
-//        for(int i = 0 ; i < wallTab.size() ; i++){
-//            if(wallTab[i] != null){
-//                int xs = (wallTab[i].getSource().getX());
-//                int ys = (wallTab[i].getSource().getY());
-//                int xt = (wallTab[i].getTarget().getX());
-//                int yt = (wallTab[i].getTarget().getY());
-//                View.drawWall(xs,ys,xt,yt,WALLCOLOR);
-//            }
-//        }
-/*        for(int y = 0; y< Model.getHEIGHT() ; y++){
-            for(int x = 0 ; y< Model.getHEIGHT() ; x++){
-                if (inBorders()
-            }
-                View.drawWall(x,y,0,1,WALLCOLOR);
-            }*/
         primaryStage.show();
     }
 

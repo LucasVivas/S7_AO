@@ -33,6 +33,9 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         return nbVertices;
     }
 
+    public void setNbVertices(int v){
+        nbVertices = v;
+
     public int getNbEdges(){
         return nbEdges;
     }
