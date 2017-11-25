@@ -126,7 +126,7 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         return allEdges;
     }
 
-    public Set<Edge> notContainedEdges() {
+/*    public Set<Edge> notContainedEdges() {
         HashSet<Edge> wallSet = getAllEdges();
         Iterator<Edge> edgeIterator = wallSet.iterator();
         while (edgeIterator.hasNext()){
@@ -138,7 +138,7 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
 //        if (wallSet.removeAll(graphEdges)){
 //        System.out.println("wallSet");
         return wallSet;
-    }
+    }*/
 
     public boolean doesntExist(Vertex vertex, Directions dir){
         Vertex tmp;
