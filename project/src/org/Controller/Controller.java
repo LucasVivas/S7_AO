@@ -27,8 +27,15 @@ public class Controller {
     public static Controller getInstance(){
         if (Controller.controller == null){
             controller = new Controller();
-            return controller;
         }
-        return null;
+        return controller;
+    }
+
+    public Model getModel() {
+        return model;
+    }
+
+    public View getView() {
+        return view;
     }
 }

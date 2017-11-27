@@ -8,16 +8,22 @@ public class Model {
     private static final int HEIGHT = 16;
     private static final int WIDTH = 16;
 
+    private Graph graph = Graph.getInstance();
+
     private Model() {
         super();
+        graph.buildRandomPath();
     }
 
     public static Model getInstance(){
         if (Model.model == null){
             model = new Model();
-            return model;
         }
-        return null;
+        return model;
+    }
+
+    public Graph getGraph() {
+        return graph;
     }
 
     public static int getHEIGHT() {

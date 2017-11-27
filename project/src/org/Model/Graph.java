@@ -8,10 +8,11 @@ import java.util.*;
 *Created by lulu (project's boss) on 19/11/17.
  * Graph class represents the labyrinth graph.
  */
+
 public class Graph extends SimpleGraph<Vertex,Edge>{
+    private static Graph graph = null;
     private Vertex[][] VerticesMatrix;
     private HashSet<Edge> graphEdges = new HashSet<>();
-    private static Graph graph = null;
     private Random random = new Random();
 
     private Graph(Class<? extends Edge> edgeClass) {
@@ -24,7 +25,7 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
             graph = new Graph(Edge.class);
             return graph;
         }
-        return null;
+        return graph;
     }
 
     public HashSet<Edge> getGraphEdges() {

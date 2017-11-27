@@ -2,17 +2,16 @@ package org.View;
 
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import org.Controller.Controller;
 import org.Model.Edge;
 import org.Model.Graph;
 import org.Model.Model;
-import org.Model.Vertex;
-
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -21,14 +20,18 @@ import java.util.Set;
  */
 public class View {
     private static View view = null;
+    private static Controller controller = Controller.getInstance();
 
     static final int SPAN = 4;//Pixels for a unit
     static final int WALL = 2;//thickness of the walls (in units)
     static final int CELL = 9;//size of the cells(in units)
     public static final Paint WALLCOLOR = Color.BURLYWOOD;
     public static final Paint SCENECOLOR = Color.ALICEBLUE;
-    //public static final Pane pane = new Pane(); //pas sur
     public static final Group root = new Group();
+
+    private View() {
+        super();
+    }
 
     public static void drawFrame(Stage stage, int nbrX, int nbrY) {
         Scene scene = new Scene(root,
@@ -91,21 +94,17 @@ public class View {
         }
     }
 
-    private View() {
-        super();
-    }
-
     public void start(Stage primaryStage) {
         int nbrX = Model.getWIDTH();
         int nbrY = Model.getHEIGHT();
+        Graph graph = controller.getModel().getGraph();
         primaryStage.setWidth(((WALL + CELL) * nbrX + WALL) * SPAN);
         primaryStage.setHeight(((WALL + CELL) * nbrY + WALL) * SPAN);
         primaryStage.setTitle("Labyrinthe");
         View.drawFrame(primaryStage, nbrX, nbrY);
-        Graph graph = Graph.getInstance();
-        graph.buildRandomPath();
         drawWalls(graph.getAllEdges(),WALLCOLOR);
         drawWalls(graph.getGraphEdges(),SCENECOLOR);
+        drawPlayer();
         primaryStage.show();
     }
 
@@ -123,11 +122,21 @@ public class View {
         }
     }
 
+    private void drawPlayer(){
+        Image image = new Image(getClass().getResource("../Ressources/player.png").toExternalForm());
+        ImageView imageView = new ImageView((image));
+        double x = View.WALL * View.SPAN;
+        double y = View.WALL * View.SPAN;
+        imageView.setX(x);
+        imageView.setY(y);
+        root.getChildren().add(imageView);
+    }
+
     public static View getInstance(){
         if (View.view == null){
             view = new View();
             return view;
         }
-        return null;
+        return view;
     }
 }
