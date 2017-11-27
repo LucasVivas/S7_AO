@@ -136,16 +136,16 @@ public class View {
             @Override
             public void handle(KeyEvent ke) {
                 if (ke.getCode().equals(KeyCode.RIGHT)) {
-                	imageView.setX(imageView.getX()+9);
+                	imageView.setX(imageView.getX()+9*4+2*4);
                 }
                 if (ke.getCode().equals(KeyCode.LEFT)) {
-                	imageView.setX(imageView.getX()-9);
+                	imageView.setX(imageView.getX()-9*4-2*4);
                 }
                 if (ke.getCode().equals(KeyCode.UP)) {
-                	imageView.setY(imageView.getY()-9);
+                	imageView.setY(imageView.getY()-9*4-2*4);
                 }
                 if (ke.getCode().equals(KeyCode.DOWN)) {
-                	imageView.setY(imageView.getY()+9);
+                	imageView.setY(imageView.getY()+9*4+2*4);
                 }
             }
         });
