@@ -5,6 +5,8 @@ package org.Model;
  */
 public class Model {
     private static Model model = null;
+    private static final int HEIGHT = 16;
+    private static final int WIDTH = 16;
 
     private Model() {
         super();
@@ -16,5 +18,13 @@ public class Model {
             return model;
         }
         return null;
+    }
+
+    public static int getHEIGHT() {
+        return HEIGHT;
+    }
+
+    public static int getWIDTH() {
+        return WIDTH;
     }
 }

@@ -20,7 +20,7 @@ public class Edge extends DefaultEdge implements Comparable<Edge> {
 		super();
 		this.type = type ;
 	}
-	
+
 	@Override
 	public int compareTo(Edge o) {
 		int source = ((Vertex) this.getSource()).compareTo((Vertex) o.getSource());
@@ -29,5 +29,5 @@ public class Edge extends DefaultEdge implements Comparable<Edge> {
 		else 
 		 return ((Vertex) this.getTarget()).compareTo((Vertex) o.getTarget());
 	}
-	
+
 }
