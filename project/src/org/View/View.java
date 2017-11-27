@@ -1,9 +1,12 @@
 package org.View;
 
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
@@ -129,6 +132,24 @@ public class View {
         double y = View.WALL * View.SPAN;
         imageView.setX(x);
         imageView.setY(y);
+        imageView.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent ke) {
+                if (ke.getCode().equals(KeyCode.RIGHT)) {
+                	imageView.setX(imageView.getX()+9);
+                }
+                if (ke.getCode().equals(KeyCode.LEFT)) {
+                	imageView.setX(imageView.getX()-9);
+                }
+                if (ke.getCode().equals(KeyCode.UP)) {
+                	imageView.setY(imageView.getY()-9);
+                }
+                if (ke.getCode().equals(KeyCode.DOWN)) {
+                	imageView.setY(imageView.getY()+9);
+                }
+            }
+        });
+        imageView.setFocusTraversable(true);
         root.getChildren().add(imageView);
     }
 
