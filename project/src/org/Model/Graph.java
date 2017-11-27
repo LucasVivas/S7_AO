@@ -88,7 +88,7 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
     }
 
     public void setNewEdge(Vertex source, Vertex target, int weight){
-        graphEdges.add(new Edge(source,target,1));
+        graphEdges.add(new Edge(source,target,Edge.Type.CORRIDOR));
     }
 
     public Vertex getVerticesMatrix(int y, int x){
@@ -109,24 +109,24 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
             for (int x = 0; x < Model.getWIDTH(); x++){
                 if (VerticesMatrix[y][x].inBorders(Directions.NORTH)){
                     if(!allEdges.contains((getEdge(VerticesMatrix[y][x],VerticesMatrix[y-1][x])))){
-                        allEdges.add(new Edge(VerticesMatrix[y][x],VerticesMatrix[y-1][x], 1));
+                        allEdges.add(new Edge(VerticesMatrix[y][x],VerticesMatrix[y-1][x], Edge.Type.CORRIDOR));
                     }
                 }
                 if (VerticesMatrix[y][x].inBorders(Directions.SOUTH)){
                     if(!allEdges.contains((getEdge(VerticesMatrix[y][x],VerticesMatrix[y+1][x])))){
-                        allEdges.add(new Edge(VerticesMatrix[y][x],VerticesMatrix[y+1][x],1));
+                        allEdges.add(new Edge(VerticesMatrix[y][x],VerticesMatrix[y+1][x],Edge.Type.CORRIDOR));
                     }
                 }
 
                 if (VerticesMatrix[y][x].inBorders(Directions.EAST)){
                     if(!allEdges.contains((getEdge(VerticesMatrix[y][x],VerticesMatrix[y][x+1])))){
-                        allEdges.add(new Edge(VerticesMatrix[y][x],VerticesMatrix[y][x+1],1));
+                        allEdges.add(new Edge(VerticesMatrix[y][x],VerticesMatrix[y][x+1],Edge.Type.CORRIDOR));
                     }
                 }
 
                 if (VerticesMatrix[y][x].inBorders(Directions.WEST)){
                     if(!allEdges.contains((getEdge(VerticesMatrix[y][x],VerticesMatrix[y][x-1])))){
-                        allEdges.add(new Edge(VerticesMatrix[y][x],VerticesMatrix[y][x-1],1));
+                        allEdges.add(new Edge(VerticesMatrix[y][x],VerticesMatrix[y][x-1],Edge.Type.CORRIDOR));
                     }
                 }
             }
