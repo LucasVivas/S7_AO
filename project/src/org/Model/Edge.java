@@ -3,15 +3,22 @@ package org.Model;
 import org.jgrapht.graph.DefaultEdge;
 
 public class Edge extends DefaultEdge implements Comparable<Edge> {
-	int num;
+	
+	public enum Type{
+		OPENED_DOOR,
+		CLOSED_DOOR,
+		CORRIDOR;
+		} ;
+		private Type type;
 
 	public Edge() {
 		super();
+		this.type = Type.CORRIDOR;
 	}
 	
-	public Edge(int num) {
+	public Edge(Type type) {
 		super();
-		this.num = num;
+		this.type = type ;
 	}
 	
 	@Override
