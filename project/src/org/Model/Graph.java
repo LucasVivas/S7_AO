@@ -87,6 +87,32 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         }
     }
 
+/*    private void calculateManhattanDistance(Vertex source, Vertex target){
+        Queue<Vertex> fifo = new ArrayDeque<Vertex>();
+        target.setNbr(1);
+        fifo.add(target);
+        while(!fifo.isEmpty()){
+            Vertex actual = fifo.remove();
+            for (Directions dir :Directions.values()){
+                if(this.isOpened(actual, dir)){
+                    Vertex next = graph.getVertexByDir(actual, dir);
+                    if(next.getNbr()==0){
+                        next.setNbr(actual.getNbr()+1);
+                        if(next!=source)
+                        fifo.add(next);
+                    }
+                }
+            }
+        }
+    }
+
+    public void launchManhattan(Vertex source, Vertex target){
+        for(Vertex vertex :graph.vertexSet())
+            vertex.setNbr(0);
+        calculateManhattanDistance(source, target);
+    } */
+
+
     public void setNewEdge(Vertex source, Vertex target, int weight){
         graphEdges.add(new Edge(source,target,Edge.Type.CORRIDOR));
     }

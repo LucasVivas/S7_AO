@@ -12,10 +12,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import org.Controller.Controller;
-import org.Model.Directions;
-import org.Model.Edge;
-import org.Model.Graph;
-import org.Model.Model;
+import org.Model.*;
 
 import com.sun.corba.se.impl.orbutil.graph.Node;
 
@@ -39,7 +36,8 @@ public class View {
 
     private View() {
         super();
-        vplayer = new VPlayer();
+        vplayer = new VPlayer() {
+        };
     }
 
     public static void drawFrame(Stage stage, int nbrX, int nbrY) {
@@ -114,6 +112,7 @@ public class View {
         drawWalls(graph.getAllEdges(),WALLCOLOR);
         drawWalls(graph.getGraphEdges(),SCENECOLOR);
         drawPlayer();
+        //drawBadGuys()
         primaryStage.show();
     }
 
@@ -131,8 +130,50 @@ public class View {
         }
     }
 
-    private void drawPlayer(){
-    	
+
+        private void drawPlayer(){
+
+            double x = controller.getModel().getPlayer().getX();
+            double y = controller.getModel().getPlayer().getY();
+            vplayer.setX(x);
+            vplayer.setY(y);
+            vplayer.getImagePlayer().setOnKeyPressed(new EventHandler<KeyEvent>() {
+                @Override
+                public void handle(KeyEvent ke) {
+                    if (ke.getCode().equals(KeyCode.RIGHT)) {
+                        if (controller.getModel().checkMove(Directions.EAST))
+                            vplayer.setX(controller.getModel().getPlayer().getX());
+                            //stockGrabber.hasMoved(x.y);
+                    }
+                    if (ke.getCode().equals(KeyCode.LEFT)) {
+                        if (controller.getModel().checkMove(Directions.WEST))
+                            vplayer.setX(controller.getModel().getPlayer().getX());
+                            //stockGrabber.hasMoved(x.y);
+                    }
+                    if (ke.getCode().equals(KeyCode.UP)) {
+                        if (controller.getModel().checkMove(Directions.NORTH))
+                            vplayer.setY(controller.getModel().getPlayer().getY());
+                            //stockGrabber.hasMoved(x.y);
+                    }
+                    if (ke.getCode().equals(KeyCode.DOWN)) {
+                        if (controller.getModel().checkMove(Directions.SOUTH))
+                            vplayer.setY(controller.getModel().getPlayer().getY());
+                            //stockGrabber.hasMoved(x.y);
+                    }
+                }
+            });
+            vplayer.getImagePlayer().setFocusTraversable(true);
+            root.getChildren().add(vplayer.getImagePlayer());
+        }
+
+/*    private void drawBadGuys(){
+
+        StockObserver
+        StockGrabber stockGrabber = new StockGrabber();
+        StockObserver observer1 = new StockObserver(stockGrabber);
+        stockGrabber.hasMoved(197.00);
+        stockGrabber.setAAPLPrice(677.60);
+        stockGrabber.setGOOGPrice(676.40);
         double x = controller.getModel().getPlayer().getX();
         double y = controller.getModel().getPlayer().getY();
         vplayer.setX(x);
@@ -141,26 +182,27 @@ public class View {
             @Override
             public void handle(KeyEvent ke) {
                 if (ke.getCode().equals(KeyCode.RIGHT)) {
-                	if (controller.getModel().checkMove(Directions.EAST))
-                		vplayer.setX(controller.getModel().getPlayer().getX());
+                    if (controller.getModel().checkMove(Directions.EAST))
+                        vplayer.setX(controller.getModel().getPlayer().getX());
                 }
                 if (ke.getCode().equals(KeyCode.LEFT)) {
-                	if (controller.getModel().checkMove(Directions.WEST))
-                		vplayer.setX(controller.getModel().getPlayer().getX());
+                    if (controller.getModel().checkMove(Directions.WEST))
+                        vplayer.setX(controller.getModel().getPlayer().getX());
                 }
                 if (ke.getCode().equals(KeyCode.UP)) {
-                	if (controller.getModel().checkMove(Directions.NORTH))
-                		vplayer.setY(controller.getModel().getPlayer().getY());
+                    if (controller.getModel().checkMove(Directions.NORTH))
+                        vplayer.setY(controller.getModel().getPlayer().getY());
                 }
                 if (ke.getCode().equals(KeyCode.DOWN)) {
-                	if (controller.getModel().checkMove(Directions.SOUTH))
-                		vplayer.setY(controller.getModel().getPlayer().getY());
+                    if (controller.getModel().checkMove(Directions.SOUTH))
+                        vplayer.setY(controller.getModel().getPlayer().getY());
                 }
             }
         });
         vplayer.getImagePlayer().setFocusTraversable(true);
         root.getChildren().add(vplayer.getImagePlayer());
-    }
+    } */
+
 
     public static View getInstance(){
         if (View.view == null){

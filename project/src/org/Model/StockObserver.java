@@ -28,7 +28,7 @@ public class StockObserver implements Observer{
         printNewCoords();
     }
 
-    public void printNewCoords(){
+    private void printNewCoords(){
         System.out.println(observerID + "\nnewX: " + newX + "\nnewY: " + newY + "\n");
     }
 
