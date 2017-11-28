@@ -4,10 +4,15 @@ public abstract class Personnage{
 
     protected int x;
     protected int y;
+    public enum Type{
+        GOOD,
+        BAD;
+    }private Type type;
 
-    protected Personnage(int x, int y) {
+    protected Personnage(int x, int y, Type type) {
         this.x = x;
         this.y = y;
+        this.type = type;
     }
 
 
