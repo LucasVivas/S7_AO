@@ -1,26 +1,13 @@
 package org.View;
 
 import javafx.event.EventHandler;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import org.Controller.Controller;
 import org.Model.Directions;
-import org.Model.Edge;
 import org.Model.Graph;
 import org.Model.Model;
-
-import com.sun.corba.se.impl.orbutil.graph.Node;
-
-import java.util.Iterator;
-import java.util.Set;
 
 import static org.View.VConsts.*;
 
