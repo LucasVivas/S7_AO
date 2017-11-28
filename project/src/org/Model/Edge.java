@@ -57,7 +57,7 @@ public class Edge extends DefaultEdge implements Comparable<Edge> {
 	}
 
 	public String toString(){
-		return super.toString();
+		return getSource().toString() + " ->" + getTarget().toString();
 	}
 
 	@Override

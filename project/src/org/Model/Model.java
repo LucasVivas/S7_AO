@@ -9,8 +9,8 @@ import org.View.View;
  */
 public class Model {
     private static Model model = null;
-    private static final int HEIGHT = 16;
-    private static final int WIDTH = 16;
+    private static final int HEIGHT = 4;
+    private static final int WIDTH = 4;
 
     private Graph graph;
     private Personnage player;
@@ -22,7 +22,6 @@ public class Model {
         super();
         graph = new Graph(Edge.class);
         graph.buildRandomPath();
-        graph.toString();
         player = new Personnage(0, 0);
         villain = new Personnage(0, 0, Personnage.Type.Bad);
     }
@@ -61,8 +60,14 @@ public class Model {
 			} else {
 				while (graphEdgesIterator.hasNext()) {
 		            E = graphEdgesIterator.next();
-		            if((E.getSource().getX() == x_source && E.getSource().getY() == y_source) && (E.getTarget().getX() == x_source && E.getTarget().getY() == y_source-1)) {
-		            	player.setY(player.getY()-1);
+                    System.out.println(E.toString());
+		            if(((E.getSource().getX() == x_source && E.getSource().getY() == y_source)
+                            && (E.getTarget().getX() == x_source && E.getTarget().getY() == y_source-1))
+                            || ((E.getSource().getX() == x_source && E.getSource().getY() == y_source-1)
+                            && (E.getTarget().getX() == x_source && E.getTarget().getY() == y_source))) {
+                        System.out.println(player.getY());
+		                player.setY(player.getY()-1);
+                        System.out.println(player.getY());
 		            	return true;
 		            }		            	   
 		        }
@@ -71,11 +76,16 @@ public class Model {
 		case SOUTH:
 			if (y_source == HEIGHT) {
 				return false;
-			} else {				
+			} else {
 		        while (graphEdgesIterator.hasNext()) {
 		            E = graphEdgesIterator.next();
-		            if((E.getSource().getX() == x_source && E.getSource().getY() == y_source) && (E.getTarget().getX() == x_source && E.getTarget().getY() == y_source+1)) {
-		            	player.setY(player.getY()+1);
+                    if(((E.getSource().getX() == x_source && E.getSource().getY() == y_source)
+                            && (E.getTarget().getX() == x_source && E.getTarget().getY() == y_source+1))
+                            || ((E.getSource().getX() == x_source && E.getSource().getY() == y_source+1)
+                            && (E.getTarget().getX() == x_source && E.getTarget().getY() == y_source))) {
+                        System.out.println(player.getY());
+                        player.setY(player.getY()+1);
+                        System.out.println(player.getY());
 		            	return true;
 		            }		            	   
 		        }
@@ -87,8 +97,11 @@ public class Model {
 			} else {
 				while (graphEdgesIterator.hasNext()) {
 		            E = graphEdgesIterator.next();
-		            if((E.getSource().getX() == x_source && E.getSource().getY() == y_source) && (E.getTarget().getX() == x_source+1 && E.getTarget().getY() == y_source)) {
-		            	player.setY(player.getX()+1);
+		            if(((E.getSource().getX() == x_source && E.getSource().getY() == y_source)
+                            && (E.getTarget().getX() == x_source+1 && E.getTarget().getY() == y_source))
+                            || ((E.getSource().getX() == x_source+1 && E.getSource().getY() == y_source)
+                            && (E.getTarget().getX() == x_source && E.getTarget().getY() == y_source))) {
+		            	player.setX(player.getX()+1);
 		            	return true;
 		            }		            	   
 		        }
@@ -100,8 +113,11 @@ public class Model {
 			} else {
 				while (graphEdgesIterator.hasNext()) {
 		            E = graphEdgesIterator.next();
-		            if((E.getSource().getX() == x_source && E.getSource().getY() == y_source) && (E.getTarget().getX() == x_source-1 && E.getTarget().getY() == y_source)) {
-		            	player.setY(player.getX()-1);
+                    if(((E.getSource().getX() == x_source && E.getSource().getY() == y_source)
+                            && (E.getTarget().getX() == x_source-1 && E.getTarget().getY() == y_source))
+                            || ((E.getSource().getX() == x_source-1 && E.getSource().getY() == y_source)
+                            && (E.getTarget().getX() == x_source && E.getTarget().getY() == y_source))) {
+		            	player.setX(player.getX()-1);
 		            	return true;
 		            }		            	   
 		        }

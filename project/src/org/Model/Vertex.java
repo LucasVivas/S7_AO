@@ -15,18 +15,25 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
 		this.y = y;
 	}
 
-	public Vertex(){
-        Random rnX = new Random();
-        this.x = rnX.nextInt(Model.getWIDTH());
-        Random rnY = new Random();
-        this.y = rnY.nextInt(Model.getHEIGHT());
+    public Vertex(int x, int y, int id) {
+        this.x = x;
+        this.y = y;
     }
+
     public int getX(){
         return x;
     }
 
     public int getY(){
         return y;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 
     public boolean areNeighbors(Vertex v){
@@ -77,7 +84,7 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
 
     @Override
     public String toString(){
-        return "("+getX()+","+getY()+")";
+        return "("+getX()+", "+getY()+ ")";
     }
 
     @Override

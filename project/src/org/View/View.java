@@ -12,10 +12,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import org.Controller.Controller;
-import org.Model.Directions;
-import org.Model.Edge;
-import org.Model.Graph;
-import org.Model.Model;
+import org.Model.*;
 
 import com.sun.corba.se.impl.orbutil.graph.Node;
 
@@ -107,12 +104,14 @@ public class View {
         int nbrX = Model.getWIDTH();
         int nbrY = Model.getHEIGHT();
         Graph graph = controller.getModel().getGraph();
+        System.out.println(graph.vertexSet().size());
+        System.out.println(graph.edgeSet().size());
         primaryStage.setWidth(((WALL + CELL) * nbrX + WALL) * SPAN);
         primaryStage.setHeight(((WALL + CELL) * nbrY + WALL) * SPAN);
         primaryStage.setTitle("Labyrinthe");
         View.drawFrame(primaryStage, nbrX, nbrY);
-        drawWalls(graph.edgeSet(),WALLCOLOR);
-        //drawWalls(graph.getGraphEdges(),SCENECOLOR);
+        drawAllWalls(WALLCOLOR);
+        drawWalls(graph.edgeSet(),SCENECOLOR);
         drawPlayer();
         primaryStage.show();
     }
@@ -123,11 +122,20 @@ public class View {
         int xs, ys, xt, yt;
         while (graphEdgesIterator.hasNext()) {
             E = graphEdgesIterator.next();
-            xs = (E.getSource().getX());
-            ys = (E.getSource().getY());
-            xt = (E.getTarget().getX());
-            yt = (E.getTarget().getY());
-            View.drawWall(xs, ys, xt, yt, color);
+            xs = ((Vertex) E.getSource()).getX();
+            ys = ((Vertex) E.getSource()).getY();
+            xt = ((Vertex) E.getTarget()).getX();
+            yt = ((Vertex) E.getTarget()).getY();
+            drawWall(xs, ys, xt, yt, color);
+        }
+    }
+
+    private void drawAllWalls(Paint color){
+        for (int i = 0; i < Model.getWIDTH(); i++) {
+            for (int j = 0; j < Model.getHEIGHT(); j++) {
+                drawWall(i, j, i+1, j, color);
+                drawWall(i, j, i, j+1, color);
+            }
         }
     }
 

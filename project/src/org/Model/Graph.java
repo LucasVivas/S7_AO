@@ -8,6 +8,7 @@ import java.util.*;
 public class Graph extends SimpleGraph<Vertex,Edge>{
 
     private Random random = new Random();
+    private static int cpt = 0;
 
     public Graph(Class<? extends Edge> edgeClass) {
         super(edgeClass);
@@ -15,7 +16,7 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
     }
 
     public void buildRandomPath(){
-        Vertex v = new Vertex(0,0);
+        Vertex v = new Vertex(0,0, 0);
         addVertex(v);
         buildRandomPathRec(v);
     }
@@ -37,6 +38,8 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         for(int i=0;i<4;++i){
             Directions dir=directions[i];
             if(vertex.inBorders(dir) && !doesExist(vertex,dir)){
+                cpt++;
+
                 int x=vertex.getX();
                 int y=vertex.getY();
                 int xt=0,yt=0;
@@ -60,7 +63,8 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
                 }
                 Vertex next = new Vertex(xt,yt);
                 addVertex(next);
-                addEdge(vertex,next);
+                Edge e = new Edge(vertex, next, Edge.Type.CORRIDOR);
+                addEdge(vertex, next, e);
                 buildRandomPathRec(next);
             }
         }
@@ -90,7 +94,7 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         Iterator<Vertex> vertexSetIterator = vertexSet().iterator();
         while (vertexSetIterator.hasNext()) {
             v_tmp = vertexSetIterator.next();
-            if (v_tmp.equals(target)){
+            if (v_tmp.compareTo(target) == 0){
                 return true;
             }
         }
@@ -111,5 +115,6 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         }
 		return null;
 	}
+
 
 }
