@@ -10,32 +10,15 @@ import java.util.*;
  */
 
 public class Graph extends SimpleGraph<Vertex,Edge>{
-    private static Graph graph = null;
-  //  private Vertex[][] VerticesMatrix;
-   // private HashSet<Edge> graphEdges = new HashSet<>();
     private Random random = new Random();
 
-    private Graph(Class<? extends Edge> edgeClass) {
+    public Graph(Class<? extends Edge> edgeClass) {
         super(edgeClass);
-        //this.VerticesMatrix = new Vertex[Model.getHEIGHT()][Model.getWIDTH()];
-    }
-
-    public static Graph getInstance(){
-        if (Graph.graph == null){
-            graph = new Graph(Edge.class);
-            return graph;
-        }
-        return graph;
-    }
-
-    public HashSet<Edge> getGraphEdges() {
-        return graphEdges;
     }
 
     public void buildRandomPath(){
-        Vertex v = new Vertex(0,0,0);
-        graph.addVertex(v);
-        graph.setVerticesMatrix(v);
+        Vertex v = new Vertex(0,0);
+        addVertex(v);
         buildRandomPathRec(v);
     }
 
@@ -55,7 +38,7 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         //pour chacune de ces directions,on avance en profondeur d’abord
         for(int i=0;i<4;++i){
             Directions dir=directions[i];
-            if(vertex.inBorders(dir) && doesntExist(vertex,dir)){
+            if(vertex.inBorders(dir) && !doesExist(vertex,dir)){
                 int x=vertex.getX();
                 int y=vertex.getY();
                 int xt=0,yt=0;
@@ -77,92 +60,42 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
                         yt=y;
                         break;
                 }
-                Vertex next = new Vertex(xt,yt,vertex.getNbr()+1);
-                //addVertex(next);
-                setVerticesMatrix(next);
-                //addEdge(vertex,next);
-                setNewEdge(vertex,next,1);
+                Vertex next = new Vertex(xt,yt);
+                addVertex(next);
+                addEdge(vertex,next);
                 buildRandomPathRec(next);
             }
         }
     }
 
-    public void setNewEdge(Vertex source, Vertex target, int weight){
-        graphEdges.add(new Edge(source,target,Edge.Type.CORRIDOR));
-    }
-
-    public Vertex getVerticesMatrix(int y, int x){
-        return VerticesMatrix[y][x];
-    }
-
-    public void setVerticesMatrix(Vertex v) {
-        VerticesMatrix[v.getY()][v.getX()] = v;
-    }
-
-    public boolean containsVertex(Vertex v){
-        return VerticesMatrix[v.getY()][v.getX()] != null;
-    }
-
-    public HashSet<Edge> getAllEdges(){
-       HashSet<Edge> allEdges = new HashSet<>();
-        for (int y = 0; y < Model.getHEIGHT(); y++){
-            for (int x = 0; x < Model.getWIDTH(); x++){
-                if (VerticesMatrix[y][x].inBorders(Directions.NORTH)){
-                    if(!allEdges.contains((getEdge(VerticesMatrix[y][x],VerticesMatrix[y-1][x])))){
-                        allEdges.add(new Edge(VerticesMatrix[y][x],VerticesMatrix[y-1][x], Edge.Type.CORRIDOR));
-                    }
-                }
-                if (VerticesMatrix[y][x].inBorders(Directions.SOUTH)){
-                    if(!allEdges.contains((getEdge(VerticesMatrix[y][x],VerticesMatrix[y+1][x])))){
-                        allEdges.add(new Edge(VerticesMatrix[y][x],VerticesMatrix[y+1][x],Edge.Type.CORRIDOR));
-                    }
-                }
-
-                if (VerticesMatrix[y][x].inBorders(Directions.EAST)){
-                    if(!allEdges.contains((getEdge(VerticesMatrix[y][x],VerticesMatrix[y][x+1])))){
-                        allEdges.add(new Edge(VerticesMatrix[y][x],VerticesMatrix[y][x+1],Edge.Type.CORRIDOR));
-                    }
-                }
-
-                if (VerticesMatrix[y][x].inBorders(Directions.WEST)){
-                    if(!allEdges.contains((getEdge(VerticesMatrix[y][x],VerticesMatrix[y][x-1])))){
-                        allEdges.add(new Edge(VerticesMatrix[y][x],VerticesMatrix[y][x-1],Edge.Type.CORRIDOR));
-                    }
-                }
-            }
-        }
-        return allEdges;
-    }
-
-    public boolean doesntExist(Vertex vertex, Directions dir){
-        Vertex tmp;
+    public boolean doesExist(Vertex vertex, Directions dir){
+        Vertex target;
+        Vertex v_tmp;
         switch(dir){
             case NORTH:
-                tmp = new Vertex(vertex.getX(),vertex.getY()-1,vertex.getNbr());
-                if (graph.containsVertex(tmp)){
-                    return false;
-                }
+                target = new Vertex(vertex.getX(),vertex.getY()-1);
                 break;
             case SOUTH:
-                tmp = new Vertex(vertex.getX(),vertex.getY()+1,vertex.getNbr());
-                if (graph.containsVertex(tmp)){
-                    return false;
-                }
+                target = new Vertex(vertex.getX(),vertex.getY()+1);
                 break;
             case EAST:
-                tmp = new Vertex(vertex.getX()+1,vertex.getY(),vertex.getNbr());
-                if (graph.containsVertex(tmp)){
-                    return false;
-                }
+                target = new Vertex(vertex.getX()+1,vertex.getY());
                 break;
             case WEST:
-                tmp = new Vertex(vertex.getX()-1,vertex.getY(),vertex.getNbr());
-                if (graph.containsVertex(tmp)){
-                    return false;
-                }
+                target = new Vertex(vertex.getX()-1,vertex.getY());
+                break;
+            default:
+                target = new Vertex(vertex.getX(), vertex.getY());
                 break;
         }
-        return true;
+        Iterator<Vertex> vertexSetIterator = vertexSet().iterator();
+        while (vertexSetIterator.hasNext()) {
+            v_tmp = vertexSetIterator.next();
+            if (v_tmp.equals(target)){
+                return true;
+            }
+        }
+        return false;
     }
 
 }

@@ -8,7 +8,7 @@ public class Edge extends DefaultEdge implements Comparable<Edge> {
 		OPENED_DOOR,
 		CLOSED_DOOR,
 		CORRIDOR;
-		} ;
+		}
 
 	private Vertex source;
 	private Vertex target;

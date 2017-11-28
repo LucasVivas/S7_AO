@@ -12,7 +12,7 @@ public class Model {
     private static final int HEIGHT = 16;
     private static final int WIDTH = 16;
 
-    private Graph graph = Graph.getInstance();
+    private Graph graph;
     private Personnage player;
     private Personnage villain;
 		
@@ -20,7 +20,9 @@ public class Model {
 
     private Model() {
         super();
+        graph = new Graph(Edge.class);
         graph.buildRandomPath();
+        graph.toString();
         player = new Personnage(0, 0);
         villain = new Personnage(0, 0, Personnage.Type.Bad);
     }
@@ -48,7 +50,7 @@ public class Model {
 		return player;
 	}
 	public boolean checkMove(Directions direction) {
-		Iterator<Edge> graphEdgesIterator = graph.getAllEdges().iterator();
+		Iterator<Edge> graphEdgesIterator = graph.edgeSet().iterator();
         Edge E;
 		int x_source = player.getX();
 		int y_source = player.getY();

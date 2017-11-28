@@ -111,8 +111,8 @@ public class View {
         primaryStage.setHeight(((WALL + CELL) * nbrY + WALL) * SPAN);
         primaryStage.setTitle("Labyrinthe");
         View.drawFrame(primaryStage, nbrX, nbrY);
-        drawWalls(graph.getAllEdges(),WALLCOLOR);
-        drawWalls(graph.getGraphEdges(),SCENECOLOR);
+        drawWalls(graph.edgeSet(),WALLCOLOR);
+        //drawWalls(graph.getGraphEdges(),SCENECOLOR);
         drawPlayer();
         primaryStage.show();
     }

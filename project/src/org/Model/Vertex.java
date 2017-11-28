@@ -9,13 +9,6 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
 
     private int x;
     private int y;
-    private int nbr;
-
-    public Vertex(int x, int y, int nbr){
-        this.x = x;
-        this.y = y;
-        this.nbr = nbr;
-    }
 
     public Vertex(int x, int y) {
 		this.x = x;
@@ -27,27 +20,13 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
         this.x = rnX.nextInt(Model.getWIDTH());
         Random rnY = new Random();
         this.y = rnY.nextInt(Model.getHEIGHT());
-        this.nbr = 0;
     }
-
-/*  private void setX(int x){
-        this.x = x;
-    }
-
-    private void setY(int y){
-        this.y = y;
-    }
-*/
     public int getX(){
         return x;
     }
 
     public int getY(){
         return y;
-    }
-
-    public int getNbr(){
-        return nbr;
     }
 
     public boolean areNeighbors(Vertex v){
