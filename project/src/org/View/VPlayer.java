@@ -3,25 +3,26 @@ package org.View;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import static org.View.VConsts.*;
+
 public class VPlayer {
-    ImageView imagePlayer;
-    private Image image = new Image(getClass().getResource("../Ressources/player.png").toExternalForm());
+	private ImageView imagePlayer;
 
-    public VPlayer() {
-        Image image = new Image(getClass().getResource("../Ressources/player.png").toExternalForm());
-        this.imagePlayer = new ImageView((image));
-    }
+	VPlayer() {
+		Image image = new Image(getClass().getResource("../Ressources/player.png").toExternalForm());
+        this.imagePlayer =  new ImageView((image));
+	}
 
-    public ImageView getImagePlayer() {
-        return imagePlayer;
-    }
+	ImageView getImagePlayer() {
+		return imagePlayer;
+	}
+	
+	public void setX(double x) {
+		imagePlayer.setX((WALL + x * (WALL + CELL)) * SPAN);
+	}
+	public void setY(double y) {
+		imagePlayer.setY((WALL + y * (WALL + CELL)) * SPAN);
+	}
 
-    public void setX(double x) {
-        imagePlayer.setX((View.WALL + x * (View.WALL + View.CELL)) * View.SPAN);
-    }
-
-    public void setY(double y) {
-        imagePlayer.setY((View.WALL + y * (View.WALL + View.CELL)) * View.SPAN);
-    }
 
 }
