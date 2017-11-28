@@ -3,8 +3,6 @@ package org.View;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import static org.View.VConsts.*;
-
 public class VPlayer extends VPersonnage{
 
 	public VPlayer(){
