@@ -17,7 +17,7 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
 
     private Graph(Class<? extends Edge> edgeClass) {
         super(edgeClass);
-        //this.VerticesMatrix = new Vertex[Model.getHEIGHT()][Model.getWIDTH()];
+        this.VerticesMatrix = new Vertex[Model.getHEIGHT()][Model.getWIDTH()];
     }
 
     public static Graph getInstance(){
@@ -78,9 +78,9 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
                         break;
                 }
                 Vertex next = new Vertex(xt,yt,vertex.getNbr()+1);
-                //addVertex(next);
+                addVertex(next);
                 setVerticesMatrix(next);
-                //addEdge(vertex,next);
+                addEdge(vertex,next);
                 setNewEdge(vertex,next,1);
                 buildRandomPathRec(next);
             }
