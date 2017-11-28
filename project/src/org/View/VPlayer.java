@@ -3,6 +3,8 @@ package org.View;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import static org.View.VConsts.*;
+
 public class VPlayer {
 	ImageView imagePlayer;
 
@@ -16,9 +18,11 @@ public class VPlayer {
 	}
 	
 	public void setX(double x) {
-		imagePlayer.setX((View.WALL + x * (View.WALL + View.CELL)) * View.SPAN);
+		imagePlayer.setX((WALL + x * (WALL + CELL)) * SPAN);
 	}
 	public void setY(double y) {
-		imagePlayer.setY((View.WALL + y * (View.WALL + View.CELL)) * View.SPAN);
+		imagePlayer.setY((WALL + y * (WALL + CELL)) * SPAN);
 	}
+
+
 }

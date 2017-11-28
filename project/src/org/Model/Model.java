@@ -22,7 +22,7 @@ public class Model {
         super();
         graph.buildRandomPath();
         player = new Personnage(0, 0);
-        villain = new Personnage(0, 0, Personnage.Type.Bad);
+        //villain = new Personnage(0, 0, Personnage.Type.Bad);
     }
 
     public static Model getInstance(){
