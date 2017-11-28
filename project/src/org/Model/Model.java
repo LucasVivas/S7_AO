@@ -21,8 +21,8 @@ public class Model {
     private Model() {
         super();
         graph.buildRandomPath();
-        player = new Personnage(0, 0);
-        //villain = new Personnage(0, 0, Personnage.Type.Bad);
+        player = new Player(0, 0);
+        villain = new BadGuy(0, 0);
     }
 
     public static Model getInstance(){
