@@ -17,7 +17,12 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
         this.nbr = nbr;
     }
 
-    public Vertex(){
+    public Vertex(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+
+	public Vertex(){
         Random rnX = new Random();
         this.x = rnX.nextInt(Model.getWIDTH());
         Random rnY = new Random();

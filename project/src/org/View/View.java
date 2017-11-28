@@ -12,9 +12,13 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import org.Controller.Controller;
+import org.Model.Directions;
 import org.Model.Edge;
 import org.Model.Graph;
 import org.Model.Model;
+
+import com.sun.corba.se.impl.orbutil.graph.Node;
+
 import java.util.Iterator;
 import java.util.Set;
 
@@ -31,9 +35,11 @@ public class View {
     public static final Paint WALLCOLOR = Color.BURLYWOOD;
     public static final Paint SCENECOLOR = Color.ALICEBLUE;
     public static final Group root = new Group();
+    private VPlayer vplayer;
 
     private View() {
         super();
+        vplayer = new VPlayer();
     }
 
     public static void drawFrame(Stage stage, int nbrX, int nbrY) {
@@ -126,31 +132,34 @@ public class View {
     }
 
     private void drawPlayer(){
-        Image image = new Image(getClass().getResource("../Ressources/player.png").toExternalForm());
-        ImageView imageView = new ImageView((image));
-        double x = View.WALL * View.SPAN;
-        double y = View.WALL * View.SPAN;
-        imageView.setX(x);
-        imageView.setY(y);
-        imageView.setOnKeyPressed(new EventHandler<KeyEvent>() {
+    	
+        double x = controller.getModel().getPlayer().getX();
+        double y = controller.getModel().getPlayer().getY();
+        vplayer.setX(x);
+        vplayer.setY(y);
+        vplayer.getImagePlayer().setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent ke) {
                 if (ke.getCode().equals(KeyCode.RIGHT)) {
-                	imageView.setX(imageView.getX()+9*4+2*4);
+                	if (controller.getModel().checkMove(Directions.EAST))
+                		vplayer.setX(controller.getModel().getPlayer().getX());
                 }
                 if (ke.getCode().equals(KeyCode.LEFT)) {
-                	imageView.setX(imageView.getX()-9*4-2*4);
+                	if (controller.getModel().checkMove(Directions.WEST))
+                		vplayer.setX(controller.getModel().getPlayer().getX());
                 }
                 if (ke.getCode().equals(KeyCode.UP)) {
-                	imageView.setY(imageView.getY()-9*4-2*4);
+                	if (controller.getModel().checkMove(Directions.NORTH))
+                		vplayer.setY(controller.getModel().getPlayer().getY());
                 }
                 if (ke.getCode().equals(KeyCode.DOWN)) {
-                	imageView.setY(imageView.getY()+9*4+2*4);
+                	if (controller.getModel().checkMove(Directions.SOUTH))
+                		vplayer.setY(controller.getModel().getPlayer().getY());
                 }
             }
         });
-        imageView.setFocusTraversable(true);
-        root.getChildren().add(imageView);
+        vplayer.getImagePlayer().setFocusTraversable(true);
+        root.getChildren().add(vplayer.getImagePlayer());
     }
 
     public static View getInstance(){
