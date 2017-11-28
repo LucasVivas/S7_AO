@@ -2,18 +2,16 @@ package org.Model;
 
 import org.jgrapht.graph.SimpleGraph;
 
+
 import java.util.*;
 
-/**
-*Created by lulu (project's boss) on 19/11/17.
- * Graph class represents the labyrinth graph.
- */
-
 public class Graph extends SimpleGraph<Vertex,Edge>{
+
     private Random random = new Random();
 
     public Graph(Class<? extends Edge> edgeClass) {
         super(edgeClass);
+
     }
 
     public void buildRandomPath(){
@@ -68,6 +66,7 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         }
     }
 
+
     public boolean doesExist(Vertex vertex, Directions dir){
         Vertex target;
         Vertex v_tmp;
@@ -97,5 +96,20 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         }
         return false;
     }
+    
+	public String toString(){
+		Iterator<Vertex> graphSIterator = this.vertexSet().iterator();
+		Iterator<Vertex> graphTIterator = this.vertexSet().iterator();
+        Vertex S,T;		
+		while (graphSIterator.hasNext()) {
+            S = graphSIterator.next();
+            while (graphTIterator.hasNext()) {
+                T = graphTIterator.next();
+    	        if(this.getEdge(S, T) != null) 
+    	        	System.out.println(S.toString()+"-->"+T.toString());
+            }    	   
+        }
+		return null;
+	}
 
 }
