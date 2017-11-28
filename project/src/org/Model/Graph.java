@@ -1,6 +1,8 @@
 package org.Model;
 
+import org.jgrapht.UndirectedGraph;
 import org.jgrapht.graph.SimpleGraph;
+
 
 import java.util.*;
 
@@ -11,13 +13,13 @@ import java.util.*;
 
 public class Graph extends SimpleGraph<Vertex,Edge>{
     private static Graph graph = null;
-  //  private Vertex[][] VerticesMatrix;
-   // private HashSet<Edge> graphEdges = new HashSet<>();
+    private Vertex[][] VerticesMatrix;
+    private HashSet<Edge> graphEdges = new HashSet<>();
     private Random random = new Random();
 
     private Graph(Class<? extends Edge> edgeClass) {
         super(edgeClass);
-        //this.VerticesMatrix = new Vertex[Model.getHEIGHT()][Model.getWIDTH()];
+        this.VerticesMatrix = new Vertex[Model.getHEIGHT()][Model.getWIDTH()];
     }
 
     public static Graph getInstance(){
@@ -78,9 +80,9 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
                         break;
                 }
                 Vertex next = new Vertex(xt,yt,vertex.getNbr()+1);
-                //addVertex(next);
+                graph.addVertex(next);
                 setVerticesMatrix(next);
-                //addEdge(vertex,next);
+                graph.addEdge(vertex,next);
                 setNewEdge(vertex,next,1);
                 buildRandomPathRec(next);
             }
@@ -89,6 +91,7 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
 
     public void setNewEdge(Vertex source, Vertex target, int weight){
         graphEdges.add(new Edge(source,target,Edge.Type.CORRIDOR));
+        //graph.addEdge(source, target);
     }
 
     public Vertex getVerticesMatrix(int y, int x){
@@ -164,5 +167,20 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         }
         return true;
     }
+    
+	public String toString(){
+		Iterator<Vertex> graphSIterator = this.vertexSet().iterator();
+		Iterator<Vertex> graphTIterator = this.vertexSet().iterator();
+        Vertex S,T;		
+		while (graphSIterator.hasNext()) {
+            S = graphSIterator.next();
+            while (graphTIterator.hasNext()) {
+                T = graphTIterator.next();
+    	        if(this.getEdge(S, T) != null) 
+    	        	System.out.println(S.toString()+"-->"+T.toString());
+            }    	   
+        }
+		return null;
+	}
 
 }
