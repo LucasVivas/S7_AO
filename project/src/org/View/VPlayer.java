@@ -6,14 +6,14 @@ import javafx.scene.image.ImageView;
 import static org.View.VConsts.*;
 
 public class VPlayer {
-	private ImageView imagePlayer;
+	ImageView imagePlayer;
 
-	VPlayer() {
+	public VPlayer() {
 		Image image = new Image(getClass().getResource("../Ressources/player.png").toExternalForm());
         this.imagePlayer =  new ImageView((image));
 	}
 
-	ImageView getImagePlayer() {
+	public ImageView getImagePlayer() {
 		return imagePlayer;
 	}
 	
