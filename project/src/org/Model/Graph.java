@@ -11,8 +11,8 @@ import java.util.*;
 
 public class Graph extends SimpleGraph<Vertex,Edge>{
     private static Graph graph = null;
-  //  private Vertex[][] VerticesMatrix;
-   // private HashSet<Edge> graphEdges = new HashSet<>();
+    private Vertex[][] VerticesMatrix;
+    private HashSet<Edge> graphEdges = new HashSet<>();
     private Random random = new Random();
 
     private Graph(Class<? extends Edge> edgeClass) {
