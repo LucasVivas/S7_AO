@@ -4,7 +4,7 @@ public class Personnage {
 	private int x,y;
 	public enum Type{
 		GOOD,
-		Bad;
+		BAD;
 	}
 	Type type;
 	public Personnage(int x, int y) {
