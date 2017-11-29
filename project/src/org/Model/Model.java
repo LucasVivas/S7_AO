@@ -19,7 +19,7 @@ public class Model {
 
     private Model() {
         super();
-        graph = new Graph(Edge.class);
+        graph = Graph.getInstance();
         graph.buildRandomPath();
         player = new Character(0, 0);
         villain = new Character(0, 0, Character.Type.BAD);
