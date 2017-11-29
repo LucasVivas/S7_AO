@@ -10,12 +10,6 @@ public class VPlayer extends VPersonnage{
         this.imagePersonnage =  new ImageView((image));
 	}
 	
-	 public static VPlayer getInstance(){
-	        if (VPlayer.vplayer == null){
-	            vplayer = new VPlayer();
-	            return vplayer;
-	        }
-	        return vplayer;
-	    }
+
 
 }

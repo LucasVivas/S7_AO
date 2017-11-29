@@ -13,11 +13,23 @@ import static org.View.VConsts.*;
 
 class VGraph {
 
-    static void drawMaze(Stage stage, int nbrX, int nbrY, Set<Edge> allEdges, Set<Edge> graphEdges){
+    static void drawMaze(Stage stage, int nbrX, int nbrY, Set<Edge> graphEdges){
         drawFrame(stage, nbrX, nbrY);
-        drawWalls(allEdges,WALLCOLOR);
+        drawAllWalls(WALLCOLOR,nbrX,nbrY);
         drawWalls(graphEdges,SCENECOLOR);
     }
+
+
+    private static void drawAllWalls(Paint color,int nbrX,int nbrY){
+        for (int i = 0; i < nbrX; i++) {
+            for (int j = 0; j < nbrY; j++) {
+                drawWall(i, j, i+1, j, color);
+                drawWall(i, j, i, j+1, color);
+            }
+        }
+    }
+
+
 
     private static void drawFrame(Stage stage, int nbrX, int nbrY) {
         Scene scene = new Scene(root,

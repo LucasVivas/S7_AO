@@ -20,11 +20,11 @@ public class View {
     private static Controller controller = Controller.getInstance();
 
 
-    private VPlayer vplayer;
+    public VPlayer vplayer;
 
     private View() {
         super();
-        vplayer = VPlayer.getInstance();
+        vplayer = new VPlayer();
     }
 
 
@@ -38,7 +38,7 @@ public class View {
         primaryStage.setWidth(((WALL + CELL) * nbrX + WALL) * SPAN);
         primaryStage.setHeight(((WALL + CELL) * nbrY + WALL) * SPAN);
         primaryStage.setTitle("Labyrinthe");
-        VGraph.drawMaze(primaryStage, nbrX, nbrY,graph.getAllEdges(),graph.getGraphEdges());
+        VGraph.drawMaze(primaryStage, nbrX, nbrY,graph.edgeSet());
         drawPlayer();
         primaryStage.show();
     }

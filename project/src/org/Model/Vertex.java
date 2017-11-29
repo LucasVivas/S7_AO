@@ -31,9 +31,6 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
         this.y = y;
     }
 
-    public void setNbr(int nbr){
-        this.nbr = nbr;
-    }
 
     public boolean areNeighbors(Vertex v){
         int dx = Math.abs(this.getX() - v.getX());

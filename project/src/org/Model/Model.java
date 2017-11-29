@@ -18,12 +18,13 @@ public class Model {
 	
 
     private Model() {
-        super();
-        graph = Graph.getInstance();
-        graph.buildRandomPath();
+		super();
+		graph = Graph.getInstance();
+		graph.buildRandomPath();
 
-        player = new Character(0, 0);
-        villain = new Character(0, 0, Character.Type.BAD);
+		player = new Character(0, 0);
+		villain = new Character(0, 0, Character.Type.BAD);
+	}
 
     public static Model getInstance(){
         if (Model.model == null){
