@@ -32,5 +32,4 @@ public class Character {
 	public Type getType() {
 		return type;
 	}
-
 }

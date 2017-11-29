@@ -74,7 +74,6 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         }
     }
 
-
     public boolean doesExist(Vertex vertex, Directions dir){
         Vertex target;
         Vertex v_tmp;
