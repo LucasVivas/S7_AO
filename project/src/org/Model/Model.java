@@ -2,19 +2,18 @@ package org.Model;
 
 import java.util.Iterator;
 
-import org.View.View;
-
 /**
  * Created by lulu on 19/11/17.
  */
 public class Model {
     private static Model model = null;
-    private static final int HEIGHT = 4;
-    private static final int WIDTH = 4;
+    private static final int HEIGHT = 16;
+    private static final int WIDTH = 16;
+    private static final int NB_HOLES = 16;
 
     private Graph graph;
-    private Personnage player;
-    private Personnage villain;
+    private Character player;
+    private Character villain;
 		
 	
 
@@ -22,8 +21,8 @@ public class Model {
         super();
         graph = new Graph(Edge.class);
         graph.buildRandomPath();
-        player = new Personnage(0, 0);
-        villain = new Personnage(0, 0, Personnage.Type.Bad);
+        player = new Character(0, 0);
+        villain = new Character(0, 0, Character.Type.BAD);
     }
 
     public static Model getInstance(){
@@ -45,9 +44,14 @@ public class Model {
         return WIDTH;
     }
 
-	public Personnage getPlayer() {
+	public Character getPlayer() {
 		return player;
 	}
+
+	public static int getNB_HOLES() {
+		return NB_HOLES;
+	}
+
 	public boolean checkMove(Directions direction) {
 		Iterator<Edge> graphEdgesIterator = graph.edgeSet().iterator();
         Edge E;
@@ -65,10 +69,8 @@ public class Model {
                             && (E.getTarget().getX() == x_source && E.getTarget().getY() == y_source-1))
                             || ((E.getSource().getX() == x_source && E.getSource().getY() == y_source-1)
                             && (E.getTarget().getX() == x_source && E.getTarget().getY() == y_source))) {
-                        System.out.println(player.getY());
-		                player.setY(player.getY()-1);
-                        System.out.println(player.getY());
-		            	return true;
+                        player.setY(player.getY()-1);
+                        return true;
 		            }		            	   
 		        }
 				return false;
@@ -83,12 +85,11 @@ public class Model {
                             && (E.getTarget().getX() == x_source && E.getTarget().getY() == y_source+1))
                             || ((E.getSource().getX() == x_source && E.getSource().getY() == y_source+1)
                             && (E.getTarget().getX() == x_source && E.getTarget().getY() == y_source))) {
-                        System.out.println(player.getY());
                         player.setY(player.getY()+1);
-                        System.out.println(player.getY());
 		            	return true;
 		            }		            	   
 		        }
+
 				return false;				
 			}
 		case EAST:
@@ -125,5 +126,21 @@ public class Model {
 			}
 		}
 		return true;
+	}
+
+	public void createHoles(){
+		for (int i = 0; i < getNB_HOLES(); i++) {
+			int x = graph.getRandomInt(getWIDTH());
+			int y = graph.getRandomInt(getHEIGHT());
+			Vertex v = graph.getVertex(x, y);
+			int direction = graph.getRandomInt(4);
+			switch (direction){
+				case 0:
+					if (graph.doesExist(v, Directions.NORTH)){
+						//TODO
+					}
+			}
+		}
+
 	}
 }

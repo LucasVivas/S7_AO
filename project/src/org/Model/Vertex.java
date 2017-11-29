@@ -15,11 +15,6 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
 		this.y = y;
 	}
 
-    public Vertex(int x, int y, int id) {
-        this.x = x;
-        this.y = y;
-    }
-
     public int getX(){
         return x;
     }
@@ -60,13 +55,13 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
     public boolean inBorders(Directions dir){
         switch (dir){
             case NORTH:
-                return getY()-1>0;
+                return getY()-1>=0;
             case SOUTH:
                 return getY()+1<Model.getHEIGHT();
             case EAST:
                 return getX()+1<Model.getWIDTH();
             case WEST:
-                return getX()-1>0;
+                return getX()-1>=0;
         }
         return false;
     }

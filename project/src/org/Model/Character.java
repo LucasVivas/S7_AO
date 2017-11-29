@@ -1,18 +1,18 @@
 package org.Model;
 
-public class Personnage {
+public class Character {
 	private int x,y;
 	public enum Type{
 		GOOD,
-		Bad;
+		BAD;
 	}
 	Type type;
-	public Personnage(int x, int y) {
+	public Character(int x, int y) {
 		this.x = x;
 		this.y = y;
 		this.type = Type.GOOD;
 	}
-	public Personnage(int x, int y, Type type) {
+	public Character(int x, int y, Type type) {
 		this.x = x;
 		this.y = y;
 		this.type = type;

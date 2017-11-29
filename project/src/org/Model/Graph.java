@@ -16,7 +16,7 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
     }
 
     public void buildRandomPath(){
-        Vertex v = new Vertex(0,0, 0);
+        Vertex v = new Vertex(0,0);
         addVertex(v);
         buildRandomPathRec(v);
     }
@@ -116,5 +116,19 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
 		return null;
 	}
 
+	public Vertex getVertex (int x, int y){
+	    Set<Vertex> vertexSet = vertexSet();
+	    Iterator<Vertex> iterator = vertexSet.iterator();
+	    while (iterator.hasNext()){
+	        Vertex v = iterator.next();
+	        if (v.getX() == x && v.getY() == y){
+	            return v;
+            }
+        }
+        return null;
+    }
 
+    public int getRandomInt (int max){
+	    return random.nextInt(max);
+    }
 }
