@@ -4,7 +4,7 @@ import javafx.scene.image.ImageView;
 
 public abstract class VPersonnage{
 
-    ImageView imagePersonnage;
+    protected ImageView imagePersonnage;
 
     public ImageView getImagePlayer() {
         return imagePersonnage;
