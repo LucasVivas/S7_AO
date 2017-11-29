@@ -32,11 +32,11 @@ public class View {
     public static final Paint WALLCOLOR = Color.BURLYWOOD;
     public static final Paint SCENECOLOR = Color.ALICEBLUE;
     public static final Group root = new Group();
-    private VPlayer vplayer;
+    public VPlayer vplayer;
 
     private View() {
         super();
-        vplayer = new VPlayer();
+        vplayer = VPlayer.getInstance();
     }
 
     public static void drawFrame(Stage stage, int nbrX, int nbrY) {
@@ -145,27 +145,6 @@ public class View {
         double y = controller.getModel().getPlayer().getY();
         vplayer.setX(x);
         vplayer.setY(y);
-        vplayer.getImagePlayer().setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent ke) {
-                if (ke.getCode().equals(KeyCode.RIGHT)) {
-                	if (controller.getModel().checkMove(Directions.EAST))
-                		vplayer.setX(controller.getModel().getPlayer().getX());
-                }
-                if (ke.getCode().equals(KeyCode.LEFT)) {
-                	if (controller.getModel().checkMove(Directions.WEST))
-                		vplayer.setX(controller.getModel().getPlayer().getX());
-                }
-                if (ke.getCode().equals(KeyCode.UP)) {
-                	if (controller.getModel().checkMove(Directions.NORTH))
-                		vplayer.setY(controller.getModel().getPlayer().getY());
-                }
-                if (ke.getCode().equals(KeyCode.DOWN)) {
-                	if (controller.getModel().checkMove(Directions.SOUTH))
-                		vplayer.setY(controller.getModel().getPlayer().getY());
-                }
-            }
-        });
         vplayer.getImagePlayer().setFocusTraversable(true);
         root.getChildren().add(vplayer.getImagePlayer());
     }
