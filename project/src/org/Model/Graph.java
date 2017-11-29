@@ -7,12 +7,18 @@ import java.util.*;
 
 public class Graph extends SimpleGraph<Vertex,Edge>{
 
+    private static Graph mInstance;
     private Random random = new Random();
-    private static int cpt = 0;
 
     public Graph(Class<? extends Edge> edgeClass) {
         super(edgeClass);
+    }
 
+    public static Graph getInstance() {
+        if (mInstance == null) {
+            mInstance = new Graph(Edge.class);
+        }
+        return mInstance;
     }
 
     public void buildRandomPath(){
@@ -38,8 +44,6 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         for(int i=0;i<4;++i){
             Directions dir=directions[i];
             if(vertex.inBorders(dir) && !doesExist(vertex,dir)){
-                cpt++;
-
                 int x=vertex.getX();
                 int y=vertex.getY();
                 int xt=0,yt=0;
