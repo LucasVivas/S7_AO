@@ -19,12 +19,13 @@ public class View {
     private static View view = null;
     private static Controller controller = Controller.getInstance();
 
-
+    public VBadGuy vbadguy;
     public VPlayer vplayer;
 
     private View() {
         super();
         vplayer = new VPlayer();
+        vbadguy = new VBadGuy();
     }
 
 
@@ -35,11 +36,12 @@ public class View {
         Graph graph = controller.getModel().getGraph();
         System.out.println(graph.vertexSet().size());
         System.out.println(graph.edgeSet().size());
-        primaryStage.setWidth(((WALL + CELL) * nbrX + WALL) * SPAN);
-        primaryStage.setHeight(((WALL + CELL) * nbrY + WALL) * SPAN);
+        primaryStage.setWidth(((WALL + CELL) * nbrX + WALL+ WALL-1) * SPAN);
+        primaryStage.setHeight(((WALL + CELL) * nbrY + WALL+ CELL-1) * SPAN);
         primaryStage.setTitle("Labyrinthe");
         VGraph.drawMaze(primaryStage, nbrX, nbrY,graph.edgeSet());
         drawPlayer();
+        drawBadGuy();
         primaryStage.show();
     }
 
@@ -52,6 +54,16 @@ public class View {
         vplayer.setY(y);
         vplayer.getImagePlayer().setFocusTraversable(true);
         root.getChildren().add(vplayer.getImagePlayer());
+    }
+    
+    private void drawBadGuy(){
+
+        double x = controller.getModel().getVillain().getX();
+        double y = controller.getModel().getVillain().getY();
+        vbadguy.setX(x);
+        vbadguy.setY(y);
+        vbadguy.getImagePlayer().setFocusTraversable(true);
+        root.getChildren().add(vbadguy.getImagePlayer());
     }
 
     public static View getInstance(){

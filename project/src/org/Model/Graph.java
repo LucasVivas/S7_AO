@@ -24,6 +24,7 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
     public void buildRandomPath(){
         Vertex v = new Vertex(0,0);
         addVertex(v);
+        v.setNbr(0);
         buildRandomPathRec(v);
     }
 
@@ -66,12 +67,41 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
                         break;
                 }
                 Vertex next = new Vertex(xt,yt);
+                next.setNbr(vertex.getNbr()+1);
                 addVertex(next);
                 Edge e = new Edge(vertex, next, Edge.Type.CORRIDOR);
                 addEdge(vertex, next, e);
                 buildRandomPathRec(next);
             }
         }
+    }
+    
+    public Vertex vertexByDir(Vertex vertex, Directions dir) {
+    	Vertex res;
+    	switch(dir) {
+    		case NORTH:
+    			if(doesExist(vertex, Directions.NORTH)) {
+    				res = getVertex(vertex.getX(),vertex.getY()-1);
+    				return res;
+    			}
+    		case SOUTH:
+    			if(doesExist(vertex, Directions.NORTH)) {
+    				res = getVertex(vertex.getX(),vertex.getY()+1);
+    				return res;
+    			}
+    		case EAST:
+    			if(doesExist(vertex, Directions.NORTH)) {
+    				res = getVertex(vertex.getX()+1,vertex.getY());
+    				return res;
+    			}
+    		case WEST:
+    			if(doesExist(vertex, Directions.NORTH)) {
+    				res = getVertex(vertex.getX()-1,vertex.getY());
+    				return res;
+    			}
+    		
+    	}
+		return null;
     }
 
     public boolean doesExist(Vertex vertex, Directions dir){

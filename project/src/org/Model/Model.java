@@ -1,6 +1,8 @@
 package org.Model;
 
+import java.util.ArrayDeque;
 import java.util.Iterator;
+import java.util.Queue;
 
 /**
  * Created by lulu on 19/11/17.
@@ -23,7 +25,7 @@ public class Model {
 		graph.buildRandomPath();
 
 		player = new Character(0, 0);
-		villain = new Character(0, 0, Character.Type.BAD);
+		villain = new Character(8, 8, Character.Type.BAD);
 	}
 
     public static Model getInstance(){
@@ -47,6 +49,10 @@ public class Model {
 
 	public Character getPlayer() {
 		return player;
+	}
+	
+	public Character getVillain() {
+		return villain;
 	}
 
 	public static int getNB_HOLES() {
@@ -128,6 +134,35 @@ public class Model {
 		}
 		return true;
 	}
+	
+	private void calculateManhattanDistance(Vertex source, Vertex target) {
+        Queue<Vertex> fifo = new ArrayDeque<Vertex>();
+        target.setNbr(1);
+        fifo.add(target);
+        while(!fifo.isEmpty()) {
+            Vertex actual = fifo.remove();
+            for (Directions dir : Directions.values()) {
+                if (this.graph.doesExist(actual, dir)) {
+                    Vertex next = graph.vertexByDir(actual, dir);
+                    if (next.getNbr() == 0) {
+                        next.setNbr(actual.getNbr()+1);
+                        if (next != source) {
+                            fifo.add(next);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    public void launchManhattan(Vertex source, Vertex target) {
+        for (Object vertex : graph.vertexSet()) {
+            ((Vertex) vertex).setNbr(0);
+        }
+        calculateManhattanDistance(source, target);
+    }
+    
+
 
 	public void createHoles(){
 		for (int i = 0; i < getNB_HOLES(); i++) {

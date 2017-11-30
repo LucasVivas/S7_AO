@@ -9,8 +9,17 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
 
     private int x;
     private int y;
+    private int nbr;
 
-    public Vertex(int x, int y) {
+    public int getNbr() {
+		return nbr;
+	}
+
+	public void setNbr(int nbr) {
+		this.nbr = nbr;
+	}
+
+	public Vertex(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
@@ -19,7 +28,14 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
         return x;
     }
 
-    public int getY(){
+    public Vertex(int x, int y, int nbr) {
+		super();
+		this.x = x;
+		this.y = y;
+		this.nbr = nbr;
+	}
+
+	public int getY(){
         return y;
     }
 
