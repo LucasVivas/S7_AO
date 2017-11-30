@@ -13,7 +13,7 @@ import static org.View.VConsts.*;
 
 class VGraph {
 
-    static void drawMaze(Stage stage, int nbrX, int nbrY, Set<Edge> graphEdges){
+    static void drawMaze(Stage stage, Set<Edge> graphEdges){
         drawFrame(stage, nbrX, nbrY);
         drawAllWalls(WALLCOLOR,nbrX,nbrY);
         drawWalls(graphEdges,SCENECOLOR);

@@ -30,22 +30,21 @@ public class View {
 
 
     public void start(Stage primaryStage) {
-        int nbrX = Model.getWIDTH();
-        int nbrY = Model.getHEIGHT();
+        nbrX = Model.getWIDTH();
+        nbrY = Model.getHEIGHT();
         Graph graph = controller.getModel().getGraph();
         System.out.println(graph.vertexSet().size());
         System.out.println(graph.edgeSet().size());
         primaryStage.setWidth(((WALL + CELL) * nbrX + WALL) * SPAN);
         primaryStage.setHeight(((WALL + CELL) * nbrY + WALL) * SPAN);
         primaryStage.setTitle("Labyrinthe");
-        VGraph.drawMaze(primaryStage, nbrX, nbrY,graph.edgeSet());
+        VGraph.drawMaze(primaryStage,graph.edgeSet());
         drawPlayer();
         primaryStage.show();
     }
 
 
     private void drawPlayer(){
-
         double x = controller.getModel().getPlayer().getX();
         double y = controller.getModel().getPlayer().getY();
         vplayer.setX(x);

@@ -2,14 +2,13 @@ package org.Model;
 
 import java.util.Iterator;
 
+import static org.Model.MConsts.*;
+
 /**
  * Created by lulu on 19/11/17.
  */
 public class Model {
     private static Model model = null;
-    private static final int HEIGHT = 16;
-    private static final int WIDTH = 16;
-    private static final int NB_HOLES = 16;
 
     private Graph graph;
     private Character player;
@@ -22,8 +21,8 @@ public class Model {
 		graph = Graph.getInstance();
 		graph.buildRandomPath();
 
-		player = new Character(0, 0);
-		villain = new Character(0, 0, Character.Type.BAD);
+		player = new Player(0, 0);
+		villain = new BadGuy(0, 0);
 	}
 
     public static Model getInstance(){
