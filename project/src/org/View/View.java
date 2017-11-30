@@ -20,11 +20,13 @@ public class View {
     private static Controller controller = Controller.getInstance();
 
     public VPlayer vplayer;
+    public VDoor vdoor;
     public VBadGuy [] vbadguy;
 
     private View() {
         super();
         vplayer = new VPlayer();
+        vdoor = new VDoor();
         vbadguy = new VBadGuy[4];
     }
 
@@ -38,17 +40,26 @@ public class View {
         primaryStage.setHeight(((WALL + CELL) * (nbrY+1) + WALL) * SPAN);
         primaryStage.setTitle("Labyrinthe");
         VGraph.drawMaze(primaryStage,graph.edgeSet());
+        drawDoor();
         drawPlayer();
         primaryStage.show();
     }
 
+    private void drawDoor(){
+        int x = controller.getModel().getDoor().getX();
+        int y = controller.getModel().getDoor().getY();
+        vdoor.setX(x);
+        vdoor.setY(y);
+        //vdoor.getImagePlayer().setFocusTraversable(true); //Lucas ne sais pas ce que ca fait
+        root.getChildren().add(vdoor.getImagePlayer());
+    }
     private void drawBadGuys(){
         //TODO
     }
 
     private void drawPlayer(){
-        double x = controller.getModel().getPlayer().getX();
-        double y = controller.getModel().getPlayer().getY();
+        int x = controller.getModel().getPlayer().getX();
+        int y = controller.getModel().getPlayer().getY();
         vplayer.setX(x);
         vplayer.setY(y);
         vplayer.getImagePlayer().setFocusTraversable(true);

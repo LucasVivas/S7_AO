@@ -86,17 +86,17 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
     				return res;
     			}
     		case SOUTH:
-    			if(doesExist(vertex, Directions.NORTH)) {
+    			if(doesExist(vertex, Directions.SOUTH)) {
     				res = getVertex(vertex.getX(),vertex.getY()+1);
     				return res;
     			}
     		case EAST:
-    			if(doesExist(vertex, Directions.NORTH)) {
+    			if(doesExist(vertex, Directions.EAST)) {
     				res = getVertex(vertex.getX()+1,vertex.getY());
     				return res;
     			}
     		case WEST:
-    			if(doesExist(vertex, Directions.NORTH)) {
+    			if(doesExist(vertex, Directions.WEST)) {
     				res = getVertex(vertex.getX()-1,vertex.getY());
     				return res;
     			}
@@ -118,6 +118,8 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
                         next.setNbr(actual.getNbr()+1);
                         if(next != source)
                             fifo.add(next);
+                        else
+                            source.setNbr(actual.getNbr()+1);
                     }
                 }
             }
@@ -131,18 +133,16 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
     }
 
     public Vertex furthestVertex(Vertex source) throws VertexNotInGraphException {
-        if (!this.containsVertex(source)){
-            throw new VertexNotInGraphException(source);
-        }
-        Vertex target;
+        //if (!this.containsVertex(source)){
+        //    throw new VertexNotInGraphException(source);
+        //}
         int max = 0;
         Vertex maxVertex = null;
+        launchManhattan(source,source);
         for (int x = 0; x < Model.getWIDTH(); x++) {
             for (int y = 0; y < Model.getHEIGHT(); y++) {
-                target = new Vertex(x,y);
-                launchManhattan(source,target);
-                if(max < source.getNbr()){
-                    maxVertex = target;
+                if(max < getInstance().getVertex(x,y).getNbr()){
+                    maxVertex = getInstance().getVertex(x,y);
                 }
             }
         }

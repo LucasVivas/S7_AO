@@ -24,16 +24,21 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
 		this.y = y;
 	}
 
+    public Vertex(int x, int y, int nbr) {
+        super();
+        this.x = x;
+        this.y = y;
+        this.nbr = nbr;
+    }
+
+    public Vertex(Vertex vertex){
+        this.x = vertex.getX();
+        this.y = vertex.getY();
+        this.nbr = vertex.getNbr();
+    }
     public int getX(){
         return x;
     }
-
-    public Vertex(int x, int y, int nbr) {
-		super();
-		this.x = x;
-		this.y = y;
-		this.nbr = nbr;
-	}
 
 	public int getY(){
         return y;

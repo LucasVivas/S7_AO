@@ -12,6 +12,7 @@ public class Model {
 
     private Graph graph;
     private Player player;
+    private Door door;
     private BadGuy badGuys[];
 		
 	
@@ -20,9 +21,10 @@ public class Model {
 		super();
 		graph = Graph.getInstance();
 		graph.buildRandomPath();
-
-		player = new Player(0, 0);
-		badGuys = new BadGuy[NB_BADGUYS];
+		player = Player.getInstance();
+		door = new Door();
+        //System.out.println("door : "+door.getX()+",,,"+door.getY());
+        badGuys = new BadGuy[NB_BADGUYS];
 	}
 
     public static Model getInstance(){
@@ -47,6 +49,8 @@ public class Model {
 	public Character getPlayer() {
 		return player;
 	}
+
+	public Door getDoor(){return door;}
 
 	public static int getNB_HOLES() {
 		return NB_HOLES;

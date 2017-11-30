@@ -15,4 +15,8 @@ final class VConsts {
 
     static int nbrX;
     static int nbrY;
+
+    static final String PATHPLAYER = "../Ressources/player.png";
+    static final String PATHBADGUY = "../Ressources/bad.png";
+    static final String PATHDOOR = "../Ressources/door_open.png";
 }

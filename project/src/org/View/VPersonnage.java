@@ -8,11 +8,15 @@ public abstract class VPersonnage extends VSprite{ //j'ai laisser cette classe m
         super(pathToImage);
     }
 
+    @Override
     public void setX(double x) {
-        imagePersonnage.setX((VConsts.WALL + x * (VConsts.WALL + VConsts.CELL)) * VConsts.SPAN);
+        super.setX(x);
     }
 
+    @Override
     public void setY(double y) {
-        imagePersonnage.setY((VConsts.WALL + y * (VConsts.WALL + VConsts.CELL)) * VConsts.SPAN);
+        super.setY(y);
     }
+
+
 }

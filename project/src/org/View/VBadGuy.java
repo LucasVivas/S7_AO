@@ -1,12 +1,11 @@
 package org.View;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import static org.View.VConsts.PATHBADGUY;
 
 public class VBadGuy extends VPersonnage {
 
     public VBadGuy(){
-        super("../Ressources/bad.png");
+        super(PATHBADGUY);
     }
 
 }
