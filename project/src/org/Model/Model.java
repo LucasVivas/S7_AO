@@ -57,75 +57,39 @@ public class Model {
         Edge E;
 		int x_source = player.getX();
 		int y_source = player.getY();
+		int xTmp = 0;
+		int yTmp = 0;
+
+		if (!new Vertex(x_source,y_source).inBorders(direction))
+		    return false;
+
 		switch (direction) {
 		case NORTH :
-			if (y_source == 0) {
-				return false;
-			} else {
-				while (graphEdgesIterator.hasNext()) {
-		            E = graphEdgesIterator.next();
-                    System.out.println(E.toString());
-		            if(((E.getSource().getX() == x_source && E.getSource().getY() == y_source)
-                            && (E.getTarget().getX() == x_source && E.getTarget().getY() == y_source-1))
-                            || ((E.getSource().getX() == x_source && E.getSource().getY() == y_source-1)
-                            && (E.getTarget().getX() == x_source && E.getTarget().getY() == y_source))) {
-                        player.setY(player.getY()-1);
-                        return true;
-		            }		            	   
-		        }
-				return false;
-			}
+		    yTmp = -1;
+		    break;
 		case SOUTH:
-			if (y_source == HEIGHT) {
-				return false;
-			} else {
-		        while (graphEdgesIterator.hasNext()) {
-		            E = graphEdgesIterator.next();
-                    if(((E.getSource().getX() == x_source && E.getSource().getY() == y_source)
-                            && (E.getTarget().getX() == x_source && E.getTarget().getY() == y_source+1))
-                            || ((E.getSource().getX() == x_source && E.getSource().getY() == y_source+1)
-                            && (E.getTarget().getX() == x_source && E.getTarget().getY() == y_source))) {
-                        player.setY(player.getY()+1);
-		            	return true;
-		            }		            	   
-		        }
-
-				return false;				
-			}
+		    yTmp = 1;
+            break;
 		case EAST:
-			if (x_source == WIDTH) {
-				return false;
-			} else {
-				while (graphEdgesIterator.hasNext()) {
-		            E = graphEdgesIterator.next();
-		            if(((E.getSource().getX() == x_source && E.getSource().getY() == y_source)
-                            && (E.getTarget().getX() == x_source+1 && E.getTarget().getY() == y_source))
-                            || ((E.getSource().getX() == x_source+1 && E.getSource().getY() == y_source)
-                            && (E.getTarget().getX() == x_source && E.getTarget().getY() == y_source))) {
-		            	player.setX(player.getX()+1);
-		            	return true;
-		            }		            	   
-		        }
-				return false;
-			}
+		    xTmp = 1;
+			break;
 		case WEST:
-			if (x_source == 0) {
-				return false;
-			} else {
-				while (graphEdgesIterator.hasNext()) {
-		            E = graphEdgesIterator.next();
-                    if(((E.getSource().getX() == x_source && E.getSource().getY() == y_source)
-                            && (E.getTarget().getX() == x_source-1 && E.getTarget().getY() == y_source))
-                            || ((E.getSource().getX() == x_source-1 && E.getSource().getY() == y_source)
-                            && (E.getTarget().getX() == x_source && E.getTarget().getY() == y_source))) {
-		            	player.setX(player.getX()-1);
-		            	return true;
-		            }		            	   
-		        }
-				return false;
-			}
+		    xTmp = -1;
+			break;
 		}
-		return true;
+
+        while (graphEdgesIterator.hasNext()) {
+            E = graphEdgesIterator.next();
+            if(((E.getSource().getX() == x_source && E.getSource().getY() == y_source)
+                    && (E.getTarget().getX() == x_source + xTmp && E.getTarget().getY() == y_source + yTmp))
+                    || ((E.getSource().getX() == x_source + xTmp && E.getSource().getY() == y_source + yTmp)
+                    && (E.getTarget().getX() == x_source && E.getTarget().getY() == y_source))) {
+                player.setX(player.getX() + xTmp);
+                player.setY(player.getY() + yTmp);
+                return true;
+            }
+        }
+        return false;
 	}
 
 	public void createHoles(){

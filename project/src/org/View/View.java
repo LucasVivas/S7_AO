@@ -19,7 +19,6 @@ public class View {
     private static View view = null;
     private static Controller controller = Controller.getInstance();
 
-
     public VPlayer vplayer;
     public VBadGuy [] vbadguy;
 
@@ -28,8 +27,6 @@ public class View {
         vplayer = new VPlayer();
         vbadguy = new VBadGuy[4];
     }
-
-
 
     public void start(Stage primaryStage) {
         nbrX = Model.getWIDTH();
