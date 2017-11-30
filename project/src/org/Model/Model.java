@@ -11,8 +11,8 @@ public class Model {
     private static Model model = null;
 
     private Graph graph;
-    private Character player;
-    private Character badGuys[];
+    private Player player;
+    private BadGuy badGuys[];
 		
 	
 
@@ -50,46 +50,6 @@ public class Model {
 
 	public static int getNB_HOLES() {
 		return NB_HOLES;
-	}
-
-	public boolean checkMove(Directions direction) {
-		Iterator<Edge> graphEdgesIterator = graph.edgeSet().iterator();
-        Edge E;
-		int x_source = player.getX();
-		int y_source = player.getY();
-		int xTmp = 0;
-		int yTmp = 0;
-
-		if (!new Vertex(x_source,y_source).inBorders(direction))
-		    return false;
-
-		switch (direction) {
-		case NORTH :
-		    yTmp = -1;
-		    break;
-		case SOUTH:
-		    yTmp = 1;
-            break;
-		case EAST:
-		    xTmp = 1;
-			break;
-		case WEST:
-		    xTmp = -1;
-			break;
-		}
-
-        while (graphEdgesIterator.hasNext()) {
-            E = graphEdgesIterator.next();
-            if(((E.getSource().getX() == x_source && E.getSource().getY() == y_source)
-                    && (E.getTarget().getX() == x_source + xTmp && E.getTarget().getY() == y_source + yTmp))
-                    || ((E.getSource().getX() == x_source + xTmp && E.getSource().getY() == y_source + yTmp)
-                    && (E.getTarget().getX() == x_source && E.getTarget().getY() == y_source))) {
-                player.setX(player.getX() + xTmp);
-                player.setY(player.getY() + yTmp);
-                return true;
-            }
-        }
-        return false;
 	}
 
 	public void createHoles(){

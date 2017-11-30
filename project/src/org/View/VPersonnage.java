@@ -15,5 +15,4 @@ public abstract class VPersonnage extends VSprite{ //j'ai laisser cette classe m
     public void setY(double y) {
         imagePersonnage.setY((VConsts.WALL + y * (VConsts.WALL + VConsts.CELL)) * VConsts.SPAN);
     }
-
 }

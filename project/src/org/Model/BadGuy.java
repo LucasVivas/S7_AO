@@ -5,4 +5,9 @@ public class BadGuy extends Character{
         super(x,y);
     }
 
+    @Override
+    public boolean move(Directions direction) {
+        return false;
+    }
+
 }

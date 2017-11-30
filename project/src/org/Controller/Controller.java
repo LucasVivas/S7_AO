@@ -35,19 +35,19 @@ public class Controller {
              @Override
              public void handle(KeyEvent ke) {
                  if (ke.getCode().equals(KeyCode.RIGHT)) {
-                 	if (controller.getModel().checkMove(Directions.EAST))
+                 	if (controller.getModel().getPlayer().move(Directions.EAST))
                  		view.vplayer.setX(controller.getModel().getPlayer().getX());
                  }
                  if (ke.getCode().equals(KeyCode.LEFT)) {
-                 	if (controller.getModel().checkMove(Directions.WEST))
+                 	if (controller.getModel().getPlayer().move(Directions.WEST))
                  		view.vplayer.setX(controller.getModel().getPlayer().getX());
                  }
                  if (ke.getCode().equals(KeyCode.UP)) {
-                 	if (controller.getModel().checkMove(Directions.NORTH))
+                 	if (controller.getModel().getPlayer().move(Directions.NORTH))
                  		view.vplayer.setY(controller.getModel().getPlayer().getY());
                  }
                  if (ke.getCode().equals(KeyCode.DOWN)) {
-                 	if (controller.getModel().checkMove(Directions.SOUTH))
+                 	if (controller.getModel().getPlayer().move(Directions.SOUTH))
                  		view.vplayer.setY(controller.getModel().getPlayer().getY());
                  }
              }
