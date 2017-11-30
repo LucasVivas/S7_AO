@@ -12,4 +12,7 @@ final class VConsts {
     static final Paint WALLCOLOR = Color.BURLYWOOD;
     static final Paint SCENECOLOR = Color.ALICEBLUE;
     static final Group root = new Group();
+
+    static int nbrX;
+    static int nbrY;
 }
