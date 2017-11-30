@@ -46,7 +46,7 @@ public class View {
     }
 
     private void drawBadGuys(){
-
+        //TODO
     }
 
     private void drawPlayer(){

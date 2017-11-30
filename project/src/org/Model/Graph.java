@@ -1,16 +1,17 @@
 package org.Model;
 
 import org.jgrapht.graph.SimpleGraph;
-
-
 import java.util.*;
 
+/**
+ *
+ */
 public class Graph extends SimpleGraph<Vertex,Edge>{
 
     private static Graph mInstance;
     private Random random = new Random();
 
-    public Graph(Class<? extends Edge> edgeClass) {
+    private Graph(Class<? extends Edge> edgeClass) {
         super(edgeClass);
     }
 
@@ -102,6 +103,50 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
     		
     	}
 		return null;
+    }
+
+    private void calculateManhattanDistance(Vertex source, Vertex target){
+        Queue<Vertex> fifo = new ArrayDeque<>();
+        target.setNbr(1);
+        fifo.add(target);
+        while(!fifo.isEmpty()){
+            Vertex actual = fifo.remove();
+            for(Directions dir : Directions.values()){
+                if(this.doesExist(actual,dir)){
+                    Vertex next = mInstance.vertexByDir(actual,dir);
+                    if(next.getNbr() == 0){
+                        next.setNbr(actual.getNbr()+1);
+                        if(next != source)
+                            fifo.add(next);
+                    }
+                }
+            }
+        }
+    }
+
+    public void launchManhattan(Vertex source,Vertex target){
+        for(Vertex vertex : mInstance.vertexSet())
+            vertex.setNbr(0);
+        calculateManhattanDistance(source, target);
+    }
+
+    public Vertex furthestVertex(Vertex source) throws VertexNotInGraphException {
+        if (!this.containsVertex(source)){
+            throw new VertexNotInGraphException(source);
+        }
+        Vertex target;
+        int max = 0;
+        Vertex maxVertex = null;
+        for (int x = 0; x < Model.getWIDTH(); x++) {
+            for (int y = 0; y < Model.getHEIGHT(); y++) {
+                target = new Vertex(x,y);
+                launchManhattan(source,target);
+                if(max < source.getNbr()){
+                    maxVertex = target;
+                }
+            }
+        }
+        return maxVertex;
     }
 
     public boolean doesExist(Vertex vertex, Directions dir){

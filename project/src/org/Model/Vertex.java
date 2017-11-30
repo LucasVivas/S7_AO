@@ -94,6 +94,8 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
         return v;
     }
 
+
+
     @Override
     public String toString(){
         return "("+getX()+", "+getY()+ ")";
