@@ -2,12 +2,10 @@ package org.View;
 
 import javafx.scene.image.ImageView;
 
-public abstract class VPersonnage{
+public abstract class VPersonnage extends VSprite{ //j'ai laisser cette classe mais il y a moyen qu'on en ai plus besoin
 
-    protected ImageView imagePersonnage;
-
-    public ImageView getImagePlayer() {
-        return imagePersonnage;
+    protected VPersonnage(String pathToImage) {
+        super(pathToImage);
     }
 
     public void setX(double x) {

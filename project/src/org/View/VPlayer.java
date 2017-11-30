@@ -5,11 +5,7 @@ import javafx.scene.image.ImageView;
 
 public class VPlayer extends VPersonnage{
 
-	public VPlayer(){
-        Image image = new Image(getClass().getResource("../Ressources/player.png").toExternalForm());
-        this.imagePersonnage =  new ImageView((image));
-	}
-	
-
-
+    public VPlayer() {
+        super("../Ressources/player.png");
+    }
 }
