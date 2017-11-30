@@ -23,7 +23,6 @@ public class Model {
 
 		player = new Player(0, 0);
 		badGuys = new BadGuy[NB_BADGUYS];
-
 	}
 
     public static Model getInstance(){
