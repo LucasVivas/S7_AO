@@ -12,7 +12,7 @@ public class Model {
 
     private Graph graph;
     private Character player;
-    private Character villain;
+    private Character badGuys[];
 		
 	
 
@@ -22,7 +22,8 @@ public class Model {
 		graph.buildRandomPath();
 
 		player = new Player(0, 0);
-		villain = new BadGuy(0, 0);
+		badGuys = new BadGuy[NB_BADGUYS];
+
 	}
 
     public static Model getInstance(){
@@ -139,6 +140,22 @@ public class Model {
 					if (graph.doesExist(v, Directions.NORTH)){
 						//TODO
 					}
+					break;
+                case 1:
+                    if (graph.doesExist(v, Directions.SOUTH)){
+                        //TODO
+                    }
+                    break;
+                case 2:
+                    if (graph.doesExist(v, Directions.EAST)){
+                        //TODO
+                    }
+                    break;
+                case 3:
+                    if (graph.doesExist(v, Directions.WEST)){
+                        //TODO
+                    }
+                    break;
 			}
 		}
 

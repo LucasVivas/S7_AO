@@ -21,10 +21,12 @@ public class View {
 
 
     public VPlayer vplayer;
+    public VBadGuy [] vbadguy;
 
     private View() {
         super();
         vplayer = new VPlayer();
+        vbadguy = new VBadGuy[4];
     }
 
 
@@ -36,13 +38,16 @@ public class View {
         System.out.println(graph.vertexSet().size());
         System.out.println(graph.edgeSet().size());
         primaryStage.setWidth(((WALL + CELL) * nbrX + WALL) * SPAN);
-        primaryStage.setHeight(((WALL + CELL) * nbrY + WALL) * SPAN);
+        primaryStage.setHeight(((WALL + CELL) * (nbrY+1) + WALL) * SPAN);
         primaryStage.setTitle("Labyrinthe");
         VGraph.drawMaze(primaryStage,graph.edgeSet());
         drawPlayer();
         primaryStage.show();
     }
 
+    private void drawBadGuys(){
+
+    }
 
     private void drawPlayer(){
         double x = controller.getModel().getPlayer().getX();
