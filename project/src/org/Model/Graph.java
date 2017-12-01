@@ -112,7 +112,7 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         while(!fifo.isEmpty()){
             Vertex actual = fifo.remove();
             for(Directions dir : Directions.values()){
-                if(this.doesExist(actual,dir)){
+                if(doesExist(actual,dir) && containsEdge(actual,vertexByDir(actual,dir))){
                     Vertex next = mInstance.vertexByDir(actual,dir);
                     if(next.getNbr() == 0){
                         next.setNbr(actual.getNbr()+1);
@@ -137,12 +137,15 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         //    throw new VertexNotInGraphException(source);
         //}
         int max = 0;
+        Vertex tmp;
         Vertex maxVertex = null;
         launchManhattan(source,source);
         for (int x = 0; x < Model.getWIDTH(); x++) {
             for (int y = 0; y < Model.getHEIGHT(); y++) {
-                if(max < getInstance().getVertex(x,y).getNbr()){
-                    maxVertex = getInstance().getVertex(x,y);
+                tmp = getInstance().getVertex(x,y);
+                if(max < tmp.getNbr()){
+                    maxVertex = tmp;
+                    max = tmp.getNbr();
                 }
             }
         }
@@ -208,5 +211,21 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
 
     public int getRandomInt (int max){
 	    return random.nextInt(max);
+    }
+
+    @Override
+    public boolean containsEdge(Vertex source, Vertex target) {
+        Iterator<Edge> graphEdgesIterator = Graph.getInstance().edgeSet().iterator();
+        Edge E;
+        while (graphEdgesIterator.hasNext()) {
+            E = graphEdgesIterator.next();
+            if (((E.getSource().getX() == source.getX() && E.getSource().getY() == source.getY())
+                    && (E.getTarget().getX() == target.getX() && E.getTarget().getY() == target.getY()))
+                    || ((E.getSource().getX() == target.getX() && E.getSource().getY() == target.getY())
+                    && (E.getTarget().getX() == source.getX() && E.getTarget().getY() == source.getY()))) {
+                return true;
+            }
+        }
+        return false;
     }
 }

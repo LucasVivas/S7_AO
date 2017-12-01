@@ -1,8 +1,13 @@
 package org.Model;
 
 import java.util.Iterator;
+import java.util.Random;
 
 public class Character extends Vertex{
+    public Character(){
+        super();
+    }
+
     public Character(int x, int y) {
         super(x, y);
     }

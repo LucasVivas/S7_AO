@@ -15,8 +15,4 @@ public class Player extends Character{
         }
         return player;
     }
-
-    public boolean move(Directions directions){
-        return super.move(directions);
-    }
 }

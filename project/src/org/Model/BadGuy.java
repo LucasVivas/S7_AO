@@ -1,12 +1,14 @@
 package org.Model;
 
+import java.util.Random;
+
 public class BadGuy extends Character{
-    public BadGuy(int x, int y){
-        super(x,y);
+    public BadGuy() {//TODO: probleme normalement posibilite de le faire que dans characters et pas dans vertex
+        super();
     }
 
-    @Override
-    public boolean move(Directions direction) {
+    public boolean move() {
+        //TODO
         return false;
     }
 

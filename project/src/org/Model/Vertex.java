@@ -7,8 +7,8 @@ import java.util.Random;
  */
 public class Vertex implements Comparable<Vertex>, Cloneable{
 
-    private int x;
-    private int y;
+    protected int x;
+    protected int y;
     private int nbr;
 
     public int getNbr() {
@@ -19,9 +19,16 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
 		this.nbr = nbr;
 	}
 
+    public Vertex(){
+        Random random = new Random();
+        this.x = random.nextInt(MConsts.WIDTH);
+        this.y = random.nextInt(MConsts.HEIGHT);
+    }
+
 	public Vertex(int x, int y) {
 		this.x = x;
 		this.y = y;
+		this.nbr = 0;
 	}
 
     public Vertex(int x, int y, int nbr) {
