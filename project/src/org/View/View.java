@@ -28,12 +28,14 @@ public class View {
         vplayer = new VPlayer();
         vdoor = new VDoor();
         vbadguy = new VBadGuy[4];
+        for(int i = 0; i < 4; i++) 
+        	vbadguy[i] = new VBadGuy();
     }
 
     public void start(Stage primaryStage) {
         nbrX = Model.getWIDTH();
         nbrY = Model.getHEIGHT();
-        Graph graph = controller.getModel().getGraph();
+        Graph graph = getController().getModel().getGraph();
         System.out.println(graph.vertexSet().size());
         System.out.println(graph.edgeSet().size());
         primaryStage.setWidth(((WALL + CELL) * nbrX + WALL) * SPAN);
@@ -41,25 +43,33 @@ public class View {
         primaryStage.setTitle("Labyrinthe");
         VGraph.drawMaze(primaryStage,graph.edgeSet());
         drawDoor();
+        drawBadGuys();
         drawPlayer();
         primaryStage.show();
     }
 
     private void drawDoor(){
-        int x = controller.getModel().getDoor().getX();
-        int y = controller.getModel().getDoor().getY();
+        int x = getController().getModel().getDoor().getX();
+        int y = getController().getModel().getDoor().getY();
         vdoor.setX(x);
         vdoor.setY(y);
         //vdoor.getImagePlayer().setFocusTraversable(true); //Lucas ne sais pas ce que ca fait
         root.getChildren().add(vdoor.getImagePlayer());
     }
     private void drawBadGuys(){
-        //TODO
+    	for(int i = 0; i < 4; i++) {
+	    	int x = getController().getModel().getBadGuy(i).getX();
+	        int y = getController().getModel().getBadGuy(i).getY();
+	        vbadguy[i].setX(x);
+	        vbadguy[i].setY(y);
+	        //vplayer.getImagePlayer().setFocusTraversable(true);
+	        root.getChildren().add(vbadguy[i].getImagePlayer());
+    	}
     }
 
     private void drawPlayer(){
-        int x = controller.getModel().getPlayer().getX();
-        int y = controller.getModel().getPlayer().getY();
+        int x = getController().getModel().getPlayer().getX();
+        int y = getController().getModel().getPlayer().getY();
         vplayer.setX(x);
         vplayer.setY(y);
         vplayer.getImagePlayer().setFocusTraversable(true);
@@ -73,4 +83,9 @@ public class View {
         }
         return view;
     }
+
+	public static Controller getController() {
+		return controller;
+	}
+
 }

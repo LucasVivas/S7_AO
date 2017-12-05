@@ -35,20 +35,32 @@ public class Controller {
              @Override
              public void handle(KeyEvent ke) {
                  if (ke.getCode().equals(KeyCode.RIGHT)) {
-                 	if (controller.getModel().getPlayer().move(Directions.EAST))
+                 	if (controller.getModel().getPlayer().move(Directions.EAST)) {
                  		view.vplayer.setX(controller.getModel().getPlayer().getX());
+                 		model.getBadGuy(1).moove();
+                 		view.vbadguy[1].move();
+                 	}
                  }
                  if (ke.getCode().equals(KeyCode.LEFT)) {
-                 	if (controller.getModel().getPlayer().move(Directions.WEST))
+                 	if (controller.getModel().getPlayer().move(Directions.WEST)) {
                  		view.vplayer.setX(controller.getModel().getPlayer().getX());
+                 		model.getBadGuy(1).moove();
+                 		view.vbadguy[1].move();
+                 		}
                  }
                  if (ke.getCode().equals(KeyCode.UP)) {
-                 	if (controller.getModel().getPlayer().move(Directions.NORTH))
+                 	if (controller.getModel().getPlayer().move(Directions.NORTH)) {
                  		view.vplayer.setY(controller.getModel().getPlayer().getY());
+                 		model.getBadGuy(1).moove();
+                 		view.vbadguy[1].move();
+                 		}
                  }
                  if (ke.getCode().equals(KeyCode.DOWN)) {
-                 	if (controller.getModel().getPlayer().move(Directions.SOUTH))
+                 	if (controller.getModel().getPlayer().move(Directions.SOUTH)) {
                  		view.vplayer.setY(controller.getModel().getPlayer().getY());
+                 		model.getBadGuy(1).moove();
+                 		view.vbadguy[1].move();
+                 		}
                  }
              }
          });

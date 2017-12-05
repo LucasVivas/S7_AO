@@ -25,6 +25,8 @@ public class Model {
 		door = new Door();
         //System.out.println("door : "+door.getX()+",,,"+door.getY());
         badGuys = new BadGuy[NB_BADGUYS];
+        for(int i = 0; i < 4; i++) 
+        	badGuys[i] = new BadGuy();
 	}
 
     public static Model getInstance(){
@@ -49,7 +51,11 @@ public class Model {
 	public Character getPlayer() {
 		return player;
 	}
-
+	
+	public Character getBadGuy(int index) {
+		return badGuys[index];
+	}
+	
 	public Door getDoor(){return door;}
 
 	public static int getNB_HOLES() {

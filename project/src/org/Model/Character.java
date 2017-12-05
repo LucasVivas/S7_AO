@@ -12,6 +12,10 @@ public class Character extends Vertex{
         super(x, y);
     }
 
+    public void moove() {
+    	
+    }
+    
     public boolean move(Directions direction) {
         Iterator<Edge> graphEdgesIterator = Graph.getInstance().edgeSet().iterator();
         Edge E;
@@ -37,7 +41,7 @@ public class Character extends Vertex{
                 xTmp = -1;
                 break;
         }
-
+        
         while (graphEdgesIterator.hasNext()) {
             E = graphEdgesIterator.next();
             if (((E.getSource().getX() == x_source && E.getSource().getY() == y_source)
