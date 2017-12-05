@@ -23,7 +23,7 @@ public class BadGuy extends Character{
     }*/
     
     public void moove() {
-    	Graph.getInstance().launchManhattan(Player.getInstance(), this);
+    	Graph.getInstance().launchManhattan(this, Player.getInstance());
     }
 
 }

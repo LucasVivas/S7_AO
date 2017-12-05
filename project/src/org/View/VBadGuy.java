@@ -9,8 +9,9 @@ public class VBadGuy extends VPersonnage {
     }
     
     public void move() {
-    	this.setX(View.getController().getModel().getPlayer().getX());
-    	this.setY(View.getController().getModel().getPlayer().getY());
+    	View.getController().getModel().getBadGuy(1).move(View.getController().getModel().getGraph());
+    	this.setX(View.getController().getModel().getBadGuy(1).getX());
+    	this.setY(View.getController().getModel().getBadGuy(1).getY());
     }
 
 }
