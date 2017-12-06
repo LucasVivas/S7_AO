@@ -21,15 +21,4 @@ public class StockGrabber {
         observers.remove(observerIndex);
     }
 
-    public void notifyObserver() {
-        for(Observer observer : observers){
-            observer.update(newX, newY);
-        }
-    }
-
-    public void hasMoved(int x, int y){
-        newX = x;
-        newY = y;
-        notifyObserver();
-    }
 }
