@@ -1,6 +1,8 @@
 package org.Model;
 
 public class Door extends Vertex {
+    private static Door door = null;
+
     public Door() {
         super(0,0);
         Player player = Player.getInstance();
@@ -14,4 +16,7 @@ public class Door extends Vertex {
         super.setX(v.getX());
         super.setY(v.getY());
     }
+
+    public static Door getDoor(){return door;}
+
 }

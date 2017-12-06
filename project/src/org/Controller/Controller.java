@@ -1,8 +1,7 @@
 package org.Controller;
 
-import org.Model.Directions;
-import org.Model.Model;
-import org.Model.Player;
+import javafx.application.Application;
+import org.Model.*;
 import org.View.View;
 
 import javafx.event.EventHandler;
@@ -35,37 +34,45 @@ public class Controller {
     	 view.vplayer.getImagePlayer().setOnKeyPressed(new EventHandler<KeyEvent>() {
              @Override
              public void handle(KeyEvent ke) {
-                 if (ke.getCode().equals(KeyCode.RIGHT)) {
-                 	if (controller.getModel().getPlayer().move(Directions.EAST)) {
-                 		view.vplayer.setX(controller.getModel().getPlayer().getX());
-                 		model.getGraph().launchManhattan(model.getBadGuy(1), Player.getInstance());
-                 		model.getBadGuy(1).move(model.getGraph());
-                 		view.vbadguy[1].move();
-                 	}
-                 }
-                 if (ke.getCode().equals(KeyCode.LEFT)) {
-                 	if (controller.getModel().getPlayer().move(Directions.WEST)) {
-                 		view.vplayer.setX(controller.getModel().getPlayer().getX());
-                 		model.getGraph().launchManhattan(model.getBadGuy(1), Player.getInstance());
-                 		model.getBadGuy(1).move(model.getGraph());
-                 		view.vbadguy[1].move();
-                 		}
-                 }
-                 if (ke.getCode().equals(KeyCode.UP)) {
-                 	if (controller.getModel().getPlayer().move(Directions.NORTH)) {
-                 		view.vplayer.setY(controller.getModel().getPlayer().getY());
-                 		model.getGraph().launchManhattan(model.getBadGuy(1), Player.getInstance());
-                 		model.getBadGuy(1).move(model.getGraph());
-                 		view.vbadguy[1].move();
-                 		}
-                 }
-                 if (ke.getCode().equals(KeyCode.DOWN)) {
-                 	if (controller.getModel().getPlayer().move(Directions.SOUTH)) {
-                 		view.vplayer.setY(controller.getModel().getPlayer().getY());
-                 		model.getGraph().launchManhattan(model.getBadGuy(1), Player.getInstance());
-                 		model.getBadGuy(1).move(model.getGraph());
-                 		view.vbadguy[1].move();
-                 		}
+                 try {
+                     if (ke.getCode().equals(KeyCode.RIGHT)) {
+                         if (controller.getModel().getPlayer().move(Directions.EAST)) {
+                             view.vplayer.setX(controller.getModel().getPlayer().getX());
+                             model.getGraph().launchManhattan(model.getBadGuy(1), Player.getInstance());
+                             model.getBadGuy(1).move(model.getGraph());
+                             view.vbadguy[1].move();
+                             //notifyObserver(
+                         }
+                     }
+                     if (ke.getCode().equals(KeyCode.LEFT)) {
+                         if (controller.getModel().getPlayer().move(Directions.WEST)) {
+                             view.vplayer.setX(controller.getModel().getPlayer().getX());
+                             model.getGraph().launchManhattan(model.getBadGuy(1), Player.getInstance());
+                             model.getBadGuy(1).move(model.getGraph());
+                             view.vbadguy[1].move();
+                         }
+                     }
+                     if (ke.getCode().equals(KeyCode.UP)) {
+                         if (controller.getModel().getPlayer().move(Directions.NORTH)) {
+                             view.vplayer.setY(controller.getModel().getPlayer().getY());
+                             model.getGraph().launchManhattan(model.getBadGuy(1), Player.getInstance());
+                             model.getBadGuy(1).move(model.getGraph());
+                             view.vbadguy[1].move();
+                         }
+                     }
+                     if (ke.getCode().equals(KeyCode.DOWN)) {
+                         if (controller.getModel().getPlayer().move(Directions.SOUTH)) {
+                             view.vplayer.setY(controller.getModel().getPlayer().getY());
+                             model.getGraph().launchManhattan(model.getBadGuy(1), Player.getInstance());
+                             model.getBadGuy(1).move(model.getGraph());
+                             view.vbadguy[1].move();
+                         }
+                     }
+                 }catch (PlayerReachedException e){
+                     System.out.println("You lose !");
+
+                 }catch (FinishedLevelException e){
+                     System.out.println("You win !");
                  }
              }
          });

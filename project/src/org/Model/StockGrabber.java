@@ -31,7 +31,6 @@ public class StockGrabber implements Subject{
     public void hasMoved(int x, int y){
         newX = x;
         newY = y;
-        //manhattanDistance(x,y);
         notifyObserver();
     }
 }

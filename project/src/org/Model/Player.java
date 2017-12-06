@@ -15,4 +15,8 @@ public class Player extends Character{
         }
         return player;
     }
+
+    public static Character getPlayer() {
+        return player;
+    }
 }

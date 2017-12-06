@@ -12,7 +12,7 @@ public class Character extends Vertex{
         super(x, y);
     }
 
-    public void move(Graph graph) {
+    public void move(Graph graph) throws PlayerReachedException, FinishedLevelException {
     		Vertex vertex = this.getVertex(Model.getInstance().getGraph()) ;
     		for (Directions dir : Directions.values()) {
 	    		Vertex next = Graph.getInstance().vertexByDir(vertex, dir) ;
@@ -23,10 +23,10 @@ public class Character extends Vertex{
     		}	
     }
     public Vertex getVertex(Graph graph) {
-    	return graph.getVertex(this.x, this.y);
+    	return graph.getVertex(this.getX(), this.getY());
     }
     
-    public boolean move(Directions direction) {
+    public boolean move(Directions direction) throws PlayerReachedException, FinishedLevelException {
         Iterator<Edge> graphEdgesIterator = Graph.getInstance().edgeSet().iterator();
         Edge E;
         int x_source = getX();
@@ -51,13 +51,22 @@ public class Character extends Vertex{
                 xTmp = -1;
                 break;
         }
-        
+
+
+
         while (graphEdgesIterator.hasNext()) {
             E = graphEdgesIterator.next();
             if (((E.getSource().getX() == x_source && E.getSource().getY() == y_source)
                     && (E.getTarget().getX() == x_source + xTmp && E.getTarget().getY() == y_source + yTmp))
                     || ((E.getSource().getX() == x_source + xTmp && E.getSource().getY() == y_source + yTmp)
                     && (E.getTarget().getX() == x_source && E.getTarget().getY() == y_source))) {
+
+                if(getX()+xTmp == Player.getPlayer().getX() && getY()+yTmp == Player.getPlayer().getY())
+                    throw new PlayerReachedException();
+
+//                if(getX()+xTmp == Door.getDoor().getX() && getY()+yTmp == Door.getDoor().getY())
+//                    throw new FinishedLevelException();
+
                 setX(getX() + xTmp);
                 setY(getY() + yTmp);
                 return true;

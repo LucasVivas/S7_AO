@@ -14,7 +14,6 @@ public class Edge extends DefaultEdge implements Comparable<Edge> {
 	private Vertex target;
 	private Type type;
 
-
 	public Edge() {
 		super();
 		this.type = Type.CORRIDOR;
@@ -67,6 +66,5 @@ public class Edge extends DefaultEdge implements Comparable<Edge> {
 		Edge E = (Edge)obj;
 		return this.getSource() == E.getSource() && this.getTarget() == E.getTarget();
 	}
-
 
 }

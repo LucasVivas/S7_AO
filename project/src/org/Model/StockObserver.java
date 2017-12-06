@@ -17,7 +17,6 @@ public class StockObserver implements Observer{
     public StockObserver(Subject stockGrabber){
         this.stockGrabber = stockGrabber;
         this.observerID = ++observerIDTracker;
-        System.out.println("New Observer " + this.observerID);
         stockGrabber.register(this);
     }
 
@@ -25,11 +24,12 @@ public class StockObserver implements Observer{
     public void update(int newX, int newY){
         this.newX = newX;
         this.newY = newY;
-        printNewCoords();
+        //launchManhattan(x,y);
+//        printNewCoords();
     }
 
-    private void printNewCoords(){
+/*private void printNewCoords(){
         System.out.println(observerID + "\nnewX: " + newX + "\nnewY: " + newY + "\n");
-    }
+    }*/
 
 }

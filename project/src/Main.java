@@ -5,6 +5,8 @@ import org.Controller.Controller;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import org.Model.FinishedLevelException;
+import org.Model.PlayerReachedException;
 
 public class Main extends Application {
     private static Controller controller;
@@ -14,7 +16,7 @@ public class Main extends Application {
         launch(args);
     }
 
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) throws PlayerReachedException, FinishedLevelException {
         controller.start(primaryStage);
     }
 }
