@@ -4,6 +4,8 @@ import org.jgrapht.graph.SimpleGraph;
 import java.util.*;
 
 /**
+ *  @author Lucas Vivas, Gauthier Lamarque & Co.
+ *  The graph class is used to create the graph for the maze.
  *
  */
 public class Graph extends SimpleGraph<Vertex,Edge>{
@@ -15,6 +17,10 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         super(edgeClass);
     }
 
+    /**
+     * Singleton
+     * @return Instance of graph and create an instance if it do not exist.
+     */
     public static Graph getInstance() {
         if (mInstance == null) {
             mInstance = new Graph(Edge.class);

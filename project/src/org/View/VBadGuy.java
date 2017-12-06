@@ -16,5 +16,4 @@ public class VBadGuy extends VPersonnage {
     	this.setX(View.getController().getModel().getBadGuy(1).getX());
     	this.setY(View.getController().getModel().getBadGuy(1).getY());
     }
-
 }

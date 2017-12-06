@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.Model.BadGuy</OriginalElement>
+  <nodes>
+    <node x="886.7083333333333" y="242.0">org.jgrapht.graph.IntrusiveEdge</node>
+    <node x="1401.44683908046" y="242.0">java.lang.Throwable</node>
+    <node x="2210.333333333333" y="454.0">org.Model.Graph</node>
+    <node x="495.70833333333326" y="348.0">org.Model.Door</node>
+    <node x="1908.823275862069" y="242.0">org.jgrapht.graph.AbstractBaseGraph</node>
+    <node x="1963.4568965517242" y="106.0">org.jgrapht.graph.AbstractGraph</node>
+    <node x="592.0" y="555.0">org.Model.GraphTest</node>
+    <node x="665.7083333333333" y="348.0">org.Model.Directions</node>
+    <node x="30.5" y="555.0">org.Model.Observer</node>
+    <node x="689.7083333333333" y="242.0">java.lang.Enum</node>
+    <node x="0.0" y="454.0">org.Model.Player</node>
+    <node x="0.0" y="762.0">org.Model.Model</node>
+    <node x="847.0" y="555.0">org.Model.MConsts</node>
+    <node x="741.5732758620693" y="106.0">java.lang.Cloneable</node>
+    <node x="892.7083333333333" y="348.0">org.jgrapht.graph.DefaultEdge</node>
+    <node x="1759.8232758620693" y="454.0">org.Model.PlayerReachedException</node>
+    <node x="2337.573275862069" y="106.0">java.lang.Deprecated</node>
+    <node x="2236.823275862069" y="242.0">org.jgrapht.UndirectedGraph</node>
+    <node x="336.0" y="555.0">org.Model.Subject</node>
+    <node x="2173.333333333333" y="348.0">org.jgrapht.graph.SimpleGraph</node>
+    <node x="302.0" y="661.0">org.Model.StockGrabber</node>
+    <node x="1405.94683908046" y="348.0">java.lang.Exception</node>
+    <node x="1369.82183908046" y="106.0">java.io.Serializable</node>
+    <node x="1387.8232758620693" y="454.0">org.Model.FinishedLevelException</node>
+    <node x="185.0" y="454.0">org.Model.BadGuy</node>
+    <node x="443.95833333333326" y="242.0">org.Model.Vertex</node>
+    <node x="116.3232758620693" y="348.0">org.Model.Character</node>
+    <node x="2165.581896551724" y="0.0">org.jgrapht.Graph</node>
+    <node x="0.0" y="661.0">org.Model.StockObserver</node>
+    <node x="360.2600574712644" y="106.0">java.lang.Comparable</node>
+    <node x="637.9568965517244" y="454.0">org.Model.Edge</node>
+    <node x="963.8232758620693" y="454.0">org.Model.VertexNotInGraphException</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.Model.BadGuy" target="org.Model.Character">
+      <point x="0.0" y="-28.0" />
+      <point x="275.0" y="429.0" />
+      <point x="268.5732758620693" y="429.0" />
+      <point x="50.75" y="28.0" />
+    </edge>
+    <edge source="org.jgrapht.graph.AbstractGraph" target="org.jgrapht.Graph">
+      <point x="0.0" y="-28.0" />
+      <point x="2091.456896551724" y="81.0" />
+      <point x="2192.581896551724" y="81.0" />
+      <point x="-54.0" y="28.0" />
+    </edge>
+    <edge source="org.Model.StockObserver" target="org.Model.Observer">
+      <point x="0.0" y="-28.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="org.jgrapht.graph.AbstractBaseGraph" target="java.lang.Cloneable">
+      <point x="-115.5" y="-28.0" />
+      <point x="1947.323275862069" y="192.0" />
+      <point x="913.239942528736" y="192.0" />
+      <point x="68.66666666666674" y="28.0" />
+    </edge>
+    <edge source="org.Model.Player" target="org.Model.Character">
+      <point x="0.0" y="-28.0" />
+      <point x="82.5" y="429.0" />
+      <point x="167.0732758620693" y="429.0" />
+      <point x="-50.75" y="28.0" />
+    </edge>
+    <edge source="org.Model.VertexNotInGraphException" target="java.lang.Exception">
+      <point x="0.0" y="-28.0" />
+      <point x="1165.8232758620693" y="429.0" />
+      <point x="1439.94683908046" y="429.0" />
+      <point x="-68.0" y="28.0" />
+    </edge>
+    <edge source="org.Model.Graph" target="org.jgrapht.graph.SimpleGraph">
+      <point x="0.0" y="-28.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="java.lang.Throwable" target="java.io.Serializable">
+      <point x="0.0" y="-28.0" />
+      <point x="27.625" y="28.0" />
+    </edge>
+    <edge source="org.Model.StockGrabber" target="org.Model.Subject">
+      <point x="0.0" y="-28.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="org.jgrapht.graph.AbstractBaseGraph" target="java.io.Serializable">
+      <point x="-38.5" y="-28.0" />
+      <point x="2024.323275862069" y="182.0" />
+      <point x="1563.19683908046" y="182.0" />
+      <point x="82.875" y="28.0" />
+    </edge>
+    <edge source="org.jgrapht.UndirectedGraph" target="org.jgrapht.Graph">
+      <point x="-70.75" y="-28.0" />
+      <point x="2307.573275862069" y="222.0" />
+      <point x="2327.073275862069" y="222.0" />
+      <point x="2327.073275862069" y="81.0" />
+      <point x="2300.581896551724" y="81.0" />
+      <point x="54.0" y="28.0" />
+    </edge>
+    <edge source="java.lang.Exception" target="java.lang.Throwable">
+      <point x="0.0" y="-28.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="java.lang.Enum" target="java.io.Serializable">
+      <point x="39.75" y="-28.0" />
+      <point x="808.9583333333333" y="212.0" />
+      <point x="1397.44683908046" y="212.0" />
+      <point x="-82.875" y="28.0" />
+    </edge>
+    <edge source="org.Model.PlayerReachedException" target="java.lang.Exception">
+      <point x="-2.2737367544323206E-13" y="-28.0" />
+      <point x="1942.823275862069" y="429.0" />
+      <point x="1575.94683908046" y="429.0" />
+      <point x="68.0" y="28.0" />
+    </edge>
+    <edge source="org.Model.Character" target="org.Model.Vertex">
+      <point x="0.0" y="-28.0" />
+      <point x="217.8232758620693" y="323.0" />
+      <point x="486.20833333333326" y="323.0" />
+      <point x="-42.25" y="28.0" />
+    </edge>
+    <edge source="org.Model.Edge" target="org.jgrapht.graph.DefaultEdge">
+      <point x="37.75" y="-28.0" />
+      <point x="751.2068965517244" y="429.0" />
+      <point x="1009.7083333333333" y="429.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="org.jgrapht.graph.IntrusiveEdge" target="java.lang.Cloneable">
+      <point x="-61.5" y="-28.0" />
+      <point x="948.2083333333333" y="202.0" />
+      <point x="844.5732758620693" y="202.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="org.Model.Door" target="org.Model.Vertex">
+      <point x="0.0" y="-28.0" />
+      <point x="42.25" y="28.0" />
+    </edge>
+    <edge source="org.Model.FinishedLevelException" target="java.lang.Exception">
+      <point x="0.0" y="-28.0" />
+      <point x="1563.8232758620693" y="429.0" />
+      <point x="1507.94683908046" y="429.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="org.jgrapht.graph.AbstractBaseGraph" target="org.jgrapht.Graph">
+      <point x="115.5" y="-28.0" />
+      <point x="2178.323275862069" y="222.0" />
+      <point x="2268.081896551724" y="222.0" />
+      <point x="2268.081896551724" y="81.0" />
+      <point x="2246.581896551724" y="81.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="org.jgrapht.graph.IntrusiveEdge" target="java.io.Serializable">
+      <point x="61.5" y="-28.0" />
+      <point x="1071.2083333333333" y="222.0" />
+      <point x="1452.69683908046" y="222.0" />
+      <point x="-27.625" y="28.0" />
+    </edge>
+    <edge source="java.lang.Enum" target="java.lang.Comparable">
+      <point x="-39.75" y="-28.0" />
+      <point x="729.4583333333333" y="212.0" />
+      <point x="551.0933908045978" y="212.0" />
+      <point x="76.33333333333337" y="28.0" />
+    </edge>
+    <edge source="org.jgrapht.graph.DefaultEdge" target="org.jgrapht.graph.IntrusiveEdge">
+      <point x="0.0" y="-28.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="org.jgrapht.graph.AbstractBaseGraph" target="org.jgrapht.graph.AbstractGraph">
+      <point x="38.5" y="-28.0" />
+      <point x="2101.323275862069" y="222.0" />
+      <point x="2091.456896551724" y="222.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="org.Model.Vertex" target="java.lang.Comparable">
+      <point x="-42.25" y="-28.0" />
+      <point x="486.20833333333326" y="222.0" />
+      <point x="474.7600574712644" y="222.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="org.Model.Edge" target="java.lang.Comparable">
+      <point x="-37.75" y="-28.0" />
+      <point x="675.7068965517244" y="429.0" />
+      <point x="379.5" y="429.0" />
+      <point x="379.5" y="222.0" />
+      <point x="398.42672413793116" y="222.0" />
+      <point x="-76.33333333333326" y="28.0" />
+    </edge>
+    <edge source="org.Model.Vertex" target="java.lang.Cloneable">
+      <point x="42.25" y="-28.0" />
+      <point x="570.7083333333333" y="222.0" />
+      <point x="775.9066091954027" y="222.0" />
+      <point x="-68.66666666666663" y="28.0" />
+    </edge>
+    <edge source="org.jgrapht.UndirectedGraph" target="java.lang.Deprecated">
+      <point x="70.75" y="-28.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="org.jgrapht.graph.SimpleGraph" target="org.jgrapht.graph.AbstractBaseGraph">
+      <point x="-59.0" y="-28.0" />
+      <point x="2232.333333333333" y="323.0" />
+      <point x="2062.823275862069" y="323.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="org.jgrapht.graph.SimpleGraph" target="org.jgrapht.UndirectedGraph">
+      <point x="59.0" y="-28.0" />
+      <point x="2350.333333333333" y="323.0" />
+      <point x="2378.323275862069" y="323.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="org.Model.Directions" target="java.lang.Enum">
+      <point x="0.0" y="-28.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.4502130956993413" x="1280.5" y="409.0" />
+  <SelectedNodes>
+    <node>org.Model.BadGuy</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
