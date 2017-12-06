@@ -31,44 +31,42 @@ public class Character extends Vertex{
         Edge E;
         int x_source = getX();
         int y_source = getY();
-        int xTmp = 0;
-        int yTmp = 0;
+        int x_tmp = 0;
+        int y_tmp = 0;
 
-        if (!new Vertex(x_source, y_source).inBorders(direction))
+        if (new Vertex(x_source, y_source).inBorders(direction))
             return false;
 
         switch (direction) {
             case NORTH:
-                yTmp = -1;
+                y_tmp = -1;
                 break;
             case SOUTH:
-                yTmp = 1;
+                y_tmp = 1;
                 break;
             case EAST:
-                xTmp = 1;
+                x_tmp = 1;
                 break;
             case WEST:
-                xTmp = -1;
+                x_tmp = -1;
                 break;
         }
-
-
 
         while (graphEdgesIterator.hasNext()) {
             E = graphEdgesIterator.next();
             if (((E.getSource().getX() == x_source && E.getSource().getY() == y_source)
-                    && (E.getTarget().getX() == x_source + xTmp && E.getTarget().getY() == y_source + yTmp))
-                    || ((E.getSource().getX() == x_source + xTmp && E.getSource().getY() == y_source + yTmp)
+                    && (E.getTarget().getX() == x_source + x_tmp && E.getTarget().getY() == y_source + y_tmp))
+                    || ((E.getSource().getX() == x_source + x_tmp && E.getSource().getY() == y_source + y_tmp)
                     && (E.getTarget().getX() == x_source && E.getTarget().getY() == y_source))) {
 
-                if(getX()+xTmp == Player.getPlayer().getX() && getY()+yTmp == Player.getPlayer().getY())
+                if(getX()+x_tmp == Player.getPlayer().getX() && getY()+y_tmp == Player.getPlayer().getY())
                     throw new PlayerReachedException();
 
-                if(getX()+xTmp == Door.getDoor().getX() && getY()+yTmp == Door.getDoor().getY())
+                if(getX()+x_tmp == Door.getDoor().getX() && getY()+y_tmp == Door.getDoor().getY())
                     throw new FinishedLevelException();
 
-                setX(getX() + xTmp);
-                setY(getY() + yTmp);
+                setX(getX() + x_tmp);
+                setY(getY() + y_tmp);
                 return true;
             }
         }

@@ -51,7 +51,7 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         //pour chacune de ces directions,on avance en profondeur d’abord
         for(int i=0;i<4;++i){
             Directions dir=directions[i];
-            if(vertex.inBorders(dir) && !doesExist(vertex,dir)){
+            if(!vertex.inBorders(dir) && !doesExist(vertex,dir)){
                 int x=vertex.getX();
                 int y=vertex.getY();
                 int xt=0,yt=0;
