@@ -64,8 +64,8 @@ public class Character extends Vertex{
                 if(getX()+xTmp == Player.getPlayer().getX() && getY()+yTmp == Player.getPlayer().getY())
                     throw new PlayerReachedException();
 
-//                if(getX()+xTmp == Door.getDoor().getX() && getY()+yTmp == Door.getDoor().getY())
-//                    throw new FinishedLevelException();
+                if(getX()+xTmp == Door.getDoor().getX() && getY()+yTmp == Door.getDoor().getY())
+                    throw new FinishedLevelException();
 
                 setX(getX() + xTmp);
                 setY(getY() + yTmp);

@@ -2,8 +2,7 @@ package org.Model;
 
 import java.util.ArrayList;
 
-public class StockGrabber implements Subject{
-
+public class StockGrabber {
     private ArrayList<Observer> observers;
     private int newX;
     private int newY;
@@ -22,15 +21,4 @@ public class StockGrabber implements Subject{
         observers.remove(observerIndex);
     }
 
-    public void notifyObserver() {
-        for(Observer observer : observers){
-            observer.update(newX, newY);
-        }
-    }
-
-    public void hasMoved(int x, int y){
-        newX = x;
-        newY = y;
-        notifyObserver();
-    }
 }

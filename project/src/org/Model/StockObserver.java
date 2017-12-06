@@ -17,7 +17,7 @@ public class StockObserver implements Observer{
     public StockObserver(Subject stockGrabber){
         this.stockGrabber = stockGrabber;
         this.observerID = ++observerIDTracker;
-        stockGrabber.register(this);
+//        stockGrabber.register(this);
     }
 
     // Called to update all observers

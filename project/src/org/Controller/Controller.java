@@ -38,33 +38,33 @@ public class Controller {
                      if (ke.getCode().equals(KeyCode.RIGHT)) {
                          if (model.getPlayer().move(Directions.EAST)) {
                              view.vplayer.setX(model.getPlayer().getX());
-                             model.getGraph().launchManhattan(model.getBadGuy(1), Player.getInstance());
-                             model.getBadGuy(1).move(model.getGraph());
-                             view.vbadguy[1].move();
+                             model.notifyObservers();
+                             for(int i=0 ; i<getModel().getBadGuys().size() ; i++)
+                                view.vbadguy.get(i).move(i);
                          }
                      }
                      if (ke.getCode().equals(KeyCode.LEFT)) {
                          if (model.getPlayer().move(Directions.WEST)) {
                              view.vplayer.setX(model.getPlayer().getX());
-                             model.getGraph().launchManhattan(model.getBadGuy(1), Player.getInstance());
-                             model.getBadGuy(1).move(model.getGraph());
-                             view.vbadguy[1].move();
+                             model.notifyObservers();
+                             for(int i=0 ; i<getModel().getBadGuys().size() ; i++)
+                                 view.vbadguy.get(i).move(i);
                          }
                      }
                      if (ke.getCode().equals(KeyCode.UP)) {
                          if (model.getPlayer().move(Directions.NORTH)) {
                              view.vplayer.setY(model.getPlayer().getY());
-                             model.getGraph().launchManhattan(model.getBadGuy(1), Player.getInstance());
-                             model.getBadGuy(1).move(model.getGraph());
-                             view.vbadguy[1].move();
+                             model.notifyObservers();
+                             for(int i=0 ; i<getModel().getBadGuys().size() ; i++)
+                                 view.vbadguy.get(i).move(i);
                          }
                      }
                      if (ke.getCode().equals(KeyCode.DOWN)) {
                          if (model.getPlayer().move(Directions.SOUTH)) {
                              view.vplayer.setY(model.getPlayer().getY());
-                             model.getGraph().launchManhattan(model.getBadGuy(1), Player.getInstance());
-                             model.getBadGuy(1).move(model.getGraph());
-                             view.vbadguy[1].move();
+                             model.notifyObservers();
+                             for(int i=0 ; i<getModel().getBadGuys().size() ; i++)
+                                 view.vbadguy.get(i).move(i);
                          }
                      }
                  }catch (PlayerReachedException e){

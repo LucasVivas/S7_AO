@@ -1,12 +1,14 @@
 package org.View;
 
 import javafx.event.EventHandler;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import org.Controller.Controller;
 import org.Model.*;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -21,24 +23,38 @@ public class View {
 
     public VPlayer vplayer;
     public VDoor vdoor;
-    public VBadGuy [] vbadguy;
+    public ArrayList<VBadGuy> vbadguy;
+    protected ImageView imagePersonnage;
 
     private View() {
         super();
         vplayer = new VPlayer();
         vdoor = new VDoor();
-        vbadguy = new VBadGuy[Model.getNB_BADGUYS()];
-        for(int i = 0; i < Model.getNB_BADGUYS(); i++)
-        	vbadguy[i] = new VBadGuy();
+    }
+
+    public ArrayList<VBadGuy> InitializeList(){
+        vbadguy = new ArrayList<>(4);;
+        for(int i = 0; i < 4; i++)
+            vbadguy.add(new VBadGuy());
+        return vbadguy;
+    }
+
+    public static View getInstance(){
+        if (View.view == null){
+            view = new View();
+            return view;
+        }
+        return view;
     }
 
     public void start(Stage primaryStage) {
         nbrX = Model.getWIDTH();
         nbrY = Model.getHEIGHT();
-        Graph graph = controller.getModel().getGraph();
+        Graph graph = getController().getModel().getGraph();
+        System.out.println(graph.vertexSet().size());
         System.out.println(graph.edgeSet().size());
         primaryStage.setWidth(((WALL + CELL) * nbrX + WALL) * SPAN);
-        primaryStage.setHeight(((WALL + CELL) * (nbrY) + WALL) * SPAN);
+        primaryStage.setHeight(((WALL + CELL) * (nbrY+1) + WALL) * SPAN);
         primaryStage.setTitle("Labyrinthe");
         VGraph.drawMaze(primaryStage,graph.edgeSet());
         drawDoor();
@@ -56,13 +72,14 @@ public class View {
         root.getChildren().add(vdoor.getImagePlayer());
     }
     private void drawBadGuys(){
-    	for(int i = 0; i < 4; i++) {
+        vbadguy = InitializeList();
+    	for(int i = 0; i < vbadguy.size(); i++) {
 	    	int x = getController().getModel().getBadGuy(i).getX();
 	        int y = getController().getModel().getBadGuy(i).getY();
-	        vbadguy[i].setX(x);
-	        vbadguy[i].setY(y);
+	        vbadguy.get(i).setX(x);
+            vbadguy.get(i).setY(y);
 	        //vplayer.getImagePlayer().setFocusTraversable(true);
-	        root.getChildren().add(vbadguy[i].getImagePlayer());
+	        root.getChildren().add(vbadguy.get(i).getImagePlayer());
     	}
     }
 
@@ -73,14 +90,6 @@ public class View {
         vplayer.setY(y);
         vplayer.getImagePlayer().setFocusTraversable(true);
         root.getChildren().add(vplayer.getImagePlayer());
-    }
-
-    public static View getInstance(){
-        if (View.view == null){
-            view = new View();
-            return view;
-        }
-        return view;
     }
 
 	public static Controller getController() {

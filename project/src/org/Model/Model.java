@@ -1,5 +1,6 @@
 package org.Model;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import static org.Model.MConsts.*;
@@ -13,9 +14,9 @@ public class Model {
     private Graph graph;
     private Player player;
     private Door door;
-    private BadGuy badGuys[];
-		
-	
+    private ArrayList<BadGuy> badGuys;
+
+
 
     private Model() {
 		super();
@@ -23,11 +24,11 @@ public class Model {
 		graph.buildRandomPath();
 		createHoles();
 		player = Player.getInstance();
-		door = new Door();
+		door = Door.getInstance();
         //System.out.println("door : "+door.getX()+",,,"+door.getY());
-        badGuys = new BadGuy[NB_BADGUYS];
-        for(int i = 0; i < NB_BADGUYS; i++)
-        	badGuys[i] = new BadGuy();
+        badGuys = new ArrayList<>(NB_BADGUYS);
+        for(int i = 0; i < 4; i++)
+        	badGuys.add(new BadGuy());
 	}
 
     public static Model getInstance(){
@@ -49,41 +50,51 @@ public class Model {
         return WIDTH;
     }
 
-    public static int getNB_BADGUYS(){
-        return NB_BADGUYS;
-    }
-
 	public Character getPlayer() {
 		return player;
 	}
-	
+
 	public Character getBadGuy(int index) {
-		return badGuys[index];
+		return badGuys.get(index);
 	}
-	
+
+	public void notifyObservers() throws PlayerReachedException, FinishedLevelException{
+        for(BadGuy badGuy : badGuys) {
+            badGuy.update(player.getX(), player.getY());
+        }
+    }
+
+    public ArrayList<BadGuy> getBadGuys() {
+        return badGuys;
+    }
+
 	public Door getDoor(){return door;}
 
-	public void createHoles(){
-		for (int i = 0; i < MConsts.NB_HOLES; i++) {
-			int x = graph.getRandomInt(getWIDTH());
-			int y = graph.getRandomInt(getHEIGHT());
-			Vertex source = graph.getVertex(x, y);
-			Vertex target;
-			int direction = graph.getRandomInt(4);
-			switch (direction){
-				case 0:
-					if (graph.doesExist(source, Directions.NORTH)){
-					    target = graph.vertexByDir(source, Directions.NORTH);
-						if (!graph.containsEdge(source, target)){
-						    Edge e = new Edge(source, target, Edge.Type.CORRIDOR);
-						    graph.addEdge(source, target, e);
+	public static int getNB_HOLES() {
+		return NB_HOLES;
+	}
+
+    public void createHoles(){
+        for (int i = 0; i < MConsts.NB_HOLES; i++) {
+            int x = graph.getRandomInt(getWIDTH());
+            int y = graph.getRandomInt(getHEIGHT());
+            Vertex source = graph.getVertex(x, y);
+            Vertex target;
+            int direction = graph.getRandomInt(4);
+            switch (direction){
+                case 0:
+                    if (graph.doesExist(source, Directions.NORTH)){
+                        target = graph.vertexByDir(source, Directions.NORTH);
+                        if (!graph.containsEdge(source, target)){
+                            Edge e = new Edge(source, target, Edge.Type.CORRIDOR);
+                            graph.addEdge(source, target, e);
                         } else {
-						    i++;
+                            i++;
                         }
-					} else {
-					    i++;
+                    } else {
+                        i++;
                     }
-					break;
+                    break;
                 case 1:
                     if (graph.doesExist(source, Directions.SOUTH)){
                         target = graph.vertexByDir(source, Directions.SOUTH);
@@ -123,8 +134,9 @@ public class Model {
                         i++;
                     }
                     break;
-			}
-		}
+            }
+        }
 
-	}
+    }
+
 }
