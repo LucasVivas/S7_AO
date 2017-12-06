@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.View.VBadGuy</OriginalElement>
+  <nodes>
+    <node x="81.25" y="106.0">org.View.VPersonnage</node>
+    <node x="0.0" y="414.0">org.View.VGraph</node>
+    <node x="225.75" y="0.0">org.View.VSprite</node>
+    <node x="223.0" y="414.0">org.View.View</node>
+    <node x="0.0" y="313.0">org.View.VConsts</node>
+    <node x="216.0" y="212.0">org.View.VPlayer</node>
+    <node x="0.0" y="212.0">org.View.VBadGuy</node>
+    <node x="343.25" y="106.0">org.View.VDoor</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.View.VPlayer" target="org.View.VPersonnage">
+      <point x="0.0" y="-28.0" />
+      <point x="306.5" y="187.0" />
+      <point x="262.75" y="187.0" />
+      <point x="60.5" y="28.0" />
+    </edge>
+    <edge source="org.View.VPersonnage" target="org.View.VSprite">
+      <point x="0.0" y="-28.0" />
+      <point x="202.25" y="81.0" />
+      <point x="270.0" y="81.0" />
+      <point x="-44.25" y="28.0" />
+    </edge>
+    <edge source="org.View.VDoor" target="org.View.VSprite">
+      <point x="0.0" y="-28.0" />
+      <point x="426.25" y="81.0" />
+      <point x="358.5" y="81.0" />
+      <point x="44.25" y="28.0" />
+    </edge>
+    <edge source="org.View.VBadGuy" target="org.View.VPersonnage">
+      <point x="0.0" y="-28.0" />
+      <point x="98.0" y="187.0" />
+      <point x="141.75" y="187.0" />
+      <point x="-60.5" y="28.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="255.0" y="235.0" />
+  <SelectedNodes>
+    <node>org.View.VBadGuy</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
