@@ -2,8 +2,7 @@ package org.Model;
 
 import java.util.ArrayList;
 
-public class StockGrabber implements Subject{
-
+public class StockGrabber {
     private ArrayList<Observer> observers;
     private int newX;
     private int newY;

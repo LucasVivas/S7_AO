@@ -11,10 +11,6 @@ public abstract class VSprite {
         this.imagePersonnage =  new ImageView((image));
     }
 
-    public ImageView getImagePlayer() {
-        return imagePersonnage;
-    }
-
     public void setX(double x) {
         imagePersonnage.setX((VConsts.WALL + x * (VConsts.WALL + VConsts.CELL)) * VConsts.SPAN);
     }
@@ -22,4 +18,10 @@ public abstract class VSprite {
     public void setY(double y) {
         imagePersonnage.setY((VConsts.WALL + y * (VConsts.WALL + VConsts.CELL)) * VConsts.SPAN);
     }
+
+    public ImageView getImagePlayer() {
+        return imagePersonnage;
+    }
+
+
 }
