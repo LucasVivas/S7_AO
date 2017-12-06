@@ -132,6 +132,10 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         calculateManhattanDistance(source, target);
     }
 
+    public Directions shortestPath(Vertex source, Vertex target){
+        return null;
+    }
+
     public Vertex furthestVertex(Vertex source) throws VertexNotInGraphException {
         //if (!this.containsVertex(source)){
         //    throw new VertexNotInGraphException(source);
