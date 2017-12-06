@@ -27,19 +27,18 @@ public class View {
         super();
         vplayer = new VPlayer();
         vdoor = new VDoor();
-        vbadguy = new VBadGuy[4];
-        for(int i = 0; i < 4; i++) 
+        vbadguy = new VBadGuy[Model.getNB_BADGUYS()];
+        for(int i = 0; i < Model.getNB_BADGUYS(); i++)
         	vbadguy[i] = new VBadGuy();
     }
 
     public void start(Stage primaryStage) {
         nbrX = Model.getWIDTH();
         nbrY = Model.getHEIGHT();
-        Graph graph = getController().getModel().getGraph();
-        System.out.println(graph.vertexSet().size());
+        Graph graph = controller.getModel().getGraph();
         System.out.println(graph.edgeSet().size());
         primaryStage.setWidth(((WALL + CELL) * nbrX + WALL) * SPAN);
-        primaryStage.setHeight(((WALL + CELL) * (nbrY+1) + WALL) * SPAN);
+        primaryStage.setHeight(((WALL + CELL) * (nbrY) + WALL) * SPAN);
         primaryStage.setTitle("Labyrinthe");
         VGraph.drawMaze(primaryStage,graph.edgeSet());
         drawDoor();

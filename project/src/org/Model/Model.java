@@ -21,11 +21,12 @@ public class Model {
 		super();
 		graph = Graph.getInstance();
 		graph.buildRandomPath();
+		createHoles();
 		player = Player.getInstance();
 		door = new Door();
         //System.out.println("door : "+door.getX()+",,,"+door.getY());
         badGuys = new BadGuy[NB_BADGUYS];
-        for(int i = 0; i < 4; i++) 
+        for(int i = 0; i < NB_BADGUYS; i++)
         	badGuys[i] = new BadGuy();
 	}
 
@@ -48,6 +49,10 @@ public class Model {
         return WIDTH;
     }
 
+    public static int getNB_BADGUYS(){
+        return NB_BADGUYS;
+    }
+
 	public Character getPlayer() {
 		return player;
 	}
@@ -58,35 +63,64 @@ public class Model {
 	
 	public Door getDoor(){return door;}
 
-	public static int getNB_HOLES() {
-		return NB_HOLES;
-	}
-
 	public void createHoles(){
-		for (int i = 0; i < getNB_HOLES(); i++) {
+		for (int i = 0; i < MConsts.NB_HOLES; i++) {
 			int x = graph.getRandomInt(getWIDTH());
 			int y = graph.getRandomInt(getHEIGHT());
-			Vertex v = graph.getVertex(x, y);
+			Vertex source = graph.getVertex(x, y);
+			Vertex target;
 			int direction = graph.getRandomInt(4);
 			switch (direction){
 				case 0:
-					if (graph.doesExist(v, Directions.NORTH)){
-						//TODO
-					}
+					if (graph.doesExist(source, Directions.NORTH)){
+					    target = graph.vertexByDir(source, Directions.NORTH);
+						if (!graph.containsEdge(source, target)){
+						    Edge e = new Edge(source, target, Edge.Type.CORRIDOR);
+						    graph.addEdge(source, target, e);
+                        } else {
+						    i++;
+                        }
+					} else {
+					    i++;
+                    }
 					break;
                 case 1:
-                    if (graph.doesExist(v, Directions.SOUTH)){
-                        //TODO
+                    if (graph.doesExist(source, Directions.SOUTH)){
+                        target = graph.vertexByDir(source, Directions.SOUTH);
+                        if (!graph.containsEdge(source, target)){
+                            Edge e = new Edge(source, target, Edge.Type.CORRIDOR);
+                            graph.addEdge(source, target, e);
+                        } else {
+                            i++;
+                        }
+                    } else {
+                        i++;
                     }
                     break;
                 case 2:
-                    if (graph.doesExist(v, Directions.EAST)){
-                        //TODO
+                    if (graph.doesExist(source, Directions.EAST)){
+                        target = graph.vertexByDir(source, Directions.EAST);
+                        if (!graph.containsEdge(source, target)){
+                            Edge e = new Edge(source, target, Edge.Type.CORRIDOR);
+                            graph.addEdge(source, target, e);
+                        } else {
+                            i++;
+                        }
+                    } else {
+                        i++;
                     }
                     break;
                 case 3:
-                    if (graph.doesExist(v, Directions.WEST)){
-                        //TODO
+                    if (graph.doesExist(source, Directions.WEST)){
+                        target = graph.vertexByDir(source, Directions.WEST);
+                        if (!graph.containsEdge(source, target)){
+                            Edge e = new Edge(source, target, Edge.Type.CORRIDOR);
+                            graph.addEdge(source, target, e);
+                        } else {
+                            i++;
+                        }
+                    } else {
+                        i++;
                     }
                     break;
 			}
