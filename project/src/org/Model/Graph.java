@@ -79,25 +79,27 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
     
     public Vertex vertexByDir(Vertex vertex, Directions dir) {
     	Vertex res;
+    	int x = vertex.getX();
+    	int y = vertex.getY();
     	switch(dir) {
     		case NORTH:
     			if(doesExist(vertex, Directions.NORTH)) {
-    				res = getVertex(vertex.getX(),vertex.getY()-1);
+    				res = getVertex(x,y-1);
     				return res;
     			}
     		case SOUTH:
     			if(doesExist(vertex, Directions.SOUTH)) {
-    				res = getVertex(vertex.getX(),vertex.getY()+1);
+    				res = getVertex(x,y+1);
     				return res;
     			}
     		case EAST:
     			if(doesExist(vertex, Directions.EAST)) {
-    				res = getVertex(vertex.getX()+1,vertex.getY());
+    				res = getVertex(x+1,y);
     				return res;
     			}
     		case WEST:
     			if(doesExist(vertex, Directions.WEST)) {
-    				res = getVertex(vertex.getX()-1,vertex.getY());
+    				res = getVertex(x-1,y);
     				return res;
     			}
     		
@@ -142,7 +144,7 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         launchManhattan(source,source);
         for (int x = 0; x < Model.getWIDTH(); x++) {
             for (int y = 0; y < Model.getHEIGHT(); y++) {
-                tmp = getInstance().getVertex(x,y);
+                tmp = getVertex(x,y);
                 if(max < tmp.getNbr()){
                     maxVertex = tmp;
                     max = tmp.getNbr();
@@ -155,22 +157,40 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
     public boolean doesExist(Vertex vertex, Directions dir){
         Vertex target;
         Vertex v_tmp;
+        int x = vertex.getX();
+        int y = vertex.getY();
         switch(dir){
             case NORTH:
-                target = new Vertex(vertex.getX(),vertex.getY()-1);
+                if (y == 0){
+                    return false;
+                } else {
+                    target = new Vertex(x, y - 1);
+                }
                 break;
             case SOUTH:
-                target = new Vertex(vertex.getX(),vertex.getY()+1);
+                if (y == MConsts.HEIGHT){
+                    return false;
+                } else {
+                    target = new Vertex(x, y + 1);
+                }
                 break;
             case EAST:
-                target = new Vertex(vertex.getX()+1,vertex.getY());
+                if (x == MConsts.WIDTH){
+                    return false;
+                } else {
+                    target = new Vertex(x + 1, y);
+                }
                 break;
             case WEST:
-                target = new Vertex(vertex.getX()-1,vertex.getY());
+                if (x == 0){
+                    return false;
+                } else {
+                    target = new Vertex(x - 1, y);
+                }
                 break;
             default:
-                target = new Vertex(vertex.getX(), vertex.getY());
-                break;
+                target = null;
+                return false;
         }
         Iterator<Vertex> vertexSetIterator = vertexSet().iterator();
         while (vertexSetIterator.hasNext()) {
