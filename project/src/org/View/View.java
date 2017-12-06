@@ -33,8 +33,8 @@ public class View {
     }
 
     public ArrayList<VBadGuy> InitializeList(){
-        vbadguy = new ArrayList<>(4);;
-        for(int i = 0; i < 4; i++)
+        vbadguy = new ArrayList<>(Model.getNB_BADGUYS());;
+        for(int i = 0; i < Model.getNB_BADGUYS(); i++)
             vbadguy.add(new VBadGuy());
         return vbadguy;
     }

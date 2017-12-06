@@ -25,9 +25,8 @@ public class Model {
 		createHoles();
 		player = Player.getInstance();
 		door = Door.getInstance();
-        //System.out.println("door : "+door.getX()+",,,"+door.getY());
         badGuys = new ArrayList<>(NB_BADGUYS);
-        for(int i = 0; i < 4; i++)
+        for(int i = 0; i < NB_BADGUYS; i++)
         	badGuys.add(new BadGuy());
 	}
 
@@ -73,6 +72,10 @@ public class Model {
 	public static int getNB_HOLES() {
 		return NB_HOLES;
 	}
+
+	public static int getNB_BADGUYS(){
+	    return NB_BADGUYS;
+    }
 
     public void createHoles(){
         for (int i = 0; i < MConsts.NB_HOLES; i++) {
