@@ -17,13 +17,4 @@ public class BadGuy extends Character{
         super.setY(v.getY());
     }
 
-    /*public boolean move() {
-        
-        return false;
-    }*/
-    
-    public void moove() {
-    	Graph.getInstance().launchManhattan(this, Player.getInstance());
-    }
-
 }

@@ -41,7 +41,6 @@ public class Controller {
                              model.getGraph().launchManhattan(model.getBadGuy(1), Player.getInstance());
                              model.getBadGuy(1).move(model.getGraph());
                              view.vbadguy[1].move();
-                             //notifyObserver(
                          }
                      }
                      if (ke.getCode().equals(KeyCode.LEFT)) {
