@@ -3,7 +3,7 @@ package org.Model;
 import java.util.Random;
 
 /**
- * Created by lulu on 21/11/17.
+ * @author Lucas VIVAS, Gauthier Lamarque & Co.
  */
 public class Vertex implements Comparable<Vertex>, Cloneable{
 
