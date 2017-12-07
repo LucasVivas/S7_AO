@@ -16,6 +16,4 @@ public class Door extends Vertex {
         return door;
     }
 
-    public static Door getDoor(){return door;}
-
 }

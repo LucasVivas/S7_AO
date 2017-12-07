@@ -19,7 +19,7 @@ public class BadGuy extends Character{
     public void update(int newX, int newY) throws PlayerReachedException, FinishedLevelException {
         Vertex source = new Vertex(this.getX(), this.getY());
         Vertex target = new Vertex(newX,newY);
-        graph.launchManhattan(source,target);
+        Graph.getInstance().launchManhattan(source,target);
         this.move(graph);
     }
 
