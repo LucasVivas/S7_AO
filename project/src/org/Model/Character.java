@@ -1,31 +1,45 @@
 package org.Model;
 
 import java.util.Iterator;
-import java.util.Random;
 
+/**
+ * Class Character is used to create a Character which is a player or a bad guy.
+ * @author Lucas Vivas, Gauthier Lamarque {@literal &} Co.
+ * @version 1.0.0
+ */
 public class Character extends Vertex{
+    /**
+     * build a character with a random position.
+     * @see Vertex
+     */
     public Character(){
         super();
     }
 
+    /**
+     * build a character with the position (x,y).
+     * @param x new x value
+     * @param y new y value
+     * @see Vertex
+     */
     public Character(int x, int y) {
         super(x, y);
     }
 
-    public void move(Graph graph) throws PlayerReachedException, FinishedLevelException {
-    		Vertex vertex = this.getVertex(Model.getInstance().getGraph()) ;
-    		for (Directions dir : Directions.values()) {
-	    		Vertex next = Graph.getInstance().vertexByDir(vertex, dir) ;
-	    		if (Graph.getInstance().containsEdge(vertex, next)
-	    			&& (next.getNbr()== vertex.getNbr()-1) ){
-	    			this.move(dir);
-	    		}
-    		}	
+    /**
+     * @return the graph's vertex where the character is.
+     */
+    public Vertex getVertex() {
+    	return Graph.getInstance().getVertex(this.getX(), this.getY());
     }
-    public Vertex getVertex(Graph graph) {
-    	return graph.getVertex(this.getX(), this.getY());
-    }
-    
+
+    /**
+     * Move the player to a direction if it's possible.
+     * @param direction the direction where the <b>Character</b> will move
+     * @return boolean which is true if the character could move the character moved.
+     * @throws PlayerReachedException //TODO: casa
+     * @throws FinishedLevelException //TODO: casa
+     */
     public boolean move(Directions direction) throws PlayerReachedException, FinishedLevelException {
         Iterator<Edge> graphEdgesIterator = Graph.getInstance().edgeSet().iterator();
         Edge E;
@@ -33,9 +47,6 @@ public class Character extends Vertex{
         int y_source = getY();
         int x_tmp = 0;
         int y_tmp = 0;
-
-        if (new Vertex(x_source, y_source).inBorders(direction))
-            return false;
 
         switch (direction) {
             case NORTH:
@@ -59,7 +70,7 @@ public class Character extends Vertex{
                     || ((E.getSource().getX() == x_source + x_tmp && E.getSource().getY() == y_source + y_tmp)
                     && (E.getTarget().getX() == x_source && E.getTarget().getY() == y_source))) {
 
-                if(getX()+x_tmp == Player.getPlayer().getX() && getY()+y_tmp == Player.getPlayer().getY())
+                if(getX()+x_tmp == Player.getInstance().getX() && getY()+y_tmp == Player.getInstance().getY())
                     throw new PlayerReachedException();
 
                 if(getX()+x_tmp == Door.getInstance().getX() && getY()+y_tmp == Door.getInstance().getY())

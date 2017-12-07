@@ -4,14 +4,13 @@ import org.jgrapht.graph.SimpleGraph;
 import java.util.*;
 
 /**
- *  @author Lucas Vivas, Gauthier Lamarque & Co.
+ *  @author Lucas Vivas, Gauthier Lamarque {@literal &} Co.
  *  The graph class is used to create the graph for the maze.
  *
  */
 public class Graph extends SimpleGraph<Vertex,Edge>{
 
     private static Graph mInstance;
-    private Random random = new Random();
 
     private Graph(Class<? extends Edge> edgeClass) {
         super(edgeClass);
@@ -28,6 +27,9 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         return mInstance;
     }
 
+    /**
+     * Build a random path on the graph
+     */
     public void buildRandomPath(){
         Vertex v = new Vertex(0,0);
         addVertex(v);
@@ -42,8 +44,8 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
             v.add(Directions.values()[i]);
         }
         Directions directions[]=new Directions[4];
-        for(int i=0;i<directions.length;++i){
-            int index=random.nextInt(v.size());
+        for(int i=0; i<directions.length; ++i){
+            int index = getRandomInt(v.size());
             directions[i]=v.get(index);
             v.remove(index);
         }
@@ -82,33 +84,38 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
             }
         }
     }
-    
+
+    /**
+     * @param vertex The vertex
+     * @param dir The direction to check
+     * @return The vertex which is at the direction <i>dir</i> from the vertex <i>vertex</i>
+     * return null if the vertex doesn't exist.
+     */
     public Vertex vertexByDir(Vertex vertex, Directions dir) {
     	Vertex res;
     	int x = vertex.getX();
     	int y = vertex.getY();
     	switch(dir) {
     		case NORTH:
-    			if(doesExist(vertex, Directions.NORTH)) {
-    				res = getVertex(x,y-1);
-    				return res;
+    			if(doesExist(vertex, dir)) {
+                    res = getVertex(x,(y-1));
+                    return res;
     			}
     		case SOUTH:
-    			if(doesExist(vertex, Directions.SOUTH)) {
-    				res = getVertex(x,y+1);
+    			if(doesExist(vertex, dir)) {
+    				res = getVertex(x,(y+1));
     				return res;
     			}
     		case EAST:
-    			if(doesExist(vertex, Directions.EAST)) {
-    				res = getVertex(x+1,y);
+    			if(doesExist(vertex, dir)) {
+    				res = getVertex((x+1),y);
     				return res;
     			}
     		case WEST:
-    			if(doesExist(vertex, Directions.WEST)) {
-    				res = getVertex(x-1,y);
+    			if(doesExist(vertex, dir)) {
+    				res = getVertex((x-1),y);
     				return res;
     			}
-    		
     	}
 		return null;
     }
@@ -145,9 +152,6 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
     }
 
     public Vertex furthestVertex(Vertex source) {
-        //if (!this.containsVertex(source)){
-        //    throw new VertexNotInGraphException(source);
-        //}
         int max = 0;
         Vertex tmp;
         Vertex maxVertex = null;
@@ -227,22 +231,35 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
 		return null;
 	}
 
+    /**
+     * Return a vertex of the graph with the position (x,y)
+     * @param x x position
+     * @param y y position
+     * @return a vertex of the graph with the position (x,y)
+     */
 	public Vertex getVertex (int x, int y){
 	    Set<Vertex> vertexSet = vertexSet();
-	    Iterator<Vertex> iterator = vertexSet.iterator();
-	    while (iterator.hasNext()){
-	        Vertex v = iterator.next();
-	        if (v.getX() == x && v.getY() == y){
-	            return v;
+        for (Vertex v : vertexSet) {
+            if (v.getX() == x && v.getY() == y) {
+                return v;
             }
         }
         return null;
     }
 
+    /**
+     * @param max max size of random
+     * @return A random integer value between 0 and max.
+     */
     public int getRandomInt (int max){
-	    return random.nextInt(max);
+	    return new Random().nextInt(max);
     }
 
+    /**
+     * @param source The source vertex
+     * @param target The target vertex
+     * @return True if the edge with the source <i>source</i> and the target <i>target</i> exist in the graph, else return false
+     */
     @Override
     public boolean containsEdge(Vertex source, Vertex target) {
         Iterator<Edge> graphEdgesIterator = Graph.getInstance().edgeSet().iterator();

@@ -3,8 +3,6 @@ package org.View;
 import org.Model.FinishedLevelException;
 import org.Model.PlayerReachedException;
 
-import java.util.ArrayList;
-
 import static org.View.VConsts.PATHBADGUY;
 
 public class VBadGuy extends VSprite {
@@ -14,8 +12,10 @@ public class VBadGuy extends VSprite {
     }
 
     public void move(int index) throws PlayerReachedException, FinishedLevelException {
-        View.getController().getModel().getBadGuy(index).move(View.getController().getModel().getGraph());
-        setX(View.getController().getModel().getBadGuy(index).getX());
-        setY(View.getController().getModel().getBadGuy(index).getY());
+        int x = View.getController().getModel().getBadGuy(index).getX();
+        int y = View.getController().getModel().getBadGuy(index).getY();
+        setX(x);
+        setY(y);
+        System.out.println("N°" + index + " : X=" + x + ", Y=" + y);
     }
 }
