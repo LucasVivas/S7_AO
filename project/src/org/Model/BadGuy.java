@@ -21,9 +21,20 @@ public class BadGuy extends Character{
      */
     private void seekPath() throws PlayerReachedException {
         Vertex vertex = getVertex();
+        boolean b = false;
         for (Directions dir : Directions.values()) {
             Vertex next = Graph.getInstance().vertexByDir(vertex, dir);
+            //System.out.println(Player.getInstance().getVertex());
+            //System.out.println("bad"+getVertex());
             if (next != null) {
+                if (next.equals(Player.getInstance().getVertex()) || equals(Player.getInstance().getVertex()))
+                    throw new PlayerReachedException();
+                for (BadGuy observer:Player.getInstance().getObservers()) {
+                    if (next.equals(getVertex()))
+                        b = true;
+                }
+                if (b)
+                    continue;
                 if (Graph.getInstance().containsEdge(vertex, next)
                         && (next.getNbr() == vertex.getNbr() - 1)) {
                     try {
@@ -39,7 +50,6 @@ public class BadGuy extends Character{
     /**
      * Called to update all observers
      * @throws PlayerReachedException //TODO:casa
-     * @throws FinishedLevelException //TODO:casa
      */
     public void update() throws PlayerReachedException {
         Vertex source = new Vertex(this.getX(), this.getY());
