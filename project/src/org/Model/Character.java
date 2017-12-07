@@ -1,21 +1,41 @@
 package org.Model;
 
 import java.util.Iterator;
-import java.util.Random;
 
+/**
+ * Class Character is used to create a Character which is a player or a bad guy.
+ */
 public class Character extends Vertex{
+    /**
+     * build a character with a random position.
+     */
     public Character(){
         super();
     }
 
+    /**
+     * build a character with the position (x,y).
+     * @param x
+     * @param y
+     */
     public Character(int x, int y) {
         super(x, y);
     }
 
-    public Vertex getVertex(Graph graph) {
-    	return graph.getVertex(this.getX(), this.getY());
+    /**
+     * @return the graph's vertex where the character is.
+     */
+    public Vertex getVertex() {
+    	return Graph.getInstance().getVertex(this.getX(), this.getY());
     }
-    
+
+    /**
+     * Move the player to a direction if it's possible.
+     * @param direction
+     * @return boolean which is true if the character could move the character moved.
+     * @throws PlayerReachedException
+     * @throws FinishedLevelException
+     */
     public boolean move(Directions direction) throws PlayerReachedException, FinishedLevelException {
         Iterator<Edge> graphEdgesIterator = Graph.getInstance().edgeSet().iterator();
         Edge E;
