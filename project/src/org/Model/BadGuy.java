@@ -1,11 +1,6 @@
 package org.Model;
 
-import org.View.VBadGuy;
-import org.View.View;
-
-import java.util.ArrayDeque;
-import java.util.Queue;
-import java.util.Random;
+import org.Controller.Controller;
 
 public class BadGuy extends Character{
 
@@ -13,13 +8,15 @@ public class BadGuy extends Character{
         super();
     }
 
-    public void move() throws PlayerReachedException, FinishedLevelException {
-        Vertex vertex = this.getVertex(Model.getInstance().getGraph());
+    public void seekPath() throws PlayerReachedException, FinishedLevelException {
+        Vertex vertex = getVertex(Model.getInstance().getGraph());
         for (Directions dir : Directions.values()) {
             Vertex next = Graph.getInstance().vertexByDir(vertex, dir);
-            if (Graph.getInstance().containsEdge(vertex, next)
-                    && (next.getNbr()== vertex.getNbr()-1) ){
-                super.move(dir);
+            if (next != null) {
+                if (Graph.getInstance().containsEdge(vertex, next)
+                        && (next.getNbr() == vertex.getNbr() - 1)) {
+                    super.move(dir);
+                }
             }
         }
     }
@@ -31,7 +28,7 @@ public class BadGuy extends Character{
         Vertex source = new Vertex(this.getX(), this.getY());
         Vertex target = new Vertex(newX,newY);
         Graph.getInstance().launchManhattan(source,target);
-        this.move();
+        seekPath();
     }
 
 }
