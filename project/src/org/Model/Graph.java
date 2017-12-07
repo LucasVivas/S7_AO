@@ -11,7 +11,6 @@ import java.util.*;
 public class Graph extends SimpleGraph<Vertex,Edge>{
 
     private static Graph mInstance;
-    private Random random = new Random();
 
     private Graph(Class<? extends Edge> edgeClass) {
         super(edgeClass);
@@ -42,8 +41,8 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
             v.add(Directions.values()[i]);
         }
         Directions directions[]=new Directions[4];
-        for(int i=0;i<directions.length;++i){
-            int index=random.nextInt(v.size());
+        for(int i=0; i<directions.length; ++i){
+            int index = getRandomInt(v.size());
             directions[i]=v.get(index);
             v.remove(index);
         }
@@ -240,7 +239,7 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
     }
 
     public int getRandomInt (int max){
-	    return random.nextInt(max);
+	    return new Random().nextInt(max);
     }
 
     @Override
