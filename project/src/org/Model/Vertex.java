@@ -3,7 +3,7 @@ package org.Model;
 import java.util.Random;
 
 /**
- * class of vertices.
+ * Class of vertices.
  * @author Lucas VIVAS, Gauthier Lamarque {@literal &} Co.
  * @version 1.0.0
  */

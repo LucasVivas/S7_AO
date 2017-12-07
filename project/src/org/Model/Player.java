@@ -19,10 +19,6 @@ public class Player extends Character implements Subject{
         return player;
     }
 
-    public static Character getPlayer() {
-        return player;
-    }
-
     @Override
     public void register(BadGuy badGuy) {
         observers.add(badGuy);

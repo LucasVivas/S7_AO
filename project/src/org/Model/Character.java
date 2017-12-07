@@ -10,6 +10,7 @@ import java.util.Iterator;
 public class Character extends Vertex{
     /**
      * build a character with a random position.
+     * @see Vertex
      */
     public Character(){
         super();
@@ -19,6 +20,7 @@ public class Character extends Vertex{
      * build a character with the position (x,y).
      * @param x new x value
      * @param y new y value
+     * @see Vertex
      */
     public Character(int x, int y) {
         super(x, y);
@@ -71,10 +73,10 @@ public class Character extends Vertex{
                     || ((E.getSource().getX() == x_source + x_tmp && E.getSource().getY() == y_source + y_tmp)
                     && (E.getTarget().getX() == x_source && E.getTarget().getY() == y_source))) {
 
-                if(getX()+x_tmp == Player.getPlayer().getX() && getY()+y_tmp == Player.getPlayer().getY())
+                if(getX()+x_tmp == Player.getInstance().getX() && getY()+y_tmp == Player.getInstance().getY())
                     throw new PlayerReachedException();
 
-                if(getX()+x_tmp == Door.getDoor().getX() && getY()+y_tmp == Door.getDoor().getY())
+                if(getX()+x_tmp == Door.getInstance().getX() && getY()+y_tmp == Door.getInstance().getY())
                     throw new FinishedLevelException();
 
                 setX(getX() + x_tmp);

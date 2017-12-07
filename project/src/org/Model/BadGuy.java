@@ -9,6 +9,7 @@ public class BadGuy extends Character{
 
     /**
      * Create a bad guy with a random position.
+     * @see Vertex
      */
     public BadGuy(){
         super();
