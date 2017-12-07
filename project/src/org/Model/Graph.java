@@ -28,7 +28,8 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
     }
 
     /**
-     * Build a random path on the graph
+     * This is the starting function to generate a random graph from the (0,0) vertex.
+     * Launches the recursive function.
      */
     public void buildRandomPath(){
         Vertex v = new Vertex(0,0);
@@ -37,6 +38,10 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         buildRandomPathRec(v);
     }
 
+    /**
+     * This recursive function generates a graph where edges are randomly set.
+     * @param vertex vertex used to the generation.
+     */
     private void buildRandomPathRec(Vertex vertex){
         // une liste aleatoire des 4 directions
         Vector<Directions> v = new Vector<>();
@@ -120,6 +125,12 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
 		return null;
     }
 
+    /**
+     * This function calculate the distance between the arguments using Manhattan algorithm.
+     * The Vertex class member nbr represents the distance from the source.
+     * @param source The vertex which is seeking for the path to the target.
+     * @param target The vertex which nbr is 0.
+     */
     private void calculateManhattanDistance(Vertex source, Vertex target){
         Queue<Vertex> fifo = new ArrayDeque<>();
         target.setNbr(1);
@@ -141,16 +152,24 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         }
     }
 
+    /**
+     * This function is initializing all nbr's to 0, then launches
+     * calculateManhattanDistance(Vertex source, Vertex target).
+     * @param source The vertex which is seeking for the path to the target.
+     * @param target The vertex which nbr is 0.
+     */
     public void launchManhattan(Vertex source,Vertex target){
         for(Vertex vertex : mInstance.vertexSet())
             vertex.setNbr(0);
         calculateManhattanDistance(source, target);
     }
 
-    public Directions shortestPath(Vertex source, Vertex target){
-        return null;
-    }
-
+    /**
+     * This function uses the Manhattan function to look for the furthest vertex
+     * from source.
+     * @param source The vertex which is used as a source.
+     * @return This function returns the furthest vertex from the source.
+     */
     public Vertex furthestVertex(Vertex source) {
         int max = 0;
         Vertex tmp;
@@ -168,6 +187,12 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         return maxVertex;
     }
 
+    /**
+     * Given a vertex and a direction, this function tells if a vertex exists or not.
+     * @param vertex The source vertex.
+     * @param dir The wanted direction
+     * @return True if there is a vertex, false otherwise.
+     */
     public boolean doesExist(Vertex vertex, Directions dir){
         Vertex target;
         Vertex v_tmp;
@@ -215,27 +240,12 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         }
         return false;
     }
-    
-	public String toString(){
-		Iterator<Vertex> graphSIterator = this.vertexSet().iterator();
-		Iterator<Vertex> graphTIterator = this.vertexSet().iterator();
-        Vertex S,T;		
-		while (graphSIterator.hasNext()) {
-            S = graphSIterator.next();
-            while (graphTIterator.hasNext()) {
-                T = graphTIterator.next();
-    	        if(this.getEdge(S, T) != null) 
-    	        	System.out.println(S.toString()+"-->"+T.toString());
-            }    	   
-        }
-		return null;
-	}
 
     /**
-     * Return a vertex of the graph with the position (x,y)
+     * Returns a vertex with the position (x,y)
      * @param x x position
      * @param y y position
-     * @return a vertex of the graph with the position (x,y)
+     * @return If the vertex exists, returns it, null otherwise.
      */
 	public Vertex getVertex (int x, int y){
 	    Set<Vertex> vertexSet = vertexSet();
@@ -248,17 +258,19 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
     }
 
     /**
-     * @param max max size of random
-     * @return A random integer value between 0 and max.
+     * This function returns an random integer between 0 and max.
+     * @param max The upper limit for the random generation.
+     * @return A randomly generated integer.
      */
     public int getRandomInt (int max){
 	    return new Random().nextInt(max);
     }
 
     /**
+     * This function checks if the graph contains the edge between the source and the target.
      * @param source The source vertex
      * @param target The target vertex
-     * @return True if the edge with the source <i>source</i> and the target <i>target</i> exist in the graph, else return false
+     * @return True if the edge exists, false otherwise.
      */
     @Override
     public boolean containsEdge(Vertex source, Vertex target) {
