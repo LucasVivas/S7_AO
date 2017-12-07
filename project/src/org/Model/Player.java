@@ -29,8 +29,7 @@ public class Player extends Character implements Subject{
         observers.remove(observerIndex);
     }
 
-    @Override
-    public void notifyObserver(int x, int y) throws PlayerReachedException, FinishedLevelException {
+    public void notifyObserver() throws PlayerReachedException, FinishedLevelException {
         for(BadGuy badGuy : observers){
             badGuy.update();
         }

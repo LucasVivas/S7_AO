@@ -39,8 +39,10 @@ public class Model {
 
     public ArrayList<BadGuy> createBadGuysList(){
         badGuys = new ArrayList<>(NB_BADGUYS);
-        for(int i = 0; i < NB_BADGUYS; i++)
+        for(int i = 0; i < NB_BADGUYS; i++) {
             badGuys.add(new BadGuy());
+            getPlayer().register(badGuys.get(i));
+        }
         return badGuys;
     }
 
@@ -76,19 +78,13 @@ public class Model {
         return WIDTH;
     }
 
-	public Character getPlayer() {
+	public Player getPlayer() {
 		return player;
 	}
 
 	public BadGuy getBadGuy(int index) {
 		return badGuys.get(index);
 	}
-
-	public void notifyObservers() throws PlayerReachedException{
-        for(BadGuy badGuy : badGuys) {
-            badGuy.update();
-        }
-    }
 
     public ArrayList<BadGuy> getBadGuys() {
         return badGuys;

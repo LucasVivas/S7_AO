@@ -38,7 +38,7 @@ public class Controller {
                      if (ke.getCode().equals(KeyCode.RIGHT)) {
                          if (model.getPlayer().move(Directions.EAST)) {
                              view.vPlayer.setX(model.getPlayer().getX());
-                             model.notifyObservers();
+                             model.getPlayer().notifyObserver();
                              for(int i=0 ; i<getModel().getBadGuys().size() ; i++)
                                 view.vBadGuys.get(i).move(i);
                          }
@@ -46,7 +46,7 @@ public class Controller {
                      if (ke.getCode().equals(KeyCode.LEFT)) {
                          if (model.getPlayer().move(Directions.WEST)) {
                              view.vPlayer.setX(model.getPlayer().getX());
-                             model.notifyObservers();
+                             model.getPlayer().notifyObserver();
                              for(int i=0 ; i<getModel().getBadGuys().size() ; i++)
                                  view.vBadGuys.get(i).move(i);
                          }
@@ -54,7 +54,7 @@ public class Controller {
                      if (ke.getCode().equals(KeyCode.UP)) {
                          if (model.getPlayer().move(Directions.NORTH)) {
                              view.vPlayer.setY(model.getPlayer().getY());
-                             model.notifyObservers();
+                             model.getPlayer().notifyObserver();
                              for(int i=0 ; i<getModel().getBadGuys().size() ; i++)
                                  view.vBadGuys.get(i).move(i);
                          }
@@ -62,7 +62,7 @@ public class Controller {
                      if (ke.getCode().equals(KeyCode.DOWN)) {
                          if (model.getPlayer().move(Directions.SOUTH)) {
                              view.vPlayer.setY(model.getPlayer().getY());
-                             model.notifyObservers();
+                             model.getPlayer().notifyObserver();
                              for(int i=0 ; i<getModel().getBadGuys().size() ; i++)
                                  view.vBadGuys.get(i).move(i);
                          }
