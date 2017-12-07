@@ -56,9 +56,9 @@ public class Model {
 		return badGuys.get(index);
 	}
 
-	public void notifyObservers() throws PlayerReachedException, FinishedLevelException{
+	public void notifyObservers() throws PlayerReachedException{
         for(BadGuy badGuy : badGuys) {
-            badGuy.update(player.getX(), player.getY());
+            badGuy.update();
         }
     }
 

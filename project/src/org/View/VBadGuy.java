@@ -16,6 +16,5 @@ public class VBadGuy extends VPersonnage {
         int y = View.getController().getModel().getBadGuy(index).getY();
         setX(x);
         setY(y);
-        System.out.println("N°" + index + " : X=" + x + ", Y=" + y);
     }
 }

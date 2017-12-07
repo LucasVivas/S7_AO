@@ -18,16 +18,18 @@ public class BadGuy extends Character{
     /**
      * Move a bad guy to a neighbor vertex which is the closest vertex from the player.
      * @throws PlayerReachedException Throws if the bad guy meet the player
-     * @throws FinishedLevelException PAS BON DU TOUT !!!!!!!!!!!!!!
      */
-    public void seekPath() throws PlayerReachedException, FinishedLevelException {
+    private void seekPath() throws PlayerReachedException {
         Vertex vertex = getVertex();
         for (Directions dir : Directions.values()) {
             Vertex next = Graph.getInstance().vertexByDir(vertex, dir);
             if (next != null) {
                 if (Graph.getInstance().containsEdge(vertex, next)
                         && (next.getNbr() == vertex.getNbr() - 1)) {
-                    super.move(dir);
+                    try {
+                        super.move(dir);
+                    }catch (FinishedLevelException e){
+                    }
                     break;
                 }
             }
@@ -36,14 +38,12 @@ public class BadGuy extends Character{
 
     /**
      * Called to update all observers
-     * @param x New x value
-     * @param y New y value
      * @throws PlayerReachedException //TODO:casa
      * @throws FinishedLevelException //TODO:casa
      */
-    public void update(int x, int y) throws PlayerReachedException, FinishedLevelException {
+    public void update() throws PlayerReachedException {
         Vertex source = new Vertex(this.getX(), this.getY());
-        Vertex target = new Vertex(x,y);
+        Vertex target = new Vertex(Player.getInstance().getX(),Player.getInstance().getY());
         Graph.getInstance().launchManhattan(source,target);
         seekPath();
     }

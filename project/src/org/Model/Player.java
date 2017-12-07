@@ -32,7 +32,7 @@ public class Player extends Character implements Subject{
     @Override
     public void notifyObserver(int x, int y) throws PlayerReachedException, FinishedLevelException {
         for(BadGuy badGuy : observers){
-            badGuy.update(x, y);
+            badGuy.update();
         }
     }
 
