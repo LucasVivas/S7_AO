@@ -9,18 +9,29 @@ import java.util.Random;
 
 public class BadGuy extends Character{
 
-    Graph graph = Graph.getInstance();
-
     public BadGuy(){
         super();
     }
 
-    // Called to update all observers
+    public void move() throws PlayerReachedException, FinishedLevelException {
+        Vertex vertex = this.getVertex(Model.getInstance().getGraph());
+        for (Directions dir : Directions.values()) {
+            Vertex next = Graph.getInstance().vertexByDir(vertex, dir);
+            if (Graph.getInstance().containsEdge(vertex, next)
+                    && (next.getNbr()== vertex.getNbr()-1) ){
+                super.move(dir);
+            }
+        }
+    }
+
+    /**
+     * Called to update all observers
+     */
     public void update(int newX, int newY) throws PlayerReachedException, FinishedLevelException {
         Vertex source = new Vertex(this.getX(), this.getY());
         Vertex target = new Vertex(newX,newY);
-        graph.launchManhattan(source,target);
-        this.move(graph);
+        Graph.getInstance().launchManhattan(source,target);
+        this.move();
     }
 
 }

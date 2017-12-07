@@ -14,7 +14,7 @@ public class VBadGuy extends VPersonnage {
     }
 
     public void move(int index) throws PlayerReachedException, FinishedLevelException {
-        View.getController().getModel().getBadGuy(index).move(View.getController().getModel().getGraph());
+        View.getController().getModel().getBadGuy(index).move();
         setX(View.getController().getModel().getBadGuy(index).getX());
         setY(View.getController().getModel().getBadGuy(index).getY());
     }

@@ -12,16 +12,6 @@ public class Character extends Vertex{
         super(x, y);
     }
 
-    public void move(Graph graph) throws PlayerReachedException, FinishedLevelException {
-    		Vertex vertex = this.getVertex(Model.getInstance().getGraph()) ;
-    		for (Directions dir : Directions.values()) {
-	    		Vertex next = Graph.getInstance().vertexByDir(vertex, dir) ;
-	    		if (Graph.getInstance().containsEdge(vertex, next)
-	    			&& (next.getNbr()== vertex.getNbr()-1) ){
-	    			this.move(dir);
-	    		}
-    		}	
-    }
     public Vertex getVertex(Graph graph) {
     	return graph.getVertex(this.getX(), this.getY());
     }

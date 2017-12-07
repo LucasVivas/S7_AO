@@ -1,7 +1,6 @@
 package org.Model;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import static org.Model.MConsts.*;
 
@@ -53,7 +52,7 @@ public class Model {
 		return player;
 	}
 
-	public Character getBadGuy(int index) {
+	public BadGuy getBadGuy(int index) {
 		return badGuys.get(index);
 	}
 
