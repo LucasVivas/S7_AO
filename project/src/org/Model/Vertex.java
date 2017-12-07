@@ -166,7 +166,10 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
     }
 
 
-
+    /**
+     * To string
+     * @return The <b>Vertex</b> in string in the format : "(x,y)"
+     */
     @Override
     public String toString(){
         return "("+getX()+", "+getY()+ ")";
@@ -174,7 +177,8 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
 
 
     /**
-     * @return True if the position (x,y) of the both vertex are equals.
+     * Equals
+     * @return True if the position (x,y) of the both vertex are equals, else return False.
      */
     @Override
     public boolean equals(Object obj){

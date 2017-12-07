@@ -1,7 +1,6 @@
 package org.Model;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Player extends Character implements Subject{
     private static Player player = null;
