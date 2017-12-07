@@ -11,6 +11,7 @@ public class Player extends Character implements Subject{
 
     private Player(int x, int y) {
         super(x, y);
+        observers = new ArrayList<>();
     }
 
     /**
@@ -20,7 +21,6 @@ public class Player extends Character implements Subject{
     public static Player getInstance(){
         if (player == null){
             player = new Player(0,0);
-            observers = new ArrayList<>();
         }
         return player;
     }

@@ -1,9 +1,7 @@
 package org.Model;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Random;
-
 
 import static org.Model.MConsts.*;
 
@@ -18,6 +16,7 @@ public class Model {
     private Door door;
     private ArrayList<BadGuy> badGuys;
     private ArrayList<Candy> candyList;
+    private int score;
 
     private Model() {
 		super();
@@ -28,6 +27,7 @@ public class Model {
 		door = Door.getInstance();
 		badGuys = createBadGuysList();
         candyList = randomCandyList();
+        score = 0;
 	}
 
     public static Model getInstance(){
@@ -47,10 +47,9 @@ public class Model {
     }
 
     public ArrayList<Candy> randomCandyList(){
-        int nbCandies = 5;
-        ArrayList<Candy> candyList = new ArrayList<>(nbCandies);
+        ArrayList<Candy> candyList = new ArrayList<>(NB_CANDIES);
         CandyFactory candyFactory = new CandyFactory();
-        for(int i=0 ; i<nbCandies ; i++){
+        for(int i=0 ; i<NB_CANDIES ; i++){
             int typeOfCandy = new Random().nextInt(4);
             Candy candy = candyFactory.makeCandy(typeOfCandy);
             candyList.add(candy);
@@ -138,4 +137,11 @@ public class Model {
         return null;
     }
 
+    public int getScore(){
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
 }

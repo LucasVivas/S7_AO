@@ -1,10 +1,14 @@
 package org.View;
 
+import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 import org.Controller.Controller;
 import org.Model.*;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import static org.View.VConsts.*;
 
@@ -74,6 +78,21 @@ public class View {
         drawBadGuys();
         drawPlayer();
         primaryStage.show();
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                System.out.println("Are you done playing ? :)  (y/n)");
+                Scanner sc = new Scanner(System.in);
+                String key = sc.nextLine();
+                if(key.equals("y") || key.equals("Y")) {
+                    System.out.println("Bye bye !");
+                    primaryStage.close();
+                }else if(key.equals("n") || key.equals("N")){
+                    System.out.println("Here we go again !");
+                    event.consume();
+                }
+            }
+        });
     }
 
     private void drawDoor(){
