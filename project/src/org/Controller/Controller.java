@@ -39,7 +39,7 @@ public class Controller {
                          if (model.getPlayer().move(Directions.EAST)) {
                              view.vplayer.setX(model.getPlayer().getX());
                              model.notifyObservers();
-                             for(int i=0 ; i<getModel().getBadGuys().size() ; i++)
+                             for(int i=0 ; i<Model.getNB_BADGUYS() ; i++)
                                 view.vbadguy.get(i).move(i);
                          }
                      }

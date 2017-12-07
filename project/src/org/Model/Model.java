@@ -82,63 +82,36 @@ public class Model {
             int y = graph.getRandomInt(getHEIGHT());
             Vertex source = graph.getVertex(x, y);
             Vertex target;
-            int direction = graph.getRandomInt(4);
-            switch (direction){
-                case 0:
-                    if (graph.doesExist(source, Directions.NORTH)){
-                        target = graph.vertexByDir(source, Directions.NORTH);
-                        if (!graph.containsEdge(source, target)){
-                            Edge e = new Edge(source, target, Edge.Type.CORRIDOR);
-                            graph.addEdge(source, target, e);
-                        } else {
-                            i++;
-                        }
-                    } else {
-                        i++;
-                    }
-                    break;
-                case 1:
-                    if (graph.doesExist(source, Directions.SOUTH)){
-                        target = graph.vertexByDir(source, Directions.SOUTH);
-                        if (!graph.containsEdge(source, target)){
-                            Edge e = new Edge(source, target, Edge.Type.CORRIDOR);
-                            graph.addEdge(source, target, e);
-                        } else {
-                            i++;
-                        }
-                    } else {
-                        i++;
-                    }
-                    break;
-                case 2:
-                    if (graph.doesExist(source, Directions.EAST)){
-                        target = graph.vertexByDir(source, Directions.EAST);
-                        if (!graph.containsEdge(source, target)){
-                            Edge e = new Edge(source, target, Edge.Type.CORRIDOR);
-                            graph.addEdge(source, target, e);
-                        } else {
-                            i++;
-                        }
-                    } else {
-                        i++;
-                    }
-                    break;
-                case 3:
-                    if (graph.doesExist(source, Directions.WEST)){
-                        target = graph.vertexByDir(source, Directions.WEST);
-                        if (!graph.containsEdge(source, target)){
-                            Edge e = new Edge(source, target, Edge.Type.CORRIDOR);
-                            graph.addEdge(source, target, e);
-                        } else {
-                            i++;
-                        }
-                    } else {
-                        i++;
-                    }
-                    break;
+            Directions dir = getRandomDirection();
+
+            if (graph.doesExist(source, dir)){
+                target = graph.vertexByDir(source, dir);
+                if (!graph.containsEdge(source, target)){
+                    Edge e = new Edge(source, target, Edge.Type.CORRIDOR);
+                    graph.addEdge(source, target, e);
+                } else {
+                    i--;
+                }
+            } else {
+                i--;
             }
         }
 
+    }
+
+    public Directions getRandomDirection(){
+        int dir = graph.getRandomInt(4);
+        switch(dir){
+            case 0:
+                return Directions.NORTH;
+            case 1:
+                return Directions.SOUTH;
+            case 2:
+                return Directions.WEST;
+            case 3:
+                return Directions.EAST;
+        }
+        return null;
     }
 
 }

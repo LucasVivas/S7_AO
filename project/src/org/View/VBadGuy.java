@@ -3,8 +3,6 @@ package org.View;
 import org.Model.FinishedLevelException;
 import org.Model.PlayerReachedException;
 
-import java.util.ArrayList;
-
 import static org.View.VConsts.PATHBADGUY;
 
 public class VBadGuy extends VPersonnage {
@@ -14,7 +12,6 @@ public class VBadGuy extends VPersonnage {
     }
 
     public void move(int index) throws PlayerReachedException, FinishedLevelException {
-        View.getController().getModel().getBadGuy(index).move();
         setX(View.getController().getModel().getBadGuy(index).getX());
         setY(View.getController().getModel().getBadGuy(index).getY());
     }
