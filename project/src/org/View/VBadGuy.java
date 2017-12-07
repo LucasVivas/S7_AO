@@ -5,7 +5,7 @@ import org.Model.PlayerReachedException;
 
 import static org.View.VConsts.PATHBADGUY;
 
-public class VBadGuy extends VPersonnage {
+public class VBadGuy extends VSprite {
 
     public VBadGuy() {
         super(PATHBADGUY);

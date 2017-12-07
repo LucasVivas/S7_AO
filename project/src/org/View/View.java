@@ -10,6 +10,7 @@ import org.Model.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 import java.util.Set;
 
 import static org.View.VConsts.*;
@@ -21,22 +22,40 @@ public class View {
     private static View view = null;
     private static Controller controller = Controller.getInstance();
 
-    public VPlayer vplayer;
-    public VDoor vdoor;
-    public ArrayList<VBadGuy> vbadguy;
-    protected ImageView imagePersonnage;
+    public VPlayer vPlayer;
+    public VDoor vDoor;
+    public ArrayList<VBadGuy> vBadGuys;
+    public ArrayList<VCandy> vCandies;
 
     private View() {
         super();
-        vplayer = new VPlayer();
-        vdoor = new VDoor();
+        vPlayer = new VPlayer();
+        vDoor = new VDoor();
+        vBadGuys = InitializeBadGuys();
+        vCandies = InitializeCandies();
     }
 
-    public ArrayList<VBadGuy> InitializeList(){
-        vbadguy = new ArrayList<>(Model.getNB_BADGUYS());;
+    public ArrayList<VBadGuy> InitializeBadGuys(){
+        vBadGuys = new ArrayList<>(Model.getNB_BADGUYS());;
         for(int i = 0; i < Model.getNB_BADGUYS(); i++)
-            vbadguy.add(new VBadGuy());
-        return vbadguy;
+            vBadGuys.add(new VBadGuy());
+        return vBadGuys;
+    }
+
+    public ArrayList<VCandy> InitializeCandies(){
+        vCandies = new ArrayList<>();
+        ArrayList<Candy> candyList = Model.getInstance().getCandyList();
+        for(int i = 0; i < candyList.size(); i++){
+            if(candyList.get(i) instanceof CherryCandy)
+               vCandies.add(new VCherryCandy());
+            if(candyList.get(i) instanceof NormalCandy)
+                vCandies.add(new VNormalCandy());
+            if(candyList.get(i) instanceof SuperCandy)
+                vCandies.add(new VSuperCandy());
+            if(candyList.get(i) instanceof TastyCandy)
+                vCandies.add(new VTastyCandy());
+        }
+        return vCandies;
     }
 
     public static View getInstance(){
@@ -58,6 +77,7 @@ public class View {
         primaryStage.setTitle("Labyrinthe");
         VGraph.drawMaze(primaryStage,graph.edgeSet());
         drawDoor();
+        drawCandies();
         drawBadGuys();
         drawPlayer();
         primaryStage.show();
@@ -66,30 +86,40 @@ public class View {
     private void drawDoor(){
         int x = getController().getModel().getDoor().getX();
         int y = getController().getModel().getDoor().getY();
-        vdoor.setX(x);
-        vdoor.setY(y);
+        vDoor.setX(x);
+        vDoor.setY(y);
         //vdoor.getImagePlayer().setFocusTraversable(true); //Lucas ne sais pas ce que ca fait
-        root.getChildren().add(vdoor.getImagePlayer());
+        root.getChildren().add(vDoor.getImagePlayer());
     }
     private void drawBadGuys(){
-        vbadguy = InitializeList();
-    	for(int i = 0; i < vbadguy.size(); i++) {
+    	for(int i = 0; i < vBadGuys.size(); i++) {
 	    	int x = getController().getModel().getBadGuy(i).getX();
 	        int y = getController().getModel().getBadGuy(i).getY();
-	        vbadguy.get(i).setX(x);
-            vbadguy.get(i).setY(y);
+	        vBadGuys.get(i).setX(x);
+            vBadGuys.get(i).setY(y);
 	        //vplayer.getImagePlayer().setFocusTraversable(true);
-	        root.getChildren().add(vbadguy.get(i).getImagePlayer());
+	        root.getChildren().add(vBadGuys.get(i).getImagePlayer());
     	}
     }
 
     private void drawPlayer(){
         int x = getController().getModel().getPlayer().getX();
         int y = getController().getModel().getPlayer().getY();
-        vplayer.setX(x);
-        vplayer.setY(y);
-        vplayer.getImagePlayer().setFocusTraversable(true);
-        root.getChildren().add(vplayer.getImagePlayer());
+        vPlayer.setX(x);
+        vPlayer.setY(y);
+        vPlayer.getImagePlayer().setFocusTraversable(true);
+        root.getChildren().add(vPlayer.getImagePlayer());
+    }
+
+    private void drawCandies(){
+        for(int i = 0; i < vCandies.size(); i++) {
+            int x = getController().getModel().getCandy(i).getX();
+            int y = getController().getModel().getCandy(i).getY();
+            vCandies.get(i).setX(x);
+            vCandies.get(i).setY(y);
+            //vplayer.getImagePlayer().setFocusTraversable(true);
+            root.getChildren().add(vCandies.get(i).getImagePlayer());
+        }
     }
 
 	public static Controller getController() {
