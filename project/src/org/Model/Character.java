@@ -11,10 +11,6 @@ public class Character extends Vertex{
     public Character(int x, int y) {
         super(x, y);
     }
-
-    public Vertex getVertex(Graph graph) {
-    	return graph.getVertex(this.getX(), this.getY());
-    }
     
     public boolean move(Directions direction) throws PlayerReachedException, FinishedLevelException {
         Iterator<Edge> graphEdgesIterator = Graph.getInstance().edgeSet().iterator();
@@ -23,9 +19,6 @@ public class Character extends Vertex{
         int y_source = getY();
         int x_tmp = 0;
         int y_tmp = 0;
-
-        if (new Vertex(x_source, y_source).inBorders(direction))
-            return false;
 
         switch (direction) {
             case NORTH:

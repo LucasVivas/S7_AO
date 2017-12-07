@@ -9,13 +9,14 @@ public class BadGuy extends Character{
     }
 
     public void seekPath() throws PlayerReachedException, FinishedLevelException {
-        Vertex vertex = getVertex(Model.getInstance().getGraph());
+        Vertex vertex = Model.getInstance().getGraph().getVertex(getX(), getY());
         for (Directions dir : Directions.values()) {
             Vertex next = Graph.getInstance().vertexByDir(vertex, dir);
             if (next != null) {
                 if (Graph.getInstance().containsEdge(vertex, next)
                         && (next.getNbr() == vertex.getNbr() - 1)) {
                     super.move(dir);
+                    break;
                 }
             }
         }
