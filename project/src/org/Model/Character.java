@@ -4,6 +4,8 @@ import java.util.Iterator;
 
 /**
  * Class Character is used to create a Character which is a player or a bad guy.
+ * @author Lucas Vivas, Gauthier Lamarque {@literal &} Co.
+ * @version 1.0.0
  */
 public class Character extends Vertex{
     /**
@@ -15,8 +17,8 @@ public class Character extends Vertex{
 
     /**
      * build a character with the position (x,y).
-     * @param x
-     * @param y
+     * @param x new x value
+     * @param y new y value
      */
     public Character(int x, int y) {
         super(x, y);
@@ -31,10 +33,10 @@ public class Character extends Vertex{
 
     /**
      * Move the player to a direction if it's possible.
-     * @param direction
+     * @param direction the direction where the <b>Character</b> will move
      * @return boolean which is true if the character could move the character moved.
-     * @throws PlayerReachedException
-     * @throws FinishedLevelException
+     * @throws PlayerReachedException //TODO: casa
+     * @throws FinishedLevelException //TODO: casa
      */
     public boolean move(Directions direction) throws PlayerReachedException, FinishedLevelException {
         Iterator<Edge> graphEdgesIterator = Graph.getInstance().edgeSet().iterator();

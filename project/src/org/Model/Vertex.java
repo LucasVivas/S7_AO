@@ -3,7 +3,9 @@ package org.Model;
 import java.util.Random;
 
 /**
- * @author Lucas VIVAS, Gauthier Lamarque & Co.
+ * class of vertices.
+ * @author Lucas VIVAS, Gauthier Lamarque {@literal &} Co.
+ * @version 1.0.0
  */
 public class Vertex implements Comparable<Vertex>, Cloneable{
 
@@ -12,7 +14,7 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
     private int nbr;
 
     /**
-     * @return the number of the vertex.
+     * @return The number of the vertex.
      */
     public int getNbr() {
 		return nbr;
@@ -20,14 +22,14 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
 
     /**
      * Set the param nbr to nbr.
-     * @param nbr
+     * @param nbr new number value.
      */
 	public void setNbr(int nbr) {
 		this.nbr = nbr;
 	}
 
     /**
-     * Build a vertex with a random position and the number equals to 0.
+     * Build a <b>Vertex</b> with a random position and the number equals to 0.
      */
     public Vertex(){
         Random random = new Random();
@@ -37,8 +39,8 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
 
     /**
      * Build a Vertex and set the position to (x,y) with the number equals to 0.
-     * @param x
-     * @param y
+     * @param x New x position.
+     * @param y New y position.
      */
 	public Vertex(int x, int y) {
 		this.x = x;
@@ -48,9 +50,9 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
 
     /**
      * Build a Vertex and set the position to (x,y) with the number equals to nbr.
-     * @param x
-     * @param y
-     * @param nbr
+     * @param x New x value
+     * @param y New y value
+     * @param nbr New number value
      */
     public Vertex(int x, int y, int nbr) {
         super();
@@ -61,7 +63,7 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
 
     /**
      * Build a Vertex with the parameter of another Vertex.
-     * @param vertex
+     * @param vertex Vertex with all the new parameter
      */
     public Vertex(Vertex vertex){
         this.x = vertex.getX();
@@ -86,7 +88,7 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
 
     /**
      * Set the parameter x to x.
-     * @param x
+     * @param x New x value
      */
     public void setX(int x) {
         this.x = x;
@@ -94,7 +96,7 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
 
     /**
      * Set the parameter y to y.
-     * @param y
+     * @param y New y value
      */
     public void setY(int y) {
         this.y = y;
@@ -102,8 +104,8 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
 
 
     /**
-     * @param v
-     * @return true if this Vertex and v are neighbors.
+     * @param v Another vertex
+     * @return True if this Vertex and v are neighbors.
      */
     public boolean areNeighbors(Vertex v){
         int dx = Math.abs(this.getX() - v.getX());
@@ -112,8 +114,8 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
     }
 
     /**
-     * @param v
-     * @return 0 if the vertex have the same position.
+     * @param v Another vertex
+     * @return 0 If the vertex have the same position.
      */
     @Override
     public int compareTo(Vertex v){
@@ -131,8 +133,8 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
     }
 
     /**
-     * @param dir
-     * @return true if the vertex to the direction is in the border of the maze.
+     * @param dir The direction to the new vertex
+     * @return True if the vertex to the direction is in the border of the maze.
      */
     public boolean inBorders(Directions dir){
         switch (dir){
@@ -150,7 +152,7 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
 
     /**
      *
-     * @return a copy of the vertex.
+     * @return A copy of the vertex.
      */
     public Vertex clone(){
         Vertex v;
@@ -172,7 +174,7 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
 
 
     /**
-     * @return true if the position (x,y) of the both vertex are equals.
+     * @return True if the position (x,y) of the both vertex are equals.
      */
     @Override
     public boolean equals(Object obj){
