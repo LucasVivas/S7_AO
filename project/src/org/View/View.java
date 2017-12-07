@@ -1,16 +1,11 @@
 package org.View;
 
-import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import org.Controller.Controller;
 import org.Model.*;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Set;
 
 import static org.View.VConsts.*;
 

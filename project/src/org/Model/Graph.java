@@ -4,7 +4,7 @@ import org.jgrapht.graph.SimpleGraph;
 import java.util.*;
 
 /**
- *  @author Lucas Vivas, Gauthier Lamarque {@literal &} Co.
+ *  @author Lucas Vivas, Gauthier Lamarque, Alexandre Casanova-Franger, Zakaria Mallouky
  *  The graph class is used to create the graph for the maze.
  *
  */
