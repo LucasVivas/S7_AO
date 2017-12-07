@@ -27,6 +27,9 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
         return mInstance;
     }
 
+    /**
+     * Build a random path on the graph
+     */
     public void buildRandomPath(){
         Vertex v = new Vertex(0,0);
         addVertex(v);
@@ -81,7 +84,13 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
             }
         }
     }
-    
+
+    /**
+     * @param vertex The vertex
+     * @param dir The direction to check
+     * @return The vertex which is at the direction <i>dir</i> from the vertex <i>vertex</i>
+     * return null if the vertex doesn't exist.
+     */
     public Vertex vertexByDir(Vertex vertex, Directions dir) {
     	Vertex res;
     	int x = vertex.getX();
@@ -222,22 +231,35 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
 		return null;
 	}
 
+    /**
+     * Return a vertex of the graph with the position (x,y)
+     * @param x x position
+     * @param y y position
+     * @return a vertex of the graph with the position (x,y)
+     */
 	public Vertex getVertex (int x, int y){
 	    Set<Vertex> vertexSet = vertexSet();
-	    Iterator<Vertex> iterator = vertexSet.iterator();
-	    while (iterator.hasNext()){
-	        Vertex v = iterator.next();
-	        if (v.getX() == x && v.getY() == y){
-	            return v;
+        for (Vertex v : vertexSet) {
+            if (v.getX() == x && v.getY() == y) {
+                return v;
             }
         }
         return null;
     }
 
+    /**
+     * @param max max size of random
+     * @return A random integer value between 0 and max.
+     */
     public int getRandomInt (int max){
 	    return new Random().nextInt(max);
     }
 
+    /**
+     * @param source The source vertex
+     * @param target The target vertex
+     * @return True if the edge with the source <i>source</i> and the target <i>target</i> exist in the graph, else return false
+     */
     @Override
     public boolean containsEdge(Vertex source, Vertex target) {
         Iterator<Edge> graphEdgesIterator = Graph.getInstance().edgeSet().iterator();

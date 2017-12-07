@@ -20,8 +20,10 @@ public class GraphTest {
     @Test
     public void testBuildRandomGraph() throws Exception {
         Graph graphBuild = Graph.getInstance();
+        Graph graphNull = null;
         Vertex source = new Vertex();
         graphBuild.buildRandomPath();
+        graphNull.buildRandomPath();
         //assertTrue("This graph need to have more than one vertex", graphBuild.getNbVertices() > 1);
         //assertTrue("This graph need to have at least one edge", graphBuild.getNbEdges() > 0);
     }
