@@ -28,6 +28,7 @@ public class BadGuy extends Character{
                 if (Graph.getInstance().containsEdge(vertex, next)
                         && (next.getNbr() == vertex.getNbr() - 1)) {
                     super.move(dir);
+                    break;
                 }
             }
         }

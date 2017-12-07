@@ -97,26 +97,25 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
     	int y = vertex.getY();
     	switch(dir) {
     		case NORTH:
-    			if(doesExist(vertex, Directions.NORTH)) {
-    				res = getVertex(x,y-1);
-    				return res;
+    			if(doesExist(vertex, dir)) {
+                    res = getVertex(x,(y-1));
+                    return res;
     			}
     		case SOUTH:
-    			if(doesExist(vertex, Directions.SOUTH)) {
-    				res = getVertex(x,y+1);
+    			if(doesExist(vertex, dir)) {
+    				res = getVertex(x,(y+1));
     				return res;
     			}
     		case EAST:
-    			if(doesExist(vertex, Directions.EAST)) {
-    				res = getVertex(x+1,y);
+    			if(doesExist(vertex, dir)) {
+    				res = getVertex((x+1),y);
     				return res;
     			}
     		case WEST:
-    			if(doesExist(vertex, Directions.WEST)) {
-    				res = getVertex(x-1,y);
+    			if(doesExist(vertex, dir)) {
+    				res = getVertex((x-1),y);
     				return res;
     			}
-    		
     	}
 		return null;
     }
@@ -153,9 +152,6 @@ public class Graph extends SimpleGraph<Vertex,Edge>{
     }
 
     public Vertex furthestVertex(Vertex source) {
-        //if (!this.containsVertex(source)){
-        //    throw new VertexNotInGraphException(source);
-        //}
         int max = 0;
         Vertex tmp;
         Vertex maxVertex = null;

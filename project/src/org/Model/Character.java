@@ -48,9 +48,6 @@ public class Character extends Vertex{
         int x_tmp = 0;
         int y_tmp = 0;
 
-        if (new Vertex(x_source, y_source).inBorders(direction))
-            return false;
-
         switch (direction) {
             case NORTH:
                 y_tmp = -1;
