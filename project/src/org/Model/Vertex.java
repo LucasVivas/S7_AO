@@ -11,26 +11,47 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
     private int y;
     private int nbr;
 
+    /**
+     * @return the number of the vertex.
+     */
     public int getNbr() {
 		return nbr;
 	}
 
+    /**
+     * Set the param nbr to nbr.
+     * @param nbr
+     */
 	public void setNbr(int nbr) {
 		this.nbr = nbr;
 	}
 
+    /**
+     * Build a vertex with a random position and the number equals to 0.
+     */
     public Vertex(){
         Random random = new Random();
         this.x = random.nextInt(MConsts.WIDTH);
         this.y = random.nextInt(MConsts.HEIGHT);
     }
 
+    /**
+     * Build a Vertex and set the position to (x,y) with the number equals to 0.
+     * @param x
+     * @param y
+     */
 	public Vertex(int x, int y) {
 		this.x = x;
 		this.y = y;
 		this.nbr = 0;
 	}
 
+    /**
+     * Build a Vertex and set the position to (x,y) with the number equals to nbr.
+     * @param x
+     * @param y
+     * @param nbr
+     */
     public Vertex(int x, int y, int nbr) {
         super();
         this.x = x;
@@ -38,34 +59,62 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
         this.nbr = nbr;
     }
 
+    /**
+     * Build a Vertex with the parameter of another Vertex.
+     * @param vertex
+     */
     public Vertex(Vertex vertex){
         this.x = vertex.getX();
         this.y = vertex.getY();
         this.nbr = vertex.getNbr();
     }
+
+
+    /**
+     * @return The value of the parameter x.
+     */
     public int getX(){
         return x;
     }
 
+    /**
+     * @return The value of the parameter y.
+     */
 	public int getY(){
         return y;
     }
 
+    /**
+     * Set the parameter x to x.
+     * @param x
+     */
     public void setX(int x) {
         this.x = x;
     }
 
+    /**
+     * Set the parameter y to y.
+     * @param y
+     */
     public void setY(int y) {
         this.y = y;
     }
 
 
+    /**
+     * @param v
+     * @return true if this Vertex and v are neighbors.
+     */
     public boolean areNeighbors(Vertex v){
         int dx = Math.abs(this.getX() - v.getX());
         int dy = Math.abs(this.getY() - v.getY());
         return (dx == 0 && dy == 1) || (dx == 1 && dy == 0);
     }
 
+    /**
+     * @param v
+     * @return 0 if the vertex have the same position.
+     */
     @Override
     public int compareTo(Vertex v){
         int dx = this.getX() - v.getX();
@@ -81,6 +130,10 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
         return 0;
     }
 
+    /**
+     * @param dir
+     * @return true if the vertex to the direction is in the border of the maze.
+     */
     public boolean inBorders(Directions dir){
         switch (dir){
             case NORTH:
@@ -95,6 +148,10 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
         return false;
     }
 
+    /**
+     *
+     * @return a copy of the vertex.
+     */
     public Vertex clone(){
         Vertex v;
         try{
@@ -113,6 +170,10 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
         return "("+getX()+", "+getY()+ ")";
     }
 
+
+    /**
+     * @return true if the position (x,y) of the both vertex are equals.
+     */
     @Override
     public boolean equals(Object obj){
         if (obj.getClass() != Vertex.class)
