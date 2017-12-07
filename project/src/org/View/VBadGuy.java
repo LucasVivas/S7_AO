@@ -5,7 +5,7 @@ import org.Model.PlayerReachedException;
 
 import static org.View.VConsts.PATHBADGUY;
 
-public class VBadGuy extends VPersonnage {
+public class VBadGuy extends VSprite {
 
     public VBadGuy() {
         super(PATHBADGUY);
@@ -16,6 +16,5 @@ public class VBadGuy extends VPersonnage {
         int y = View.getController().getModel().getBadGuy(index).getY();
         setX(x);
         setY(y);
-        System.out.println("N°" + index + " : X=" + x + ", Y=" + y);
     }
 }

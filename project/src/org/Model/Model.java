@@ -1,21 +1,23 @@
 package org.Model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Random;
+
 
 import static org.Model.MConsts.*;
 
 /**
  * Created by lulu on 19/11/17.
  */
+
 public class Model {
     private static Model model = null;
-
     private Graph graph;
     private Player player;
     private Door door;
     private ArrayList<BadGuy> badGuys;
-
-
+    private ArrayList<Candy> candyList;
 
     private Model() {
 		super();
@@ -24,9 +26,8 @@ public class Model {
 		createHoles();
 		player = Player.getInstance();
 		door = Door.getInstance();
-        badGuys = new ArrayList<>(NB_BADGUYS);
-        for(int i = 0; i < NB_BADGUYS; i++)
-        	badGuys.add(new BadGuy());
+		badGuys = createBadGuysList();
+        candyList = randomCandyList();
 	}
 
     public static Model getInstance(){
@@ -34,6 +35,35 @@ public class Model {
             model = new Model();
         }
         return model;
+    }
+
+    public ArrayList<BadGuy> createBadGuysList(){
+        badGuys = new ArrayList<>(NB_BADGUYS);
+        for(int i = 0; i < NB_BADGUYS; i++) {
+            badGuys.add(new BadGuy());
+            getPlayer().register(badGuys.get(i));
+        }
+        return badGuys;
+    }
+
+    public ArrayList<Candy> randomCandyList(){
+        int nbCandies = 5;
+        ArrayList<Candy> candyList = new ArrayList<>(nbCandies);
+        CandyFactory candyFactory = new CandyFactory();
+        for(int i=0 ; i<nbCandies ; i++){
+            int typeOfCandy = new Random().nextInt(4);
+            Candy candy = candyFactory.makeCandy(typeOfCandy);
+            candyList.add(candy);
+        }
+        return candyList;
+    }
+
+    public ArrayList<Candy> getCandyList() {
+        return candyList;
+    }
+
+    public Candy getCandy(int index){
+        return candyList.get(index);
     }
 
     public Graph getGraph() {
@@ -48,19 +78,13 @@ public class Model {
         return WIDTH;
     }
 
-	public Character getPlayer() {
+	public Player getPlayer() {
 		return player;
 	}
 
 	public BadGuy getBadGuy(int index) {
 		return badGuys.get(index);
 	}
-
-	public void notifyObservers() throws PlayerReachedException, FinishedLevelException{
-        for(BadGuy badGuy : badGuys) {
-            badGuy.update(player.getX(), player.getY());
-        }
-    }
 
     public ArrayList<BadGuy> getBadGuys() {
         return badGuys;

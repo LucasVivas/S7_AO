@@ -25,4 +25,6 @@ public class Door extends Vertex {
         }
         return door;
     }
+
 }
+

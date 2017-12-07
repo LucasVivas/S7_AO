@@ -31,40 +31,40 @@ public class Controller {
     
     public void movement() {
     	
-    	 view.vplayer.getImagePlayer().setOnKeyPressed(new EventHandler<KeyEvent>() {
+    	 view.vPlayer.getImagePlayer().setOnKeyPressed(new EventHandler<KeyEvent>() {
              @Override
              public void handle(KeyEvent ke) {
                  try {
                      if (ke.getCode().equals(KeyCode.RIGHT)) {
                          if (model.getPlayer().move(Directions.EAST)) {
-                             view.vplayer.setX(model.getPlayer().getX());
-                             model.notifyObservers();
-                             for(int i=0 ; i<Model.getNB_BADGUYS() ; i++)
-                                view.vbadguy.get(i).move(i);
+                             view.vPlayer.setX(model.getPlayer().getX());
+                             model.getPlayer().notifyObserver();
+                             for(int i=0 ; i<getModel().getBadGuys().size() ; i++)
+                                view.vBadGuys.get(i).move(i);
                          }
                      }
                      if (ke.getCode().equals(KeyCode.LEFT)) {
                          if (model.getPlayer().move(Directions.WEST)) {
-                             view.vplayer.setX(model.getPlayer().getX());
-                             model.notifyObservers();
+                             view.vPlayer.setX(model.getPlayer().getX());
+                             model.getPlayer().notifyObserver();
                              for(int i=0 ; i<getModel().getBadGuys().size() ; i++)
-                                 view.vbadguy.get(i).move(i);
+                                 view.vBadGuys.get(i).move(i);
                          }
                      }
                      if (ke.getCode().equals(KeyCode.UP)) {
                          if (model.getPlayer().move(Directions.NORTH)) {
-                             view.vplayer.setY(model.getPlayer().getY());
-                             model.notifyObservers();
+                             view.vPlayer.setY(model.getPlayer().getY());
+                             model.getPlayer().notifyObserver();
                              for(int i=0 ; i<getModel().getBadGuys().size() ; i++)
-                                 view.vbadguy.get(i).move(i);
+                                 view.vBadGuys.get(i).move(i);
                          }
                      }
                      if (ke.getCode().equals(KeyCode.DOWN)) {
                          if (model.getPlayer().move(Directions.SOUTH)) {
-                             view.vplayer.setY(model.getPlayer().getY());
-                             model.notifyObservers();
+                             view.vPlayer.setY(model.getPlayer().getY());
+                             model.getPlayer().notifyObserver();
                              for(int i=0 ; i<getModel().getBadGuys().size() ; i++)
-                                 view.vbadguy.get(i).move(i);
+                                 view.vBadGuys.get(i).move(i);
                          }
                      }
                  }catch (PlayerReachedException e){
