@@ -17,7 +17,7 @@ public class BadGuy extends Character{
 
     /**
      * Move a bad guy to a neighbor vertex which is the closest vertex from the player.
-     * @throws PlayerReachedException Throws if the bad guy meet the player
+     * @throws PlayerReachedException Throws if the bad guy meet the player.
      */
     private void seekPath() throws PlayerReachedException {
         Vertex vertex = getVertex();
@@ -47,8 +47,8 @@ public class BadGuy extends Character{
     }
 
     /**
-     * Called to update all observers
-     * @throws PlayerReachedException //TODO:casa
+     * Called to update all observers.
+     * @throws PlayerReachedException Throws if the bad guy meet the player.
      */
     public void update() throws PlayerReachedException {
         Vertex source = new Vertex(this.getX(), this.getY());
