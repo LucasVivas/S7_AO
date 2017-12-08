@@ -124,8 +124,10 @@ public class View {
             Alert alert = new Alert(AlertType.NONE, "Are you done playing ?", ButtonType.NO, ButtonType.YES);
             alert.setTitle("Exit game");
             alert.showAndWait();
-            if (alert.getResult() == ButtonType.YES)
+            if (alert.getResult() == ButtonType.YES){
                 primaryStage.close();
+                System.exit(0);
+            }
             e.consume();
         });
     }
