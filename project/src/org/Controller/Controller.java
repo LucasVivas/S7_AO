@@ -113,7 +113,7 @@ public class Controller {
 					}
 				}catch (PlayerReachedException e){
 					//service.shutdownNow();
-					Alert alert = new Alert(AlertType.INFORMATION, "Replay ?", ButtonType.YES, ButtonType.NO);
+					Alert alert = new Alert(AlertType.NONE, "Replay ?", ButtonType.YES, ButtonType.NO);
 					alert.setTitle("You lose !");
 					alert.showAndWait();
 
@@ -123,7 +123,7 @@ public class Controller {
 				}catch (FinishedLevelException e){
 
 					//service.shutdownNow();
-					Alert alert = new Alert(AlertType.INFORMATION, "Replay ?", ButtonType.YES, ButtonType.NO);
+					Alert alert = new Alert(AlertType.NONE, "Replay ?", ButtonType.YES, ButtonType.NO);
 					alert.setTitle("You win !");
 					alert.showAndWait();
 

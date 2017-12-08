@@ -5,7 +5,7 @@ package org.Model;
  * @author Lucas Vivas, Gauthier Lamarque {@literal &} Co.
  * @version 1.0.0
  */
-public class BadGuy extends Character{
+public class BadGuy extends Character implements Observer{
 
     /**
      * Create a bad guy with a random position.
@@ -50,8 +50,8 @@ public class BadGuy extends Character{
      * Called to update all observers
      * @throws PlayerReachedException //TODO:casa
      */
-    public void update() throws PlayerReachedException {
-        Vertex source = new Vertex(this.getX(), this.getY());
+    public void update(int newX, int newY) throws PlayerReachedException {
+        Vertex source = new Vertex(newX, newY);
         Vertex target = new Vertex(Player.getInstance().getX(),Player.getInstance().getY());
         Graph.getInstance().launchManhattan(source,target);
         seekPath();

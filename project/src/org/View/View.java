@@ -1,34 +1,23 @@
 package org.View;
 
-import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.*;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.stage.WindowEvent;
-import org.Controller.Controller;
-import org.Model.*;
 
-import java.lang.module.Configuration;
+import org.Model.*;
+import org.Controller.Controller;
+import static org.View.VConsts.*;
+
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
 
-import static org.View.VConsts.*;
+
 
 /**
  * Created by lulu on 19/11/17.
@@ -93,6 +82,7 @@ public class View {
         ChoiceDialog<String> dialog = new ChoiceDialog<>("EASY", choices);
         dialog.setTitle("Level difficulty");
         dialog.setContentText("Choose the difficulty:");
+        int timeBetweenMovements = 10;
 
         // Traditional way to get the response value.
         Optional<String> result = dialog.showAndWait();
@@ -100,16 +90,17 @@ public class View {
             System.out.println("Your choice: " + result.get());
             switch (result.get()){
                 case "EASY":
-                    return 10;
-
+                    timeBetweenMovements = 10;
+                    break;
                 case "NORMAL":
-                    return 6;
-
+                    timeBetweenMovements = 6;
+                    break;
                 case "HARD":
-                    return 3;
+                    timeBetweenMovements = 3;
+                    break;
             }
         }
-        return 10;
+        return timeBetweenMovements;
     }
 
 
@@ -123,26 +114,19 @@ public class View {
         primaryStage.setHeight(((WALL + CELL) * nbrY + WALL) * SPAN);
         primaryStage.setTitle("Labyrinthe");
         VGraph.drawMaze(primaryStage,graph.edgeSet());
-        Label label1 = new Label("Your score :" + Model.getInstance().getScore());
-        Label label2 = new Label("Best score :" + Model.getInstance().getScore());
-        HBox scores = new HBox(500);
-        scores.getChildren().addAll(label1, label2);
-        root.getChildren().add(scores);
+        drawScores();
         drawDoor();
         drawCandies();
         drawBadGuys();
         drawPlayer();
         primaryStage.show();
         primaryStage.setOnCloseRequest(e -> {
-            Alert alert = new Alert(AlertType.INFORMATION, "Are you done playing ?", ButtonType.NO, ButtonType.YES);
+            Alert alert = new Alert(AlertType.NONE, "Are you done playing ?", ButtonType.NO, ButtonType.YES);
             alert.setTitle("Exit game");
             alert.showAndWait();
-            if (alert.getResult() == ButtonType.YES) {
+            if (alert.getResult() == ButtonType.YES)
                 primaryStage.close();
-            }else{
-                e.consume();
-            }
-
+            e.consume();
         });
     }
 
@@ -183,6 +167,15 @@ public class View {
             //vplayer.getImagePlayer().setFocusTraversable(true);
             root.getChildren().add(vCandies.get(i).getImagePlayer());
         }
+    }
+
+    private void drawScores(){
+        Label label1 = new Label("Your score :" + Model.getInstance().getScore());
+        Label label2 = new Label("Best score :" + Model.getInstance().getScore());
+        HBox scores = new HBox(500);
+        scores.getChildren().addAll(label1, label2);
+        //scores.setFocusTraversable(true);
+        root.getChildren().add(scores);
     }
 
 	public static Controller getController() {

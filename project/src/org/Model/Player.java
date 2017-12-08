@@ -45,17 +45,17 @@ public class Player extends Character implements Subject{
     }
 
     /**
-     * Update all the observer (badguy) position
+     * Update all the observers (badguy) position
      * @throws PlayerReachedException if a bad guy meet the player
      */
     public void notifyObserver() throws PlayerReachedException {
         for(BadGuy badGuy : observers){
-            badGuy.update();
+            badGuy.update(player.getX(), player.getY());
         }
     }
 
     /**
-     *  Return the list of the observers
+     *  Get the observers list
      * @return Return the list of the observers
      */
     public ArrayList<BadGuy> getObservers() {
