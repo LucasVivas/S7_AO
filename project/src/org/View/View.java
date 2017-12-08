@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 import javafx.scene.text.Font;
@@ -22,7 +23,7 @@ import javafx.stage.WindowEvent;
 import org.Controller.Controller;
 import org.Model.*;
 
-import java.lang.module.Configuration;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -43,6 +44,9 @@ public class View {
     public VDoor vDoor;
     public ArrayList<VBadGuy> vBadGuys;
     public ArrayList<VCandy> vCandies;
+    static Scene scene1,scene2;
+    public Button button2;
+    public Label pause;
 
     private View() {
         super();
@@ -50,6 +54,9 @@ public class View {
         vDoor = new VDoor();
         vBadGuys = InitializeBadGuys();
         vCandies = InitializeCandies();
+        button2= new Button("Start");
+        pause = new Label("PAUSE\nPress SPACE to resume");
+        pause.setFont(new Font("Cambria", 18));
     }
 
 
@@ -114,36 +121,48 @@ public class View {
 
 
     public void start(Stage primaryStage) {
-        nbrX = Model.getWIDTH();
-        nbrY = Model.getHEIGHT();
-        Graph graph = getController().getModel().getGraph();
-        System.out.println(graph.vertexSet().size());
-        System.out.println(graph.edgeSet().size());
-        primaryStage.setWidth(((WALL + CELL) * nbrX + WALL) * SPAN);
-        primaryStage.setHeight(((WALL + CELL) * nbrY + WALL) * SPAN);
-        primaryStage.setTitle("Labyrinthe");
-        VGraph.drawMaze(primaryStage,graph.edgeSet());
-        Label label1 = new Label("Your score :" + Model.getInstance().getScore());
-        Label label2 = new Label("Best score :" + Model.getInstance().getScore());
-        HBox scores = new HBox(500);
-        scores.getChildren().addAll(label1, label2);
-        root.getChildren().add(scores);
-        drawDoor();
-        drawCandies();
-        drawBadGuys();
-        drawPlayer();
+    	//Scene1
+    	Label label22= new Label("Welcome ! Press Start to play :)");
+    	
+    	VBox layout2= new VBox(20);
+    	layout2.getChildren().addAll(label22, button2);
+    	scene2= new Scene(layout2, 350,250);
+    	        
+    	        
+    	primaryStage.setScene(scene2);
         primaryStage.show();
-        primaryStage.setOnCloseRequest(e -> {
-            Alert alert = new Alert(AlertType.INFORMATION, "Are you done playing ?", ButtonType.NO, ButtonType.YES);
-            alert.setTitle("Exit game");
-            alert.showAndWait();
-            if (alert.getResult() == ButtonType.YES) {
-                primaryStage.close();
-            }else{
-                e.consume();
-            }
+    
+    }
+    
+    public void showGame(Stage primaryStage){
 
-        });
+    	  nbrX = Model.getWIDTH();
+          nbrY = Model.getHEIGHT();
+          Graph graph = getController().getModel().getGraph();
+          System.out.println(graph.vertexSet().size());
+          System.out.println(graph.edgeSet().size());
+          primaryStage.setWidth(((WALL + CELL) * nbrX + WALL) * SPAN);
+          primaryStage.setHeight(((WALL + CELL) * nbrY + WALL) * SPAN);
+          primaryStage.setTitle("Labyrinthe");
+          VGraph.drawMaze(primaryStage,graph.edgeSet());
+          Label label1 = new Label("Your score :" + Model.getInstance().getScore());
+          Label label2 = new Label("Best score :" + Model.getInstance().getScore());
+
+          
+          HBox scores = new HBox(500);
+          scores.getChildren().addAll(label1, label2);
+          root.getChildren().add(scores);
+          root.getChildren().add(pause);
+          pause.setLayoutX(((primaryStage.getWidth())-pause.getLayoutX())/2);
+          pause.setLayoutY(((primaryStage.getHeight())-pause.getLayoutY())/2);
+          drawDoor();
+          drawCandies();
+          drawBadGuys();
+          drawPlayer();
+      	  //scene1= root.getScene();
+      	  primaryStage.setScene(scene1);
+      	  //primaryStage.show();
+      	  
     }
 
     private void drawDoor(){
