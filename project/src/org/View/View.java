@@ -1,13 +1,31 @@
 package org.View;
 
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceDialog;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.*;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 import org.Controller.Controller;
 import org.Model.*;
 
+import java.lang.module.Configuration;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 import static org.View.VConsts.*;
@@ -16,6 +34,8 @@ import static org.View.VConsts.*;
  * Created by lulu on 19/11/17.
  */
 public class View {
+
+
     private static View view = null;
     private static Controller controller = Controller.getInstance();
 
@@ -30,6 +50,15 @@ public class View {
         vDoor = new VDoor();
         vBadGuys = InitializeBadGuys();
         vCandies = InitializeCandies();
+    }
+
+
+    public static View getInstance(){
+        if (View.view == null){
+            view = new View();
+            return view;
+        }
+        return view;
     }
 
     public ArrayList<VBadGuy> InitializeBadGuys(){
@@ -55,12 +84,32 @@ public class View {
         return vCandies;
     }
 
-    public static View getInstance(){
-        if (View.view == null){
-            view = new View();
-            return view;
+    public int chooseLevel(){
+        List<String> choices = new ArrayList<>();
+        choices.add("EASY");
+        choices.add("NORMAL");
+        choices.add("HARD");
+
+        ChoiceDialog<String> dialog = new ChoiceDialog<>("EASY", choices);
+        dialog.setTitle("Level difficulty");
+        dialog.setContentText("Choose the difficulty:");
+
+        // Traditional way to get the response value.
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()){
+            System.out.println("Your choice: " + result.get());
+            switch (result.get()){
+                case "EASY":
+                    return 10;
+
+                case "NORMAL":
+                    return 6;
+
+                case "HARD":
+                    return 3;
+            }
         }
-        return view;
+        return 10;
     }
 
 
@@ -74,25 +123,26 @@ public class View {
         primaryStage.setHeight(((WALL + CELL) * nbrY + WALL) * SPAN);
         primaryStage.setTitle("Labyrinthe");
         VGraph.drawMaze(primaryStage,graph.edgeSet());
+        Label label1 = new Label("Your score :" + Model.getInstance().getScore());
+        Label label2 = new Label("Best score :" + Model.getInstance().getScore());
+        HBox scores = new HBox(500);
+        scores.getChildren().addAll(label1, label2);
+        root.getChildren().add(scores);
         drawDoor();
         drawCandies();
         drawBadGuys();
         drawPlayer();
         primaryStage.show();
-        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-                System.out.println("Are you done playing ? :)  (y/n)");
-                Scanner sc = new Scanner(System.in);
-                String key = sc.nextLine();
-                if(key.equals("y") || key.equals("Y")) {
-                    System.out.println("Bye bye !");
-                    primaryStage.close();
-                }else if(key.equals("n") || key.equals("N")){
-                    System.out.println("Here we go again !");
-                    event.consume();
-                }
+        primaryStage.setOnCloseRequest(e -> {
+            Alert alert = new Alert(AlertType.INFORMATION, "Are you done playing ?", ButtonType.NO, ButtonType.YES);
+            alert.setTitle("Exit game");
+            alert.showAndWait();
+            if (alert.getResult() == ButtonType.YES) {
+                primaryStage.close();
+            }else{
+                e.consume();
             }
+
         });
     }
 
