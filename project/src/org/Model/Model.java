@@ -36,7 +36,7 @@ public class Model {
         }
         return model;
     }
-
+    
     public ArrayList<BadGuy> createBadGuysList(){
         badGuys = new ArrayList<>(NB_BADGUYS);
         for(int i = 0; i < NB_BADGUYS; i++) {
