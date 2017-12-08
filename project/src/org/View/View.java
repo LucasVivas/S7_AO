@@ -63,6 +63,7 @@ public class View {
         return view;
     }
 
+
     public void start(Stage primaryStage) {
         nbrX = Model.getWIDTH();
         nbrY = Model.getHEIGHT();

@@ -77,6 +77,7 @@ public class Controller {
          });
     }
 
+
     public static Controller getInstance(){
         if (Controller.controller == null){
             controller = new Controller();
