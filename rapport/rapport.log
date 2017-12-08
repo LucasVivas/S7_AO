@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.29)  8 DEC 2017 17:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.29)  8 DEC 2017 19:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -555,38 +555,38 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 68--71
+Underfull \hbox (badness 10000) in paragraph at lines 105--108
 
  []
 
 <Controller2.jpg, id=10, 2618.78375pt x 1642.135pt>
 File: Controller2.jpg Graphic file (type jpg)
  <use Controller2.jpg>
-Package pdftex.def Info: Controller2.jpg used on input line 72.
+Package pdftex.def Info: Controller2.jpg used on input line 109.
 (pdftex.def)             Requested size: 483.69684pt x 303.28908pt.
 
-Overfull \hbox (68.69221pt too wide) in paragraph at lines 72--73
+Overfull \hbox (68.69221pt too wide) in paragraph at lines 109--110
 [][] 
  []
 
-[2 <./Controller2.jpg>] (./rapport.aux) ) 
+[2] [3 <./Controller2.jpg>] (./rapport.aux) ) 
 Here is how much of TeX's memory you used:
- 3565 strings out of 494924
- 47938 string characters out of 6179708
- 116351 words of memory out of 5000000
- 6817 multiletter control sequences out of 15000+600000
+ 3567 strings out of 494924
+ 47961 string characters out of 6179708
+ 117351 words of memory out of 5000000
+ 6819 multiletter control sequences out of 15000+600000
  10990 words of font info for 29 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  37i,6n,30p,240b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/silaar/.texmf-var/fonts/pk/ljf
-our/jknappen/ec/ecrm1000.600pk> </home/silaar/.texmf-var/fonts/pk/ljfour/jknapp
-en/ec/ecbx1440.600pk> </home/silaar/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm
-1200.600pk> </home/silaar/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk
->
-Output written on rapport.pdf (2 pages, 359165 bytes).
+ </home/silaar/.texmf-var/fonts/pk
+/ljfour/jknappen/ec/ecrm1000.600pk> </home/silaar/.texmf-var/fonts/pk/ljfour/jk
+nappen/ec/ecbx1440.600pk> </home/silaar/.texmf-var/fonts/pk/ljfour/jknappen/ec/
+ecrm1200.600pk> </home/silaar/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.6
+00pk>
+Output written on rapport.pdf (3 pages, 364184 bytes).
 PDF statistics:
- 159 PDF objects out of 1000 (max. 8388607)
- 22 compressed objects within 1 object stream
+ 173 PDF objects out of 1000 (max. 8388607)
+ 24 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

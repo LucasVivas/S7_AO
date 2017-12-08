@@ -19,6 +19,43 @@
 
 \begin{document}
   \maketitle
+  \section{Bilan}
+  \paragraph{}
+  Le jeu du Labyrinthe est fonctionnel. Dans un premier temps, nous générons un
+  labyrinthe parfait, et ensuite nous ajoutons un grand nombre d'arêtes au
+  graphe pour que nous puissions semer les méchants et rejoindre la porte de
+  sortie sans encombre. Le joueur débute le niveau en haut à gauche du
+  labyrinthe, et la porte se situe à la case la plus éloignée de la position de
+  départ (souvent en bas à droite logiquement). Les méchants, dans une première
+  version, se déplaçaient en même temps que le joueur effectuait un déplacement.
+  Ensuite, nous avons implémenté des threads afin que les méchants se déplacent
+  indépendamment du joueur. Nous avons disposé aléatoirement sur le labyrinthe
+  des bonbons censés rapporter au joueur des "points" en focntion du type de
+  bonbon ramassé. Nous n'avons pas encore, pour l'heure, terminé ce système de
+  points.\\
+  De plus, nous avons determiné trois niveaux de difficulté, et le changement
+  entre ces trois niveaux est la vitesse de déplacement des méchants.
+
+  \paragraph{}
+  Pour améliorer notre projet en terme de fonctionnalités, nous aurions pu, bien
+  entendu ajouter plein d'autres bonus, comme une série de niveaux où la
+  difficulté augmente graduellement, grâce notamment à la vitesse de déplacement
+  des méchants, ou au nombre d'arêtes ajoutées dans le graphe (donc le
+  labyrinthe). Le système de points et de bonbons pourrait être amélioré. Comme
+  vous l'avez rappelé en TD, tout cela n'est que du "sucre", c'est-à-dire des
+  éléments bonus.\\
+  Du point de vue de l'architecture, nos classes sont vraisemblablement trop
+  couplées. Pour remédier à ce problème, plusieurs options s'offrent à nous:
+  \begin{itemize}
+    \item créer des contrôleurs intermédiaires liant un élement du modèle à
+    l'élément de la vue correspondant,
+    \item faire communiquer le modèle et la vue par le biais d'une fonction
+    refresh() qui redessinerai les éléments modifiés dans le modèle.
+  \end{itemize}
+  Enfin, certaines fonctions ou attributs ne sont peut être pas placé de façon
+  optimale au sien de notre code. Il se peut dès lors que certains appels
+  intermédiaires soit superflus, que la cohésion de nos classes faiblissent.
+
   \section{Design patterns}
   \paragraph{}
   Pour réaliser ce projet, nous avons organisé notre code selon l'architecture
@@ -33,11 +70,11 @@
   choisi d'implémenter le design pattern Observer pour ce qui concerne les
   personnages méchants (BadGuy dans le code) afin que lorsque le joueur effectue
   un mouvement, tous les méchants soient avertis de la nouvelle position du
-  joueur pour que ceux-ci recalcule la distance qui les sépare du joueur avec
+  joueur pour que ceux-ci re-calculent la distance qui les sépare du joueur avec
   l'algorithme de Manhattan.\\
   Enfin, nous avons fait le choix d'utiliser le design pattern Factory pour ce
   qui concerne les bonbons. Comme il y a plusieurs types de bonbons différents,
-  la Factory les générent de manière aléatoire.
+  la Factory les génére de manière aléatoire.
 
   \section{Réalisations}
   \paragraph{}
