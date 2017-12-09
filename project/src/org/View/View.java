@@ -36,7 +36,6 @@ import static org.View.VConsts.*;
  */
 public class View {
 
-
     private static View view = null;
     private static Controller controller = Controller.getInstance();
 
@@ -45,7 +44,7 @@ public class View {
     public ArrayList<VBadGuy> vBadGuys;
     public ArrayList<VCandy> vCandies;
     static Scene scene1,scene2;
-    public Button button2;
+    public Button startButton;
     public Label pause;
 
     private View() {
@@ -54,7 +53,7 @@ public class View {
         vDoor = new VDoor();
         vBadGuys = InitializeBadGuys();
         vCandies = InitializeCandies();
-        button2= new Button("Start");
+        startButton= new Button("Start");
         pause = new Label("PAUSE\nPress SPACE to resume");
         pause.setFont(new Font("Cambria", 18));
     }
@@ -119,19 +118,26 @@ public class View {
         return 10;
     }
 
+    public void DrawStartScene(){
+        Label label= new Label("Welcome !\nPress Start to play :)");
+        label.setTextAlignment(TextAlignment.CENTER);
+        label.setTextFill(Color.web("#0076a3"));
+        FontWeight fontWeight = FontWeight.NORMAL;
+        FontPosture fontPosture = FontPosture.REGULAR;
+        Font font = Font.font("Verdana", fontWeight,  fontPosture,20);
+        label.setFont(font);
+        StackPane layout = new StackPane();
+        layout.setMargin(label, new Insets(0,0,130,0));
+        layout.getChildren().addAll(label, startButton);
+        scene2= new Scene(layout, 300,250);
+    }
 
-    public void start(Stage primaryStage) {
-    	//Scene1
-    	Label label22= new Label("Welcome ! Press Start to play :)");
-    	
-    	VBox layout2= new VBox(20);
-    	layout2.getChildren().addAll(label22, button2);
-    	scene2= new Scene(layout2, 350,250);
-    	        
-    	        
-    	primaryStage.setScene(scene2);
+
+    public void start(Stage primaryStage){
+        DrawStartScene();
+        primaryStage.setTitle("Welcome to the game");
+        primaryStage.setScene(scene2);
         primaryStage.show();
-    
     }
     
     public void showGame(Stage primaryStage){

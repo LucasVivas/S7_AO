@@ -6,7 +6,6 @@ import java.util.concurrent.Executors;
 import org.Model.*;
 import org.View.View;
 
-import com.sun.media.jfxmediaimpl.platform.Platform;
 
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -64,8 +63,7 @@ public class Controller {
 
 	public void start(Stage primaryStage) {
 		//level = view.chooseLevel();
-
-		view.button2.setOnAction(e ->{
+		view.startButton.setOnAction(e ->{
 			view.showGame(primaryStage);
 			view.vPlayer.getImagePlayer().setOnKeyPressed(event ->  {
 				if (event.getCode().equals(KeyCode.SPACE)) {
@@ -73,27 +71,19 @@ public class Controller {
 					t.start();
 				}
 			});
-
 		});
-		
 		view.start(primaryStage);
-
 		t = new Thread() {
 
 			public void run() {
-
 				controller.movement();
-
 				controller.BadGuysMove();
 				th.start();
-
-
 			}
 
 		};
-		
 		primaryStage.setOnCloseRequest(e -> {
-			Alert alert = new Alert(AlertType.INFORMATION, "Are you done playing ?", ButtonType.NO, ButtonType.YES);
+			Alert alert = new Alert(AlertType.NONE, "Are you done playing ?", ButtonType.NO, ButtonType.YES);
 			alert.setTitle("Exit game");
 			alert.showAndWait();
 			if (alert.getResult() == ButtonType.YES) {
@@ -106,7 +96,6 @@ public class Controller {
 			}else{
 				e.consume();
 			}
-
 		});
 	}
 
