@@ -6,7 +6,6 @@ import java.util.concurrent.Executors;
 import org.Model.*;
 import org.View.View;
 
-
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -112,7 +111,6 @@ public class Controller {
 							view.vBadGuys.get(i).move(i);
 						Thread.currentThread().sleep(1000);;
 					}
-
 				} catch(PlayerReachedException e) {
 					System.out.println("catched!");
 
@@ -122,7 +120,6 @@ public class Controller {
 					System.out.println("catched!1");
 					//service.shutdownNow();
 				}
-
 			}
 
 		};
@@ -154,7 +151,7 @@ public class Controller {
 				}
 			}catch (PlayerReachedException e){
 				//service.shutdownNow();
-				Alert alert = new Alert(AlertType.INFORMATION, "Replay ?", ButtonType.YES, ButtonType.NO);
+				Alert alert = new Alert(AlertType.NONE, "Replay ?", ButtonType.YES, ButtonType.NO);
 				alert.setTitle("You lose !");
 				alert.showAndWait();
 
@@ -164,7 +161,7 @@ public class Controller {
 			}catch (FinishedLevelException e){
 
 				//service.shutdownNow();
-				Alert alert = new Alert(AlertType.INFORMATION, "Replay ?", ButtonType.YES, ButtonType.NO);
+				Alert alert = new Alert(AlertType.NONE, "Replay ?", ButtonType.YES, ButtonType.NO);
 				alert.setTitle("You win !");
 				alert.showAndWait();
 
