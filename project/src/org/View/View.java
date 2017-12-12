@@ -10,6 +10,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
@@ -43,9 +44,13 @@ public class View {
     public VDoor vDoor;
     public ArrayList<VBadGuy> vBadGuys;
     public ArrayList<VCandy> vCandies;
-    static Scene scene1,scene2;
-    public Button startButton;
+    static Scene scene1,scene2, scene3;
     public Label pause;
+    public Button startButton;
+    public Button easy;
+    public Button medium;
+    public Button hard;
+    private int timeBetweenMoves;
 
     private View() {
         super();
@@ -53,9 +58,34 @@ public class View {
         vDoor = new VDoor();
         vBadGuys = InitializeBadGuys();
         vCandies = InitializeCandies();
-        startButton= new Button("Start");
         pause = new Label("PAUSE\nPress SPACE to resume");
         pause.setFont(new Font("Cambria", 18));
+        startButton = new Button("Start");
+        easy = new Button("EASY");
+        medium = new Button("MEDIUM");
+        hard = new Button("HARD");
+        timeBetweenMoves = 10;
+    }
+
+    public void setButtonsOnAction(Stage primaryStage){
+        startButton.setOnAction(e -> {
+            DrawLevelSelectScene();
+            primaryStage.setTitle("Select difficulty");
+            primaryStage.setScene(scene3);
+            primaryStage.show();
+        });
+        easy.setOnAction(e -> {
+            setTimeNetweenMoves(10);
+            showGame(primaryStage);
+        });
+        medium.setOnAction(e -> {
+            setTimeNetweenMoves(5);
+            showGame(primaryStage);
+        });
+        hard.setOnAction(e -> {
+            setTimeNetweenMoves(3);
+            showGame(primaryStage);
+        });
     }
 
 
@@ -90,32 +120,12 @@ public class View {
         return vCandies;
     }
 
-    public int chooseLevel(){
-        List<String> choices = new ArrayList<>();
-        choices.add("EASY");
-        choices.add("NORMAL");
-        choices.add("HARD");
+    public int getTimeBetweenMoves(){
+        return timeBetweenMoves;
+    }
 
-        ChoiceDialog<String> dialog = new ChoiceDialog<>("EASY", choices);
-        dialog.setTitle("Level difficulty");
-        dialog.setContentText("Choose the difficulty:");
-
-        // Traditional way to get the response value.
-        Optional<String> result = dialog.showAndWait();
-        if (result.isPresent()){
-            System.out.println("Your choice: " + result.get());
-            switch (result.get()){
-                case "EASY":
-                    return 10;
-
-                case "NORMAL":
-                    return 6;
-
-                case "HARD":
-                    return 3;
-            }
-        }
-        return 10;
+    public void setTimeNetweenMoves(int timeBetweenMoves){
+        this.timeBetweenMoves = timeBetweenMoves;
     }
 
     public void DrawStartScene(){
@@ -126,49 +136,61 @@ public class View {
         FontPosture fontPosture = FontPosture.REGULAR;
         Font font = Font.font("Verdana", fontWeight,  fontPosture,20);
         label.setFont(font);
-        StackPane layout = new StackPane();
-        layout.setMargin(label, new Insets(0,0,130,0));
+        VBox layout = new VBox(30);
+        layout.setAlignment(Pos.CENTER);
         layout.getChildren().addAll(label, startButton);
-        scene2= new Scene(layout, 300,250);
+        scene2 = new Scene(layout, 300,150);
     }
 
+    public void DrawLevelSelectScene(){
+        Label label= new Label("Select your difficulty");
+        label.setTextFill(Color.web("#0076a3"));
+        FontWeight fontWeight = FontWeight.NORMAL;
+        FontPosture fontPosture = FontPosture.REGULAR;
+        Font font = Font.font("Verdana", fontWeight,  fontPosture,20);
+        label.setFont(font);
+        VBox layout = new VBox(30);
+        layout.setAlignment(Pos.CENTER);
+        HBox buttons = new HBox(10);
+        buttons.setAlignment(Pos.CENTER);
+        buttons.getChildren().addAll(easy, medium, hard);
+        layout.getChildren().addAll(label, buttons);
+        scene3 = new Scene(layout, 300,150);
+    }
 
     public void start(Stage primaryStage){
         DrawStartScene();
         primaryStage.setTitle("Welcome to the game");
         primaryStage.setScene(scene2);
         primaryStage.show();
+        setButtonsOnAction(primaryStage);
     }
     
     public void showGame(Stage primaryStage){
-
-    	  nbrX = Model.getWIDTH();
-          nbrY = Model.getHEIGHT();
-          Graph graph = getController().getModel().getGraph();
-          System.out.println(graph.vertexSet().size());
-          System.out.println(graph.edgeSet().size());
-          primaryStage.setWidth(((WALL + CELL) * nbrX + WALL) * SPAN);
-          primaryStage.setHeight(((WALL + CELL) * nbrY + WALL) * SPAN);
-          primaryStage.setTitle("Labyrinthe");
-          VGraph.drawMaze(primaryStage,graph.edgeSet());
-          Label label1 = new Label("Your score :" + Model.getInstance().getScore());
-          Label label2 = new Label("Best score :" + Model.getInstance().getScore());
-
-          
-          HBox scores = new HBox(500);
-          scores.getChildren().addAll(label1, label2);
-          root.getChildren().add(scores);
-          root.getChildren().add(pause);
-          pause.setLayoutX(((primaryStage.getWidth())-pause.getLayoutX())/2);
-          pause.setLayoutY(((primaryStage.getHeight())-pause.getLayoutY())/2);
-          drawDoor();
-          drawCandies();
-          drawBadGuys();
-          drawPlayer();
-      	  //scene1= root.getScene();
-      	  primaryStage.setScene(scene1);
-      	  //primaryStage.show();
-      	  
+        nbrX = Model.getWIDTH();
+        nbrY = Model.getHEIGHT();
+        Graph graph = getController().getModel().getGraph();
+        System.out.println(graph.vertexSet().size());
+        System.out.println(graph.edgeSet().size());
+        VGraph.drawMaze(primaryStage,graph.edgeSet());
+        Label label1 = new Label("Your score :" + Model.getInstance().getScore());
+        Label label2 = new Label("Best score :" + Model.getInstance().getScore());
+        HBox scores = new HBox(500);
+        scores.getChildren().addAll(label1, label2);
+        root.getChildren().add(scores);
+        root.getChildren().add(pause);
+        pause.setLayoutX(primaryStage.getWidth());
+        pause.setLayoutY(primaryStage.getHeight());
+        drawDoor();
+        drawCandies();
+        drawBadGuys();
+        drawPlayer();
+        primaryStage.hide();
+        primaryStage.setWidth(((WALL + CELL) * nbrX + WALL) * SPAN);
+        primaryStage.setHeight(((WALL + CELL) * nbrY + WALL) * SPAN);
+        primaryStage.setTitle("Labyrinthe");
+        primaryStage.setScene(scene1);
+        primaryStage.show();
     }
 
     private void drawDoor(){

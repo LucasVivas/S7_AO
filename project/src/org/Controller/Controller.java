@@ -23,18 +23,9 @@ public class Controller {
 	private static View view = null;
 	private ExecutorService service;
 	private ExecutorService gameThread;
-	private int level;
 	private Stage stage;
 	Thread t;
 	Thread th;
-
-	public int getLevel() {
-		return level = 5;
-	}
-
-	public void setLevel(int level) {
-		this.level = level;
-	}
 
 	private Controller() {
 		super();
@@ -61,17 +52,14 @@ public class Controller {
 	}
 
 	public void start(Stage primaryStage) {
-		//level = view.chooseLevel();
-		view.startButton.setOnAction(e ->{
-			view.showGame(primaryStage);
-			view.vPlayer.getImagePlayer().setOnKeyPressed(event ->  {
-				if (event.getCode().equals(KeyCode.SPACE)) {
+        view.start(primaryStage);
+        view.vPlayer.getImagePlayer().setOnKeyPressed(event ->  {
+            if (event.getCode().equals(KeyCode.SPACE)) {
 					view.pause.setVisible(false);
 					t.start();
 				}
-			});
+//			});
 		});
-		view.start(primaryStage);
 		t = new Thread() {
 
 			public void run() {
@@ -109,7 +97,7 @@ public class Controller {
 						model.getPlayer().notifyObserver();
 						for(int i=0 ; i<getModel().getBadGuys().size() ; i++)
 							view.vBadGuys.get(i).move(i);
-						Thread.currentThread().sleep(1000);;
+						Thread.currentThread().sleep(view.getTimeBetweenMoves()*100);
 					}
 				} catch(PlayerReachedException e) {
 					System.out.println("catched!");
@@ -155,7 +143,8 @@ public class Controller {
 				alert.setTitle("You lose !");
 				alert.showAndWait();
 
-				if (alert.getResult() == ButtonType.YES) {
+				if (alert.getResult() == ButtonType.NO) {
+                    System.exit(0);
 				}else{
 				}
 			}catch (FinishedLevelException e){
@@ -165,7 +154,8 @@ public class Controller {
 				alert.setTitle("You win !");
 				alert.showAndWait();
 
-				if (alert.getResult() == ButtonType.YES) {
+				if (alert.getResult() == ButtonType.NO){
+                    System.exit(0);
 				}else{
 				}
 			}
