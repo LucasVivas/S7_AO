@@ -16,7 +16,7 @@ public class Main extends Application {
         launch(args);
     }
 
-    public void start(Stage primaryStage) throws PlayerReachedException, FinishedLevelException {
+    public void start(Stage primaryStage) throws PlayerReachedException, FinishedLevelException, InterruptedException {
         controller.start(primaryStage);
     }
 }

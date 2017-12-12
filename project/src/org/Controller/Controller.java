@@ -26,6 +26,7 @@ public class Controller {
 	private Stage stage;
 	Thread t;
 	Thread th;
+	boolean onPause;
 
 	private Controller() {
 		super();
@@ -33,7 +34,7 @@ public class Controller {
 		view = View.getInstance();
 		service = Executors.newCachedThreadPool();
 		gameThread = Executors.newCachedThreadPool();
-
+        onPause = false;
 	}
 
 	public static Controller getInstance(){
@@ -51,7 +52,7 @@ public class Controller {
 		return view;
 	}
 
-	public void start(Stage primaryStage) {
+	public void start(Stage primaryStage) throws InterruptedException {
         view.start(primaryStage);
         view.vPlayer.getImagePlayer().setOnKeyPressed(event ->  {
             if (event.getCode().equals(KeyCode.SPACE)) {
@@ -62,8 +63,12 @@ public class Controller {
 		});
 		t = new Thread() {
 
-			public void run() {
-				controller.movement();
+			public void run(){
+                try{
+                    controller.movement();
+                }catch (InterruptedException e){
+                    e.printStackTrace();
+                }
 				controller.BadGuysMove();
 				th.start();
 			}
@@ -114,7 +119,11 @@ public class Controller {
 
 	}
 
-	public void movement() {
+	public boolean isOnPause(){
+       return onPause;
+    }
+
+	public void movement() throws InterruptedException {
 		view.vPlayer.getImagePlayer().setOnKeyPressed(event ->  {
 			try {
 				if (event.getCode().equals(KeyCode.RIGHT)) {
@@ -137,6 +146,24 @@ public class Controller {
 						view.vPlayer.setY(model.getPlayer().getY());
 					}
 				}
+
+                if (event.getCode().equals(KeyCode.SPACE) && !isOnPause()) {
+				    try {
+                        view.pause.setVisible(true);
+                        t.wait();
+                        th.wait();
+                        onPause = true;
+                    }catch (InterruptedException e){
+				        e.printStackTrace();
+                    }
+                }
+
+                if (event.getCode().equals(KeyCode.SPACE)&& isOnPause()){
+                        view.pause.setVisible(false);
+                        t.notify();
+                        th.notify();
+                        onPause = false;
+                }
 			}catch (PlayerReachedException e){
 				//service.shutdownNow();
 				Alert alert = new Alert(AlertType.NONE, "Replay ?", ButtonType.YES, ButtonType.NO);
