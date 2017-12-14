@@ -1,29 +1,41 @@
 package org.View;
 
+import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.*;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
-import org.Model.*;
+import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 import org.Controller.Controller;
-import static org.View.VConsts.*;
+import org.Model.*;
 
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Scanner;
 
-
+import static org.View.VConsts.*;
 
 /**
  * Created by lulu on 19/11/17.
  */
 public class View {
-
 
     private static View view = null;
     private static Controller controller = Controller.getInstance();
@@ -32,6 +44,13 @@ public class View {
     public VDoor vDoor;
     public ArrayList<VBadGuy> vBadGuys;
     public ArrayList<VCandy> vCandies;
+    static Scene scene1,scene2, scene3;
+    public Label pause;
+    public Button startButton;
+    public Button easy;
+    public Button medium;
+    public Button hard;
+    private int timeBetweenMoves;
 
     private View() {
         super();
@@ -39,6 +58,34 @@ public class View {
         vDoor = new VDoor();
         vBadGuys = InitializeBadGuys();
         vCandies = InitializeCandies();
+        pause = new Label("PAUSE\nPress SPACE to resume");
+        pause.setFont(new Font("Cambria", 18));
+        startButton = new Button("Start");
+        easy = new Button("EASY");
+        medium = new Button("MEDIUM");
+        hard = new Button("HARD");
+        timeBetweenMoves = 10;
+    }
+
+    public void setButtonsOnAction(Stage primaryStage){
+        startButton.setOnAction(e -> {
+            DrawLevelSelectScene();
+            primaryStage.setTitle("Select difficulty");
+            primaryStage.setScene(scene3);
+            primaryStage.show();
+        });
+        easy.setOnAction(e -> {
+            setTimeNetweenMoves(10);
+            showGame(primaryStage);
+        });
+        medium.setOnAction(e -> {
+            setTimeNetweenMoves(5);
+            showGame(primaryStage);
+        });
+        hard.setOnAction(e -> {
+            setTimeNetweenMoves(3);
+            showGame(primaryStage);
+        });
     }
 
 
@@ -73,63 +120,77 @@ public class View {
         return vCandies;
     }
 
-    public int chooseLevel(){
-        List<String> choices = new ArrayList<>();
-        choices.add("EASY");
-        choices.add("NORMAL");
-        choices.add("HARD");
-
-        ChoiceDialog<String> dialog = new ChoiceDialog<>("EASY", choices);
-        dialog.setTitle("Level difficulty");
-        dialog.setContentText("Choose the difficulty:");
-        int timeBetweenMovements = 10;
-
-        // Traditional way to get the response value.
-        Optional<String> result = dialog.showAndWait();
-        if (result.isPresent()){
-            System.out.println("Your choice: " + result.get());
-            switch (result.get()){
-                case "EASY":
-                    timeBetweenMovements = 10;
-                    break;
-                case "NORMAL":
-                    timeBetweenMovements = 6;
-                    break;
-                case "HARD":
-                    timeBetweenMovements = 3;
-                    break;
-            }
-        }
-        return timeBetweenMovements;
+    public int getTimeBetweenMoves(){
+        return timeBetweenMoves;
     }
 
+    public void setTimeNetweenMoves(int timeBetweenMoves){
+        this.timeBetweenMoves = timeBetweenMoves;
+    }
 
-    public void start(Stage primaryStage) {
+    public void DrawStartScene(){
+        Label label= new Label("Welcome !\nPress Start to play :)");
+        label.setTextAlignment(TextAlignment.CENTER);
+        label.setTextFill(Color.web("#0076a3"));
+        FontWeight fontWeight = FontWeight.NORMAL;
+        FontPosture fontPosture = FontPosture.REGULAR;
+        Font font = Font.font("Verdana", fontWeight,  fontPosture,20);
+        label.setFont(font);
+        VBox layout = new VBox(30);
+        layout.setAlignment(Pos.CENTER);
+        layout.getChildren().addAll(label, startButton);
+        scene2 = new Scene(layout, 300,150);
+    }
+
+    public void DrawLevelSelectScene(){
+        Label label= new Label("Select your difficulty");
+        label.setTextFill(Color.web("#0076a3"));
+        FontWeight fontWeight = FontWeight.NORMAL;
+        FontPosture fontPosture = FontPosture.REGULAR;
+        Font font = Font.font("Verdana", fontWeight,  fontPosture,20);
+        label.setFont(font);
+        VBox layout = new VBox(30);
+        layout.setAlignment(Pos.CENTER);
+        HBox buttons = new HBox(10);
+        buttons.setAlignment(Pos.CENTER);
+        buttons.getChildren().addAll(easy, medium, hard);
+        layout.getChildren().addAll(label, buttons);
+        scene3 = new Scene(layout, 300,150);
+    }
+
+    public void start(Stage primaryStage){
+        DrawStartScene();
+        primaryStage.setTitle("Welcome to the game");
+        primaryStage.setScene(scene2);
+        primaryStage.show();
+        setButtonsOnAction(primaryStage);
+    }
+    
+    public void showGame(Stage primaryStage){
         nbrX = Model.getWIDTH();
         nbrY = Model.getHEIGHT();
         Graph graph = getController().getModel().getGraph();
         System.out.println(graph.vertexSet().size());
         System.out.println(graph.edgeSet().size());
-        primaryStage.setWidth(((WALL + CELL) * nbrX + WALL) * SPAN);
-        primaryStage.setHeight(((WALL + CELL) * nbrY + WALL) * SPAN);
-        primaryStage.setTitle("Labyrinthe");
         VGraph.drawMaze(primaryStage,graph.edgeSet());
-        drawScores();
+        Label label1 = new Label("Your score :" + Model.getInstance().getScore());
+        Label label2 = new Label("Best score :" + Model.getInstance().getScore());
+        HBox scores = new HBox(500);
+        scores.getChildren().addAll(label1, label2);
+        root.getChildren().add(scores);
+        root.getChildren().add(pause);
+        pause.setLayoutX(primaryStage.getWidth());
+        pause.setLayoutY(primaryStage.getHeight());
         drawDoor();
         drawCandies();
         drawBadGuys();
         drawPlayer();
+        primaryStage.hide();
+        primaryStage.setWidth(((WALL + CELL) * nbrX + WALL) * SPAN);
+        primaryStage.setHeight(((WALL + CELL) * nbrY + WALL) * SPAN);
+        primaryStage.setTitle("Labyrinthe");
+        primaryStage.setScene(scene1);
         primaryStage.show();
-        primaryStage.setOnCloseRequest(e -> {
-            Alert alert = new Alert(AlertType.NONE, "Are you done playing ?", ButtonType.NO, ButtonType.YES);
-            alert.setTitle("Exit game");
-            alert.showAndWait();
-            if (alert.getResult() == ButtonType.YES){
-                primaryStage.close();
-                System.exit(0);
-            }
-            e.consume();
-        });
     }
 
     private void drawDoor(){
@@ -169,15 +230,6 @@ public class View {
             //vplayer.getImagePlayer().setFocusTraversable(true);
             root.getChildren().add(vCandies.get(i).getImagePlayer());
         }
-    }
-
-    private void drawScores(){
-        Label label1 = new Label("Your score :" + Model.getInstance().getScore());
-        Label label2 = new Label("Best score :" + Model.getInstance().getScore());
-        HBox scores = new HBox(500);
-        scores.getChildren().addAll(label1, label2);
-        //scores.setFocusTraversable(true);
-        root.getChildren().add(scores);
     }
 
 	public static Controller getController() {
