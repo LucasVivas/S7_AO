@@ -1,5 +1,6 @@
 package org.Controller;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -98,7 +99,6 @@ public class Controller {
 			public void run() {
 				try{
 					while(true){
-						System.out.println("hellooo");
 						model.getPlayer().notifyObserver();
 						for(int i=0 ; i<getModel().getBadGuys().size() ; i++)
 							view.vBadGuys.get(i).move(i);
@@ -123,6 +123,15 @@ public class Controller {
        return onPause;
     }
 
+	public void candyCollapse(){
+        ArrayList<Candy> candyList = model.getCandyList();
+        for (int i = 0; i < candyList.size(); i++) {
+            Candy candy = candyList.get(i);
+            if (candy.compareTo(model.getPlayer()) == 0)
+                view.deleteCandy(i);
+        }
+	}
+
 	public void movement() throws InterruptedException {
 		view.vPlayer.getImagePlayer().setOnKeyPressed(event ->  {
 			try {
@@ -146,7 +155,7 @@ public class Controller {
 						view.vPlayer.setY(model.getPlayer().getY());
 					}
 				}
-
+				candyCollapse();
                 if (event.getCode().equals(KeyCode.SPACE) && !isOnPause()) {
 				    try {
                         view.pause.setVisible(true);
