@@ -22,20 +22,17 @@ public class Controller {
 	private static Controller controller = null;
 	private static Model model = null;
 	private static View view = null;
-	private ExecutorService service;
-	private ExecutorService gameThread;
 	private Stage stage;
-	Thread t;
-	Thread th;
-	boolean onPause;
+	private Thread t;
+	private Thread th;
+	private boolean onPause = false;
 
 	private Controller() {
 		super();
 		model = Model.getInstance();
 		view = View.getInstance();
-		service = Executors.newCachedThreadPool();
-		gameThread = Executors.newCachedThreadPool();
-        onPause = false;
+		t = new Thread();
+		th = new Thread();
 	}
 
 	public static Controller getInstance(){
@@ -60,7 +57,6 @@ public class Controller {
 					view.pause.setVisible(false);
 					t.start();
 				}
-//			});
 		});
 		t = new Thread() {
 
@@ -123,13 +119,18 @@ public class Controller {
        return onPause;
     }
 
-	public void candyCollapse(){
+	public int candyCollapse(){
+	    int score = 0;
         ArrayList<Candy> candyList = model.getCandyList();
         for (int i = 0; i < candyList.size(); i++) {
             Candy candy = candyList.get(i);
-            if (candy.compareTo(model.getPlayer()) == 0)
+            if (candy.compareTo(model.getPlayer()) == 0) {
                 view.deleteCandy(i);
+                model.setScore(model.getScore() + candy.getNbrPoints());
+                score = model.getScore();
+            }
         }
+        return score;
 	}
 
 	public void movement() throws InterruptedException {
@@ -156,11 +157,12 @@ public class Controller {
 					}
 				}
 				candyCollapse();
-                if (event.getCode().equals(KeyCode.SPACE) && !isOnPause()) {
+				view.updateScore();
+				if (event.getCode().equals(KeyCode.SPACE) && !isOnPause()) {
 				    try {
                         view.pause.setVisible(true);
-                        t.wait();
-                        th.wait();
+                        synchronized (t){t.wait();}
+                        synchronized (th){th.wait();}
                         onPause = true;
                     }catch (InterruptedException e){
 				        e.printStackTrace();
@@ -169,8 +171,8 @@ public class Controller {
 
                 if (event.getCode().equals(KeyCode.SPACE)&& isOnPause()){
                         view.pause.setVisible(false);
-                        t.notify();
-                        th.notify();
+                        synchronized (t){t.notify();}
+                        synchronized (th){th.notify();}
                         onPause = false;
                 }
 			}catch (PlayerReachedException e){
@@ -184,7 +186,6 @@ public class Controller {
 				}else{
 				}
 			}catch (FinishedLevelException e){
-
 				//service.shutdownNow();
 				Alert alert = new Alert(AlertType.NONE, "Replay ?", ButtonType.YES, ButtonType.NO);
 				alert.setTitle("You win !");

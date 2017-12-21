@@ -6,13 +6,13 @@ import java.util.Random;
 public abstract class Candy extends Vertex{
 
     private String name;
-    private double nbrPoints;
+    private int nbrPoints;
 
     public String getName() { return name; }
 
     public void setName(String newName) { name = newName; }
 
-    public double getNbrPoints() { return nbrPoints; }
+    public int getNbrPoints() { return nbrPoints; }
 
 
 
