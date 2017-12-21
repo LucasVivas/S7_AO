@@ -221,6 +221,11 @@ public class View {
         root.getChildren().add(vPlayer.getImagePlayer());
     }
 
+    public void deleteCandy(int indexCandy){
+        VCandy vCandy = vCandies.get(indexCandy);
+        root.getChildren().remove(vCandy.getImagePlayer());
+    }
+
     private void drawCandies(){
         for(int i = 0; i < vCandies.size(); i++) {
             int x = getController().getModel().getCandy(i).getX();

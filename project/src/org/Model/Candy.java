@@ -14,6 +14,8 @@ public abstract class Candy extends Vertex{
 
     public double getNbrPoints() { return nbrPoints; }
 
+
+
     public void setNbrPoints(int nbrPoints){
         this.nbrPoints = nbrPoints;
     }
