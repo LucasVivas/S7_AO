@@ -249,7 +249,7 @@ public class View {
     }
 
 	public static Controller getController() {
-		return controller;
+		return Controller.getInstance();
 	}
 
 }

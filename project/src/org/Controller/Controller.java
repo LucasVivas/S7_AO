@@ -66,7 +66,7 @@ public class Controller {
                 }catch (InterruptedException e){
                     e.printStackTrace();
                 }
-				controller.BadGuysMove();
+				controller.BadGuysMove(primaryStage);
 				th.start();
 			}
 
@@ -88,7 +88,7 @@ public class Controller {
 		});
 	}
 
-	public void BadGuysMove() {
+	public void BadGuysMove(Stage primaryStage) {
 		th = new Thread() {
 
 			@SuppressWarnings("static-access")
@@ -103,6 +103,7 @@ public class Controller {
 				} catch(PlayerReachedException e) {
 					System.out.println("catched!");
                     restart();
+                    view.showGame(primaryStage);
 
 				} catch (FinishedLevelException e) {
 
@@ -116,7 +117,7 @@ public class Controller {
 
 	}
 
-	public synchronized boolean doPause(){
+	/*public synchronized boolean doPause(){
 		if(!onPause) {
 			try {
 			//	t.wait();
@@ -132,7 +133,7 @@ public class Controller {
 			onPause = false;
 		}
 		return onPause;
-    }
+    }*/
 
 	public int candyCollapse(){
 	    int score = 0;
@@ -173,13 +174,13 @@ public class Controller {
 				}
 				candyCollapse();
 				view.updateScore();
-				if (event.getCode().equals(KeyCode.SPACE) && !onPause) {
+				/*if (event.getCode().equals(KeyCode.SPACE) && !onPause) {
 					doPause();
 				}
 
                 if (event.getCode().equals(KeyCode.SPACE) && onPause){
 					doPause();
-                }
+                }*/
 			}catch (PlayerReachedException e){
 				//service.shutdownNow();
 				Alert alert = new Alert(AlertType.NONE, "Replay ?", ButtonType.YES, ButtonType.NO);
@@ -206,6 +207,7 @@ public class Controller {
 	}
 
 	public void restart(){
+	    model.setScore(0);
         model.getPlayer().setX(0);
         model.getPlayer().setY(0);
         for (BadGuy badGuy:model.getBadGuys()){
