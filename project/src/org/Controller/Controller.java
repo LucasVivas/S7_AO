@@ -102,6 +102,9 @@ public class Controller {
 					}
 				} catch(PlayerReachedException e) {
 					System.out.println("catched!");
+					if(th.isAlive())
+						th.interrupt();
+					t.interrupt();
                     restart();
                     view.showGame(primaryStage);
 
