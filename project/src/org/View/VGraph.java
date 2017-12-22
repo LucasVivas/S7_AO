@@ -32,10 +32,12 @@ class VGraph {
 
 
     private static void drawFrame(Stage stage, int nbrX, int nbrY) {
-        View.scene1 = new Scene(root,
-                ((WALL + CELL) * nbrX + WALL) * SPAN,
-                ((WALL + CELL) * nbrY + WALL) * SPAN);
-        View.scene1.setFill(SCENECOLOR);
+        if(!View.isGameAlreadyShown()) {
+            View.scene1 = new Scene(root,
+                    ((WALL + CELL) * nbrX + WALL) * SPAN,
+                    ((WALL + CELL) * nbrY + WALL) * SPAN);
+            View.scene1.setFill(SCENECOLOR);
+        }
 
         Rectangle square;
        // stage.setScene(scene);

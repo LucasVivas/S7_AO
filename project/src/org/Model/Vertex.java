@@ -34,8 +34,8 @@ public class Vertex implements Comparable<Vertex>, Cloneable{
     public Vertex(){
         Random random = new Random();
         int minBounds = 6;
-        this.x = random.nextInt(MConsts.WIDTH-minBounds)+minBounds;
-        this.y = random.nextInt(MConsts.HEIGHT-minBounds)+minBounds;
+        this.x = random.nextInt(MConsts.WIDTH-minBounds)+minBounds-1;
+        this.y = random.nextInt(MConsts.HEIGHT-minBounds)+minBounds-1;
     }
 
     /**

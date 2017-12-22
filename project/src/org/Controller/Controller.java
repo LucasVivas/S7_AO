@@ -62,7 +62,7 @@ public class Controller {
 
 			public void run(){
                 try{
-                    controller.movement();
+                    controller.movement(primaryStage);
                 }catch (InterruptedException e){
                     e.printStackTrace();
                 }
@@ -115,8 +115,22 @@ public class Controller {
 
 	}
 
-	public boolean isOnPause(){
-       return onPause;
+	public synchronized boolean doPause(){
+		if(!onPause) {
+			try {
+			//	t.wait();
+				th.wait();
+				onPause = true;
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		if(onPause){
+		//	t.notify();
+			th.notify();
+			onPause = false;
+		}
+		return onPause;
     }
 
 	public int candyCollapse(){
@@ -133,7 +147,7 @@ public class Controller {
         return score;
 	}
 
-	public void movement() throws InterruptedException {
+	public void movement(Stage primaryStage) throws InterruptedException {
 		view.vPlayer.getImagePlayer().setOnKeyPressed(event ->  {
 			try {
 				if (event.getCode().equals(KeyCode.RIGHT)) {
@@ -158,22 +172,12 @@ public class Controller {
 				}
 				candyCollapse();
 				view.updateScore();
-				if (event.getCode().equals(KeyCode.SPACE) && !isOnPause()) {
-				    try {
-                        view.pause.setVisible(true);
-                        synchronized (t){t.wait();}
-                        synchronized (th){th.wait();}
-                        onPause = true;
-                    }catch (InterruptedException e){
-				        e.printStackTrace();
-                    }
-                }
+				if (event.getCode().equals(KeyCode.SPACE) && !onPause) {
+					doPause();
+				}
 
-                if (event.getCode().equals(KeyCode.SPACE)&& isOnPause()){
-                        view.pause.setVisible(false);
-                        synchronized (t){t.notify();}
-                        synchronized (th){th.notify();}
-                        onPause = false;
+                if (event.getCode().equals(KeyCode.SPACE) && onPause){
+					doPause();
                 }
 			}catch (PlayerReachedException e){
 				//service.shutdownNow();
@@ -194,6 +198,7 @@ public class Controller {
 				if (alert.getResult() == ButtonType.NO){
                     System.exit(0);
 				}else{
+					view.showGame(primaryStage);
 				}
 			}
 		});

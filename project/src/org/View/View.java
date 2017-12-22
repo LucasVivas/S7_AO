@@ -52,6 +52,7 @@ public class View {
     public Button hard;
     private int timeBetweenMoves;
     private Label scores;
+    static private boolean gameAlreadyShown;
 
     private View() {
         super();
@@ -66,6 +67,7 @@ public class View {
         medium = new Button("MEDIUM");
         hard = new Button("HARD");
         timeBetweenMoves = 10;
+        gameAlreadyShown = false;
     }
 
     public void setButtonsOnAction(Stage primaryStage){
@@ -170,13 +172,18 @@ public class View {
         primaryStage.show();
         setButtonsOnAction(primaryStage);
     }
-    
+
+    public static boolean isGameAlreadyShown() {
+        return gameAlreadyShown;
+    }
+
     public void showGame(Stage primaryStage){
         nbrX = Model.getWIDTH();
         nbrY = Model.getHEIGHT();
         Graph graph = getController().getModel().getGraph();
         System.out.println(graph.vertexSet().size());
         System.out.println(graph.edgeSet().size());
+        root.getChildren().clear();
         VGraph.drawMaze(primaryStage,graph.edgeSet());
         scores = new Label("Your score :" + Model.getInstance().getScore());
         root.getChildren().add(scores);
@@ -193,6 +200,7 @@ public class View {
         primaryStage.setTitle("Labyrinthe");
         primaryStage.setScene(scene1);
         primaryStage.show();
+        gameAlreadyShown = true;
     }
 
     private void drawDoor(){
@@ -203,7 +211,7 @@ public class View {
         root.getChildren().add(vDoor.getImagePlayer());
     }
     private void drawBadGuys(){
-    	for(int i = 0; i < vBadGuys.size(); i++) {
+    	for(int i = 0; i < vBadGuys.size(); i++){
 	    	int x = getController().getModel().getBadGuy(i).getX();
 	        int y = getController().getModel().getBadGuy(i).getY();
 	        vBadGuys.get(i).setX(x);
