@@ -102,6 +102,7 @@ public class Controller {
 					}
 				} catch(PlayerReachedException e) {
 					System.out.println("catched!");
+                    restart();
 
 				} catch (FinishedLevelException e) {
 
@@ -187,7 +188,6 @@ public class Controller {
 
 				if (alert.getResult() == ButtonType.NO) {
                     System.exit(0);
-				}else{
 				}
 			}catch (FinishedLevelException e){
 				//service.shutdownNow();
@@ -198,10 +198,24 @@ public class Controller {
 				if (alert.getResult() == ButtonType.NO){
                     System.exit(0);
 				}else{
-					view.showGame(primaryStage);
+				    restart();
+                    view.showGame(primaryStage);
 				}
 			}
 		});
 	}
+
+	public void restart(){
+        model.getPlayer().setX(0);
+        model.getPlayer().setY(0);
+        for (BadGuy badGuy:model.getBadGuys()){
+            badGuy.setX(Graph.getInstance().getRandomInt(model.getWIDTH()));
+            badGuy.setY(Graph.getInstance().getRandomInt(model.getHEIGHT()));
+        }
+        for (Candy candy : model.getCandyList()) {
+            candy.setX(Graph.getInstance().getRandomInt(model.getWIDTH()));
+            candy.setY(Graph.getInstance().getRandomInt(model.getHEIGHT()));
+        }
+    }
 
 }
